@@ -29,4 +29,8 @@ class BLEDataItemTableViewCell: UITableViewCell {
         txtDataItem.text = item_name
         txtDataValue.text = item_value
     }
+    
+    func setValue(item_value: String) {
+        txtDataValue.text = item_value
+    }
 }

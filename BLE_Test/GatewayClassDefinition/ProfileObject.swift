@@ -33,12 +33,12 @@ class ProfileObject: NSObject, NSCoding {
         self.BLEName = data.BLEName
         self.BLEDescription = data.BLEDescription
         self.ServiceUUID = data.ServiceUUID
-        //self.CharacteristicUUID = data.CharacteristicUUID
+        self.CharacteristicUUID = []
         for tmpUUID in data.CharacteristicUUID {
             let tmpData = CharacteristicDataObject(data: tmpUUID)
             self.CharacteristicUUID?.append(tmpData)
         }
-        //self.ConfigParameterList = data.ConfigParameterList
+        self.ConfigParameterList = []
         for tmpParameter in data.ConfigParameterList {
             let tmpParam = CharacteristicDataObject(data: tmpParameter)
             self.ConfigParameterList?.append(tmpParam)
@@ -88,7 +88,7 @@ class CharacteristicDataObject: NSObject, NSCoding {
     init(data: BLECharacteristicData) {
         //super.init()
         self.UUID = data.UUID
-        //self.ItemList = data_itemlist
+        self.ItemList = []
         for tmp in data.ItemList {
             self.ItemList?.append(DataItemObject(data_name: tmp.DataName, data_type: tmp.DataType))
         }
