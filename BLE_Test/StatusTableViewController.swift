@@ -10,16 +10,26 @@ import UIKit
 
 class StatusTableViewController: UITableViewController {
     private var gatewayList: WebResponseGatewayList?
+    private  let _myalert = UIAlertController(title: "Loading...",message: "\n\n\n",preferredStyle: .alert)
+    
     
     override func viewWillAppear(_ animated: Bool) {
         print("viewWillAppear")
-        requestGatewayList()
+        //requestGatewayList()
         //self.tableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewDidLoad")
+        
+        let _loadingIndicator =  UIActivityIndicatorView(frame: _myalert.view.bounds)
+        _loadingIndicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        _loadingIndicator.color = UIColor.blue
+        _loadingIndicator.startAnimating()
+        _myalert.view.addSubview(_loadingIndicator)
+        present(_myalert, animated : true, completion : requestGatewayList)
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -77,12 +87,26 @@ class StatusTableViewController: UITableViewController {
         print("requestGatewayList")
         let task = sessionHttp.dataTask(with: UrlRequest) {(data, response, error) in
             do {
-                let outputStr  = String(data: data!, encoding: String.Encoding.utf8) as String?
-                let jsonData = outputStr!.data(using: String.Encoding.utf8, allowLossyConversion: true)
-                let decoder = JSONDecoder()
-                self.gatewayList = try decoder.decode(WebResponseGatewayList.self, from: jsonData!)
-                print("json decoding seems OK!!")
-                DispatchQueue.main.async {self.tableView.reloadData()}
+                
+                if error != nil{
+                    
+                    self.presentedViewController?.dismiss(animated: false, completion: nil)
+                    let _httpalert = UIAlertController(title: "Error",message: (error?.localizedDescription) ,preferredStyle: .alert)
+                    let _OKaction = UIAlertAction(title:"OK",style: .default ){(UIAlertAction) in self.dismiss(animated: false, completion:nil)}
+                    _httpalert.addAction(_OKaction)
+                    self.present(_httpalert, animated : false, completion : nil)
+                    
+                }else{
+                    
+                    self.presentedViewController?.dismiss(animated: false, completion: nil)
+                    let outputStr  = String(data: data!, encoding: String.Encoding.utf8) as String?
+                    let jsonData = outputStr!.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                    let decoder = JSONDecoder()
+                    self.gatewayList = try decoder.decode(WebResponseGatewayList.self, from: jsonData!)
+                    print("json decoding seems OK!!")
+                    DispatchQueue.main.async {self.tableView.reloadData()}
+                    
+                }
                 //self.tableView.reloadData()
             } catch {
                 print("Cannot connect to server")
