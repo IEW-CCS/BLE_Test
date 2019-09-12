@@ -85,7 +85,11 @@ class SetupTableViewController: UITableViewController{
         
         entity.category = data.BLECategory
         entity.name = data.BLEName
-        entity.profileObject = ProfileObject(data: data)
+        let pData = ProfileObject(data: data)
+        entity.profileObject = pData
+        for tmp in pData.CharacteristicUUID! {
+            print("saveProfilesData: cat: \(pData.BLECategory), name: \(pData.BLEName), CharService: \(tmp.UUID), ItemCount: \(tmp.ItemList!.count)")
+        }
         app.saveContext()
     }
     

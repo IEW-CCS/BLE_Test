@@ -90,9 +90,6 @@ class QueryChartTableViewController: UITableViewController {
         if indexPath.section == 1 {
             if self.itemArray.count > 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "ChartItem", for: indexPath) as! ChartItemTableViewCell
-                //let bundle = Bundle(for: type(of: self))
-                //let nib = UINib(nibName: "ChartItemTableViewCell", bundle: bundle)
-                //let cell = nib.instantiate(withOwner: self, options: nil)[0] as! ChartItemTableViewCell
 
                 print("Section 1 row: \(indexPath.row)")
                 print("self.itemArray[indexPath.row].item_name: \(self.itemArray[indexPath.row].item_name)")
@@ -312,9 +309,9 @@ extension QueryChartTableViewController: UIPickerViewDataSource, UIPickerViewDel
             print("didSelectRow: \(row), component: \(component)")
             if component == 0 {
                 print("Selected gateway is: \(self.gatewayArray[row])")
+                self.devicePicker.reloadComponent(1)
                 let selectedIndex = self.devicePicker.selectedRow(inComponent: 1)
                 print("Selected device is: \(self.deviceArray[row][selectedIndex])")
-                self.devicePicker.reloadComponent(1)
                 self.deviceID = self.deviceArray[row][selectedIndex]
                 self.requestDeviceItem(device_id: self.deviceID)
             }
