@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>HttpServer</key>
+	<string>172.20.10.3</string>
+	<key>HttpPort</key>
+	<string>7788</string>
+	<key>MQTTBrokerIP</key>
+	<string>172.20.10.9</string>
+	<key>MQTTBrokerPort</key>
+	<string>1883</string>
+	<key>BLEProfileName</key>
+	<string>BLE1</string>
+	<key>DatabaseType</key>
+	<string>MySQL</string>
+	<key>DatabaseSource</key>
+	<string>172.20.10.3</string>
+	<key>DatabasePort</key>
+	<string>3306</string>
+	<key>DatabaseName</key>
+	<string>iotdb</string>
+	<key>DBUserName</key>
+	<string>root</string>
+	<key>DBPassword</key>
+	<string>qQ123456</string>
+	<key>LastAlarmNotification</key>
+	<date>2019-09-05T02:00:00Z</date>
+</dict>
+</plist>

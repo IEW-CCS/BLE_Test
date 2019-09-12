@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="18G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AlarmNotificationHistory" representedClassName="AlarmNotificationHistory" syncable="YES">
+        <attribute name="alarm_app" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="alarm_code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="alarm_datetime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="alarm_level" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="alarm_message" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="badge_number" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="device_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gateway_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="is_archived" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="BLEProfileTable" representedClassName="BLEProfileTable" syncable="YES">
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="profileObject" optional="YES" attributeType="Transformable" valueTransformerName="" syncable="YES"/>
+    </entity>
+    <fetchRequest name="Fetch_Badge_Number" entity="AlarmNotificationHistory" predicateString="badge_number &gt; 0"/>
+    <fetchRequest name="Fetch_By_UUID" entity="AlarmNotificationHistory" predicateString="id CONTAINS $ID"/>
+    <fetchRequest name="Fetch_Specific_Profile" entity="BLEProfileTable" predicateString="category == &quot;$CAT&quot; AND name == &quot;$NAME&quot;"/>
+    <fetchRequest name="Fetch_UnArchive_Alarm" entity="AlarmNotificationHistory" predicateString="is_archived == 0"/>
+    <elements>
+        <element name="AlarmNotificationHistory" positionX="-63" positionY="-18" width="128" height="195"/>
+        <element name="BLEProfileTable" positionX="-260.421875" positionY="26.76953125" width="128" height="88"/>
+    </elements>
+</model>
