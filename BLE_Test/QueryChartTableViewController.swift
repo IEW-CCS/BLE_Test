@@ -21,6 +21,8 @@ class QueryChartTableViewController: UITableViewController {
     
     var listDictionary: Dictionary<String, [String]> = [:]
     
+    private  let _myalert = UIAlertController(title: "Loading...",message: "\n\n\n",preferredStyle: .alert)
+    
     private var itemDefs = [ItemDef(title: "Time Line Chart",
                                     subtitle: "Simple demonstration of a time-chart.",
                                     class: LineChartTimeViewController.self),
@@ -38,6 +40,13 @@ class QueryChartTableViewController: UITableViewController {
                                     class: PieChartViewController.self)
     ]
     
+    override func viewWillAppear(_ animated: Bool) {
+    
+       
+        
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,7 +59,16 @@ class QueryChartTableViewController: UITableViewController {
         let nib = UINib(nibName: "ChartItemTableViewCell", bundle: nil)
         //註冊，forCellReuseIdentifier是你的TableView裡面設定的Cell名稱
         self.tableView.register(nib, forCellReuseIdentifier: "ChartItem")
-        requestGatewayList()
+        
+       // requestGatewayList()
+        
+        let _loadingIndicator =  UIActivityIndicatorView(frame: _myalert.view.bounds)
+        _loadingIndicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        _loadingIndicator.color = UIColor.blue
+        _loadingIndicator.startAnimating()
+        _myalert.view.addSubview(_loadingIndicator)
+        present(_myalert, animated : true, completion : requestGatewayList)
+        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -135,24 +153,35 @@ class QueryChartTableViewController: UITableViewController {
         print("requestGatewayList")
         let task = sessionHttp.dataTask(with: UrlRequest) {(data, response, error) in
             do {
-                let outputStr  = String(data: data!, encoding: String.Encoding.utf8) as String?
-                let jsonData = outputStr!.data(using: String.Encoding.utf8, allowLossyConversion: true)
-                let decoder = JSONDecoder()
-                gatewayList = try decoder.decode(WebResponseGatewayList.self, from: jsonData!)
-                print("json decoding seems OK!!")
-               // if gatewayList != nil {
-                if gatewayList != nil {
-                    self.prepareListDictionary(dic_data: gatewayList!)
-                }
-                //}
-                DispatchQueue.main.async {
-                    self.devicePicker.reloadAllComponents()
-                    self.devicePicker.selectRow(0, inComponent: 0, animated: false)
-                    self.devicePicker.selectRow(0, inComponent: 1, animated: false)
-                    //self.devicePicker(pickerView: self.devicePicker, row: 0, component: 0)
-                    print("Initial deviceID is: \(self.deviceID)")
-                    self.requestDeviceItem(device_id: self.deviceID)
-                    //self.tableView.reloadData()
+                if error != nil{
+                    self.presentedViewController?.dismiss(animated: false, completion: nil)
+                    let _httpalert = UIAlertController(title: "Error",message: (error?.localizedDescription) ,preferredStyle: .alert)
+                    let _OKaction = UIAlertAction(title:"OK",style: .default ){(UIAlertAction) in self.dismiss(animated: false, completion:nil)}
+                    _httpalert.addAction(_OKaction)
+                    self.present(_httpalert, animated : false, completion : nil)
+                    
+                }else{
+                    
+                    let outputStr  = String(data: data!, encoding: String.Encoding.utf8) as String?
+                    let jsonData = outputStr!.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                    let decoder = JSONDecoder()
+                    gatewayList = try decoder.decode(WebResponseGatewayList.self, from: jsonData!)
+                    print("json decoding seems OK!!")
+                    
+                   // if gatewayList != nil {
+                    if gatewayList != nil {
+                        self.prepareListDictionary(dic_data: gatewayList!)
+                     }
+                   //}
+                    DispatchQueue.main.async {
+                      self.devicePicker.reloadAllComponents()
+                      self.devicePicker.selectRow(0, inComponent: 0, animated: false)
+                      self.devicePicker.selectRow(0, inComponent: 1, animated: false)
+                      //self.devicePicker(pickerView: self.devicePicker, row: 0, component: 0)
+                      print("Initial deviceID is: \(self.deviceID)")
+                      self.requestDeviceItem(device_id: self.deviceID)
+                      //self.tableView.reloadData()
+                    }
                 }
             } catch {
                 print(error.localizedDescription)
@@ -206,17 +235,29 @@ class QueryChartTableViewController: UITableViewController {
         print("requestGatewayList")
         let task = sessionHttp.dataTask(with: UrlRequest) {(data, response, error) in
             do {
-                let outputStr  = String(data: data!, encoding: String.Encoding.utf8) as String?
-                let jsonData = outputStr!.data(using: String.Encoding.utf8, allowLossyConversion: true)
-                let decoder = JSONDecoder()
-                deviceItem = try decoder.decode(WebResponseDeviceItem.self, from: jsonData!)
-                print("json decoding seems OK!!")
-                if deviceItem != nil {
-                    //self.prepareListDictionary(dic_data: gatewayList!)
-                    self.itemArray.removeAll()
-                    self.itemArray = deviceItem!.item_list
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
+                
+                if error != nil{
+                    self.presentedViewController?.dismiss(animated: false, completion: nil)
+                    let _httpalert = UIAlertController(title: "Error",message: (error?.localizedDescription) ,preferredStyle: .alert)
+                    let _OKaction = UIAlertAction(title:"OK",style: .default ){(UIAlertAction) in self.dismiss(animated: false, completion:nil)}
+                    _httpalert.addAction(_OKaction)
+                    self.present(_httpalert, animated : false, completion : nil)
+                    
+                }else{
+                    let outputStr  = String(data: data!, encoding: String.Encoding.utf8) as String?
+                    let jsonData = outputStr!.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                    let decoder = JSONDecoder()
+                    deviceItem = try decoder.decode(WebResponseDeviceItem.self, from: jsonData!)
+                    print("json decoding seems OK!!")
+                    if deviceItem != nil {
+                        //self.prepareListDictionary(dic_data: gatewayList!)
+                        self.itemArray.removeAll()
+                        self.itemArray = deviceItem!.item_list
+                        DispatchQueue.main.async {
+                            self.presentedViewController?.dismiss(animated: false, completion: nil)
+                            self.tableView.reloadData()
+                            
+                        }
                     }
                 }
             } catch {

@@ -25,6 +25,9 @@ class LineChartTimeViewController: DemoBaseViewController {
     private var _Query_DeviceID : String!
     private var _Query_ChartName : String!
     
+    //--------- Alert --------
+    private  let _myalert = UIAlertController(title: "Loading...",message: "\n\n\n",preferredStyle: .alert)
+
     private var ChartQuery: WebResponseChartInfoReply?
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,6 +80,13 @@ class LineChartTimeViewController: DemoBaseViewController {
         })
         
         
+        let _loadingIndicator =  UIActivityIndicatorView(frame: _myalert.view.bounds)
+        _loadingIndicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        _loadingIndicator.color = UIColor.blue
+        _loadingIndicator.startAnimating()
+        
+        _myalert.view.addSubview(_loadingIndicator)
+        
         
         
     }
@@ -111,8 +121,8 @@ class LineChartTimeViewController: DemoBaseViewController {
         leftAxis.labelFont = .systemFont(ofSize: 12, weight: .light)
         leftAxis.drawGridLinesEnabled = true
         leftAxis.granularityEnabled = true
-        leftAxis.axisMinimum = 0
-        leftAxis.axisMaximum = 20000
+        //leftAxis.axisMinimum = 0
+        //leftAxis.axisMaximum = 20000
         leftAxis.yOffset = -9
         leftAxis.labelTextColor = UIColor(red: 255/255, green: 192/255, blue: 56/255, alpha: 1)
 
@@ -226,6 +236,7 @@ class LineChartTimeViewController: DemoBaseViewController {
     
     @IBAction func Query_Btn_Click(_ sender: Any) {
         
+        super.present(_myalert, animated : true, completion :nil )
         _Select_Start_Time = convertDateFormatter(date: String( Sel_Start_Button.currentTitle ?? "0"))
         _Select_End_Time = convertDateFormatter(date: String( Sel_End_Button.currentTitle ?? "0"))
         
@@ -234,8 +245,12 @@ class LineChartTimeViewController: DemoBaseViewController {
         requestWithJSONBody(urlString: url, parameters: postJSON as [String : Any], completion: { (data) in
             DispatchQueue.main.async {
                 self.processData(data: data)
+                self.presentedViewController?.dismiss(animated: false, completion: nil)
             }
         })
+        
+        
+        //DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {}
         
         
         /*
