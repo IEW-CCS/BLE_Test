@@ -121,7 +121,7 @@ class CloudBLETableViewController: UITableViewController {
                             print("Data Name: \(charItem.DataName), Data Type: \(charItem.DataType)")
                         }
                     }
-                    //app.saveContext()
+                    app.saveContext()
                 }
             } catch {
                 print(error.localizedDescription)
