@@ -69,7 +69,7 @@ class CloudBLETableViewController: UITableViewController {
         
         if indexPath.section == 2 {
             if indexPath.row == self.itemCount {
-                return super.tableView(tableView, cellForRowAt: indexPath)
+                //return super.tableView(tableView, cellForRowAt: indexPath)
                 
                 let cell = tableView.dequeueReusableCell(withIdentifier: "CustomChartCell", for: indexPath) as! CustomChartCell
                 
@@ -86,6 +86,7 @@ class CloudBLETableViewController: UITableViewController {
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "BLEDataItemTableViewCell", for: indexPath) as! BLEDataItemTableViewCell
+                //let cell = tableView.dequeueReusableCell(withIdentifier: "BLEDataItemTableViewCell") as! BLEDataItemTableViewCell
 
                 //Temp solution, currently onlu support one Characteristic Service UUID
                 //Multiple Characteristic Services will be supported in the future
@@ -98,11 +99,34 @@ class CloudBLETableViewController: UITableViewController {
         return super.tableView(tableView, cellForRowAt: indexPath)
     }
     
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        /*
         if indexPath.section == 2 && indexPath.row == self.itemCount {
             return 360
         }else{
             return super.tableView(tableView, heightForRowAt: indexPath)
+        }*/
+        
+        if indexPath.section == 2 {
+            if indexPath.row == self.itemCount {
+                return 360
+            }
+            else {
+                return 44
+            }
+        }else{
+            return super.tableView(tableView, heightForRowAt: indexPath)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView,
+                            indentationLevelForRowAt indexPath: IndexPath) -> Int {
+        if indexPath.section == 2 {
+            let newIndexPath = IndexPath(row: 0, section: indexPath.section)
+            return super.tableView(tableView, indentationLevelForRowAt: newIndexPath)
+        }else{
+            return super.tableView(tableView, indentationLevelForRowAt: indexPath)
         }
     }
     
