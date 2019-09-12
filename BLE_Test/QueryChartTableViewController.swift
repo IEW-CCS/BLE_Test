@@ -15,7 +15,8 @@ class QueryChartTableViewController: UITableViewController {
     //let deviceArray = ["device001", "device002", "device003"]
     var gatewayArray = [String]()
     var deviceArray = [[String]]()
-    var deviceID = ""
+    // this is testing
+    var deviceID = "this is test"
     var itemArray = [WebResponseChartItem]()
     
     var listDictionary: Dictionary<String, [String]> = [:]
