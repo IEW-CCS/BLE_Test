@@ -88,7 +88,7 @@ class CloudBLETableViewController: UITableViewController {
                     self.deviceArray.append([profile_data.name!])
                 } else {
                     if let index = self.categoryArray.firstIndex(of: profile_data.category!) {
-                        print("loadProfileData category index: \(index)")
+                        //print("loadProfileData category index: \(index)")
                         self.deviceArray[index].append(profile_data.name!)
                     }
                 }
@@ -106,8 +106,9 @@ class CloudBLETableViewController: UITableViewController {
         print("Enter requestSelectedProfile")
         
         let viewContext = app.persistentContainer.viewContext
+
+        /*
         let model = app.persistentContainer.managedObjectModel
-        
         if let fetchRequest = model.fetchRequestFromTemplate(withName: "Fetch_Specific_Profile", substitutionVariables: ["CAT": category, "NAME": profile_name]) {
             do {
                 let profile_list = try viewContext.fetch(fetchRequest)
@@ -127,6 +128,7 @@ class CloudBLETableViewController: UITableViewController {
                 print(error.localizedDescription)
             }
         }
+        */
     }
 }
 
