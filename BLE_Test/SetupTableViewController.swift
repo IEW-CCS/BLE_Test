@@ -57,6 +57,8 @@ class SetupTableViewController: UITableViewController{
         
         let task = sessionHttp.dataTask(with: UrlRequest) {(data, response, error) in
             do {
+                //Temp function, needs to remove in the future
+                self.deleteProfileData()
                 let outputStr  = String(data: data!, encoding: String.Encoding.utf8) as String?
                 let jsonData = outputStr!.data(using: String.Encoding.utf8, allowLossyConversion: true)
                 let decoder = JSONDecoder()
@@ -67,7 +69,6 @@ class SetupTableViewController: UITableViewController{
                         print("Insert data for catetory: \(profile_info.BLECategory), name: \(profile_info.BLEName)")
                         self.saveProfilesData(data: profile_info)
                     }
-                    //self.deleteProfileData()
                     //self.loadProfileData()
                 }
             } catch {

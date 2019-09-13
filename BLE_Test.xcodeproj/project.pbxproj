@@ -64,6 +64,7 @@
 		36CE5C1F230FB76100CBAE86 /* Setup2.png in Resources */ = {isa = PBXBuildFile; fileRef = 36CE5C1A230FB76100CBAE86 /* Setup2.png */; };
 		36CE5C20230FB76100CBAE86 /* Layout2.png in Resources */ = {isa = PBXBuildFile; fileRef = 36CE5C1B230FB76100CBAE86 /* Layout2.png */; };
 		36CE5C21230FB76100CBAE86 /* Status2.png in Resources */ = {isa = PBXBuildFile; fileRef = 36CE5C1C230FB76100CBAE86 /* Status2.png */; };
+		36CF204C232BD2B2003129FF /* BLEStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CF204B232BD2B2003129FF /* BLEStruct.swift */; };
 		36D36A9E231250C8005C014E /* CustomChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D36A9C231250C8005C014E /* CustomChartCell.swift */; };
 		36D36A9F231250C8005C014E /* CustomChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D36A9D231250C8005C014E /* CustomChartCell.xib */; };
 		36D36AA423129291005C014E /* Down.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D36AA023129291005C014E /* Down.png */; };
@@ -180,6 +181,7 @@
 		36CE5C1A230FB76100CBAE86 /* Setup2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Setup2.png; sourceTree = "<group>"; };
 		36CE5C1B230FB76100CBAE86 /* Layout2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Layout2.png; sourceTree = "<group>"; };
 		36CE5C1C230FB76100CBAE86 /* Status2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Status2.png; sourceTree = "<group>"; };
+		36CF204B232BD2B2003129FF /* BLEStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEStruct.swift; sourceTree = "<group>"; };
 		36D36A9C231250C8005C014E /* CustomChartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomChartCell.swift; sourceTree = "<group>"; };
 		36D36A9D231250C8005C014E /* CustomChartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomChartCell.xib; sourceTree = "<group>"; };
 		36D36AA023129291005C014E /* Down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Down.png; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				36A3C836231FA9C2008431C7 /* CommonStruct.swift */,
 				3621969D2327787700FE3553 /* ProfileObject.swift */,
 				3621969F23277CD200FE3553 /* ProfileTransformer.swift */,
+				36CF204B232BD2B2003129FF /* BLEStruct.swift */,
 			);
 			path = GatewayClassDefinition;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				3673A1C223137B5000B0F2EB /* SinusBarChartViewController.swift in Sources */,
 				3673A1C323137B5000B0F2EB /* CombinedChartViewController.swift in Sources */,
 				3673A1DA23138E3E00B0F2EB /* DayAxisValueFormatter.swift in Sources */,
+				36CF204C232BD2B2003129FF /* BLEStruct.swift in Sources */,
 				36251158231F635B0055CD61 /* Utility.swift in Sources */,
 				3673A1D923138E3E00B0F2EB /* LargeValueFormatter.swift in Sources */,
 				3684CAEC2303F96C0088C152 /* AppDelegate.swift in Sources */,
@@ -707,7 +711,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 79SKVS6TTS;
+				DEVELOPMENT_TEAM = 34KF2N2J26;
 				INFOPLIST_FILE = BLE_Test/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -730,7 +734,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 79SKVS6TTS;
+				DEVELOPMENT_TEAM = 34KF2N2J26;
 				INFOPLIST_FILE = BLE_Test/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -9,11 +9,19 @@
 import UIKit
 import Charts
 import CoreData
+import CoreBluetooth
 
 class CloudBLETableViewController: UITableViewController {
     @IBOutlet weak var samplingRatePicker: UIPickerView!
     @IBOutlet weak var profilePicker: UIPickerView!
+    @IBOutlet weak var switchBLE: UISwitch!
     
+    private  let myAlert = UIAlertController(title: "Scanning...",message: "\n\n\n",preferredStyle: .alert)
+
+    enum SendDataError: Error {
+        case CharacteristicNotFound
+    }
+
     let secondsData = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"]
     var samplingRate: String = "1"
     var chartHeight = CGFloat()
@@ -23,7 +31,22 @@ class CloudBLETableViewController: UITableViewController {
     var device: String = ""
     var itemCount: Int = 0
     var selectedProfile: ProfileObject?
+    var timer = Timer()
+    //var bleDataValueList: BLEReceivedDataList!
+    var bleDataValueList = [BLEReceivedDataValue]()
     
+    // GATT
+    //let C001_CHARACTERISTIC = "C001"
+    let SAMPLING_RATE_CHARACTERISTIC = "B001"
+    var Service_UUID: String = ""
+    var Characteristic_UUID: String = ""
+    
+    var centralManager: CBCentralManager!
+    
+    // Storeed the connected peripheral
+    var connectPeripheral: CBPeripheral!
+    var charDictionary = [String: CBCharacteristic]()
+
     let app = UIApplication.shared.delegate as! AppDelegate
 
     override func viewDidLoad() {
@@ -40,6 +63,9 @@ class CloudBLETableViewController: UITableViewController {
 
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
         self.view.addGestureRecognizer(tap)
+        
+        let queue = DispatchQueue.global()
+        centralManager = CBCentralManager(delegate: self, queue: queue)
 
         loadProfileData()
         selectedProfile = requestSelectedProfile(category: self.category, profile_name: self.device)
@@ -49,6 +75,57 @@ class CloudBLETableViewController: UITableViewController {
     @objc func dismissKeyBoard() {
         self.view.endEditing(true)
     }
+    
+    @IBAction func subscribeBLE(_ sender: UISwitch) {
+        if self.selectedProfile != nil {
+            //connectPeripheral.setNotifyValue(sender.isOn, for: charDictionary[C001_CHARACTERISTIC]!)
+            //connectPeripheral.setNotifyValue(sender.isOn, for: charDictionary[self.Characteristic_UUID]!)
+            if sender.isOn {
+                startScan()
+            } else {
+                //Disconnect the peripheral
+                if self.connectPeripheral != nil {
+                    print("Disconnect the peripheral")
+                    centralManager.cancelPeripheralConnection(self.connectPeripheral)
+                }
+            }
+        } else {
+            print("selectedProfile is nil")
+            sender.isOn = false
+        }
+    }
+
+    func startScan() {
+        print("Now Scanning...")
+        self.timer.invalidate()
+
+        centralManager.scanForPeripherals(withServices: [CBUUID(string: self.Service_UUID)], options: nil)
+
+        self.timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.cancelScan), userInfo: nil, repeats: false)
+        
+        let scanningIndicator =  UIActivityIndicatorView(frame: myAlert.view.bounds)
+        scanningIndicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        scanningIndicator.color = UIColor.blue
+        scanningIndicator.startAnimating()
+        myAlert.view.addSubview(scanningIndicator)
+        present(myAlert, animated : true, completion : nil)
+
+    }
+
+    /*We also need to stop scanning at some point so we'll also create a function that calls "stopScan"*/
+    @objc func cancelScan() {
+        self.centralManager?.stopScan()
+        print("Scan Stopped")
+        
+        self.presentedViewController?.dismiss(animated: false, completion: nil)
+        let alertVC = UIAlertController(title: "Scan Stopped", message: "BLE with Service UUID: \(self.Service_UUID) is not found", preferredStyle: UIAlertController.Style.alert)
+        let action = UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) -> Void in
+        self.dismiss(animated: true, completion: nil)
+        })
+        alertVC.addAction(action)
+        self.present(alertVC, animated: true, completion: nil)
+        self.switchBLE.isOn = false
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 3
@@ -56,7 +133,7 @@ class CloudBLETableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 2 {
-            print("Section 2 numberOfRowsInSection: \(self.itemCount + 1)")
+            //print("Section 2 numberOfRowsInSection: \(self.itemCount + 1)")
             return self.itemCount + 1
         }
         
@@ -65,11 +142,10 @@ class CloudBLETableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("cellForRoawAt: Section: \(indexPath.section), Row: \(indexPath.row)")
-        
+        //print("cellForRoawAt: Section: \(indexPath.section), Row: \(indexPath.row)")
+
         if indexPath.section == 2 {
             if indexPath.row == self.itemCount {
-                //return super.tableView(tableView, cellForRowAt: indexPath)
                 
                 let cell = tableView.dequeueReusableCell(withIdentifier: "CustomChartCell", for: indexPath) as! CustomChartCell
                 
@@ -86,7 +162,6 @@ class CloudBLETableViewController: UITableViewController {
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "BLEDataItemTableViewCell", for: indexPath) as! BLEDataItemTableViewCell
-                //let cell = tableView.dequeueReusableCell(withIdentifier: "BLEDataItemTableViewCell") as! BLEDataItemTableViewCell
 
                 //Temp solution, currently onlu support one Characteristic Service UUID
                 //Multiple Characteristic Services will be supported in the future
@@ -99,15 +174,7 @@ class CloudBLETableViewController: UITableViewController {
         return super.tableView(tableView, cellForRowAt: indexPath)
     }
     
-    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        /*
-        if indexPath.section == 2 && indexPath.row == self.itemCount {
-            return 360
-        }else{
-            return super.tableView(tableView, heightForRowAt: indexPath)
-        }*/
-        
         if indexPath.section == 2 {
             if indexPath.row == self.itemCount {
                 return 360
@@ -131,8 +198,8 @@ class CloudBLETableViewController: UITableViewController {
     }
     
     func loadProfileData() {
-        let viewContext = app.persistentContainer.viewContext
         do {
+            let viewContext = app.persistentContainer.viewContext
             let fetchRequest = NSFetchRequest<BLEProfileTable>(entityName: "BLEProfileTable")
             let profile_list = try viewContext.fetch(fetchRequest)
             print("Get data from transformable object!!")
@@ -180,6 +247,8 @@ class CloudBLETableViewController: UITableViewController {
                     //Temp solution, currently onlu support one Characteristic Service UUID
                     //Multiple Characteristic Services will be supported in the future
                     self.itemCount = profileDetail.CharacteristicUUID![0].ItemList!.count
+                    self.Service_UUID = profileDetail.ServiceUUID
+                    self.Characteristic_UUID = profileDetail.CharacteristicUUID![0].UUID
                     return profileDetail
                 }
             }
@@ -270,6 +339,16 @@ extension CloudBLETableViewController: UIPickerViewDataSource, UIPickerViewDeleg
         if pickerView == samplingRatePicker {
             self.samplingRate = self.secondsData[row]
             print("Selected items is: \(self.samplingRate)")
+            if self.connectPeripheral != nil {
+                let string = self.samplingRate
+                
+                do {
+                    let data = string.data(using: .utf8)
+                    try sendData(data!, uuidString: self.SAMPLING_RATE_CHARACTERISTIC, writeType: .withResponse)
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
         }
 
         if pickerView == profilePicker {
@@ -315,6 +394,171 @@ extension CloudBLETableViewController: UIPickerViewDataSource, UIPickerViewDeleg
 
         return title
     }
+}
+
+extension CloudBLETableViewController: CBCentralManagerDelegate, CBPeripheralDelegate {
+    
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        guard central.state == .poweredOn else {
+            print("Bluetooth Disabled- Make sure your Bluetooth is turned on")
+            return
+        }
+        
+        print("Bluetooth Enabled")
+        //centralManager.scanForPeripherals(withServices: nil, options: nil)
+        //centralManager.scanForPeripherals(withServices: [CBUUID(string: self.Service_UUID)], options: nil)
+    }
+    
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
+        
+        guard let deviceName = peripheral.name else {
+            return
+        }
+        
+        print("Bluetooth peripheral found: \(deviceName)")
+        
+        /*
+        guard deviceName.range(of: "BLE001") != nil || deviceName.range(of: "MacBook") != nil
+            else {
+                return
+        }
+        */
+        
+        central.stopScan()
+        self.timer.invalidate()
+        
+        self.presentedViewController?.dismiss(animated: false, completion: nil)
+
+        print("Specific BLE device found, stop scan and start to connect...")
+        
+        connectPeripheral = peripheral
+        connectPeripheral.delegate = self
+        
+        centralManager.connect(connectPeripheral, options: nil)
+    }
+    
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        charDictionary = [:]
+        //peripheral.discoverServices(nil)
+        print("BLE connected, start to discover Services...")
+        peripheral.discoverServices([CBUUID(string: self.Service_UUID)])
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+        guard error == nil else {
+            let alertVC = UIAlertController(title: "Discover Services Failed", message: "BLE with Service UUID: \(self.Service_UUID) is not found", preferredStyle: UIAlertController.Style.alert)
+            let action = UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) -> Void in
+                self.dismiss(animated: true, completion: nil)
+            })
+            alertVC.addAction(action)
+            self.present(alertVC, animated: true, completion: nil)
+
+            print(error!.localizedDescription)
+            return
+        }
+        
+        for service in peripheral.services! {
+            connectPeripheral.discoverCharacteristics(nil, for: service)
+        }
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+        var isCharServiceFound: Bool = false
+        
+        guard error == nil else {
+            let alertVC = UIAlertController(title: "Discover Characteristic Service Failed", message: "BLE with Characteristic UUID: \(self.Characteristic_UUID) is not found", preferredStyle: UIAlertController.Style.alert)
+            let action = UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) -> Void in
+                self.dismiss(animated: true, completion: nil)
+            })
+            alertVC.addAction(action)
+            self.present(alertVC, animated: true, completion: nil)
+
+            print(error!.localizedDescription)
+            return
+        }
+        
+        for characteristic in service.characteristics! {
+            let uuidString = characteristic.uuid.uuidString
+            //charDictionary[uuidString] = characteristic
+            //print("Found specific characteristic uuid: \(uuidString)")
+            if uuidString == self.Characteristic_UUID {
+                charDictionary[uuidString] = characteristic
+                connectPeripheral.setNotifyValue(true, for: charDictionary[self.Characteristic_UUID]!)
+                print("Found specific data characteristic service uuid: \(uuidString)")
+            }
+            
+            if uuidString == self.SAMPLING_RATE_CHARACTERISTIC {
+                print("Found specific sampling rate characteriscit service uuid: \(uuidString)")
+                charDictionary[uuidString] = characteristic
+                isCharServiceFound = true
+            }
+        }
+        
+        // Write Sampling Rate to Peripheral
+        if isCharServiceFound {
+            let string = self.samplingRate
+            
+            do {
+                let data = string.data(using: .utf8)
+                try sendData(data!, uuidString: self.SAMPLING_RATE_CHARACTERISTIC, writeType: .withResponse)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    // Send data to peripheral
+    func sendData(_ data: Data, uuidString: String, writeType: CBCharacteristicWriteType) throws {
+        guard let characteristic = charDictionary[uuidString] else {
+            throw SendDataError.CharacteristicNotFound
+        }
+        
+        connectPeripheral.writeValue(
+            data,
+            for: characteristic,
+            type: writeType
+        )
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
+        if error != nil {
+            print("Write data error: \(error!)")
+        }
+    }
+    
+    // Get data from peripheral
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        guard error == nil else {
+            print(error!)
+            return
+        }
+        
+        if characteristic.uuid.uuidString == self.Characteristic_UUID {
+            do {
+                let data = characteristic.value! as Data
+                let outputStr  = String(data: data, encoding: String.Encoding.utf8) as String?
+                let jsonData = outputStr!.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                let decoder = JSONDecoder()
+                self.bleDataValueList = try decoder.decode([BLEReceivedDataValue].self, from: jsonData!)
+                
+                let string = String(data: data as Data, encoding: .utf8)!
+                print(string)
+
+            } catch {
+                print(error.localizedDescription)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                for index in 0...self.itemCount - 1 {
+                    let indexPath = IndexPath(row: index, section: 2)
+                    let cell = self.tableView.cellForRow(at: indexPath) as! BLEDataItemTableViewCell
+                    cell.setValue(item_value: self.bleDataValueList[index].DataValue)
+                }
+            }
+        }
+    }
+
 }
 
 class MyIndexFormatter: IndexAxisValueFormatter {

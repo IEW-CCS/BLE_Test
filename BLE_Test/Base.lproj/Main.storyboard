@@ -43,7 +43,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwC-N7-12m" customClass="BadgeSwift" customModule="BLE_Test" customModuleProvider="target">
-                                            <rect key="frame" x="88.333333333333329" y="7" width="23.666666666666671" height="20"/>
+                                            <rect key="frame" x="104" y="7" width="8" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="Bwf-Yd-vWd"/>
                                             </constraints>
@@ -137,7 +137,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DWw-vd-TeS">
-                                                    <rect key="frame" x="0.0" y="-86" width="414" height="236"/>
+                                                    <rect key="frame" x="0.0" y="-86" width="414" height="235.66666666666666"/>
                                                 </pickerView>
                                             </subviews>
                                             <constraints>
@@ -157,9 +157,12 @@
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2bs-AC-sq6">
                                                     <rect key="frame" x="345" y="6.3333333333333321" width="51" height="30.999999999999996"/>
+                                                    <connections>
+                                                        <action selector="subscribeBLE:" destination="M26-ta-6Ef" eventType="valueChanged" id="iQR-Bj-qYQ"/>
+                                                    </connections>
                                                 </switch>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BLE Subscribe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEs-JC-vfy">
-                                                    <rect key="frame" x="39.999999999999993" y="11.333333333333336" width="111.33333333333331" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BLE Scan &amp; Connect" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEs-JC-vfy">
+                                                    <rect key="frame" x="40" y="11.333333333333336" width="158" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -418,6 +421,7 @@
                     <connections>
                         <outlet property="profilePicker" destination="DWw-vd-TeS" id="oXa-ai-hCI"/>
                         <outlet property="samplingRatePicker" destination="FQx-Re-FFJ" id="GQF-xX-3pe"/>
+                        <outlet property="switchBLE" destination="2bs-AC-sq6" id="q8O-iy-ZwB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o82-eZ-zgt" userLabel="First Responder" sceneMemberID="firstResponder"/>
