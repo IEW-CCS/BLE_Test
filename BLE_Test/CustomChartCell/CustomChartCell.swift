@@ -12,8 +12,7 @@ import Charts
 class CustomChartCell: UITableViewCell {
     
     @IBOutlet weak var chtChart: LineChartView!
-    var yValues  =  [Double]()
-    var xValues = [String]()
+    //var dataSets: [LineChartDataSet] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -63,33 +62,6 @@ class CustomChartCell: UITableViewCell {
         self.chtChart.animate(xAxisDuration: 0.2)
     }
     
-    /*
-    func setChart(dataPoints: [String], values: [Double]) {
-        chtChart.noDataText = "You need to provide data for the chart."
-        
-        var dataEntries: [ChartDataEntry] = []
-        
-        for i in 0..<dataPoints.count {
-            let dataEntry = ChartDataEntry(x: Double(i)+0.5, y: values[i])
-            dataEntries.append(dataEntry)
-        }
-        
-        let chartDataSet = LineChartDataSet(entries: dataEntries, label: "")
-        let chartData = LineChartData(dataSets: [chartDataSet])
-        
-        
-        chartDataSet.colors = [NSUIColor(red: 239/255, green: 75/255, blue: 94/255, alpha: 1.0)] //Sets the colour to blue
-        chartDataSet.drawCirclesEnabled = false
-        chartDataSet.lineWidth = 2
-        chartDataSet.drawValuesEnabled = false
-        
-        chartDataSet.fillColor = UIColor.red
-        chartDataSet.drawFilledEnabled = true
-        
-        chtChart.data = chartData
-        
-    }*/
-    
     func setChartData(value: [[String]], data_label: [String]) {
         var dataEntries: [ChartDataEntry] = []
         var dataSets: [LineChartDataSet] = []
@@ -118,6 +90,14 @@ class CustomChartCell: UITableViewCell {
         chtChart.data = data
     }
 
+    func setChartDataNil() {
+        chtChart.data = nil
+    }
+    
+    func setDataSetDisplay(index: Int, display_flag: Bool) {
+        //self.dataSets[index].drawValuesEnabled = display_flag
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         

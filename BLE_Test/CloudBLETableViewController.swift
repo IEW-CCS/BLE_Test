@@ -150,15 +150,6 @@ class CloudBLETableViewController: UITableViewController {
             print("receiveTurnOnChartNotify receive turn on notification, turn-on row: \(rowIndex)")
             //self.activeDataItemRow = rowIndex
             self.activeDataItemArray[rowIndex] = true
-            
-            /*
-            for index in 0...self.itemCount - 1 {
-                let indexPath = IndexPath(row: index, section: 2)
-                let cell = self.tableView.cellForRow(at: indexPath) as! BLEDataItemTableViewCell
-                if index != rowIndex {
-                    cell.setOnOff(enabled: false)
-                }
-            }*/
         }
     }
     
@@ -169,13 +160,29 @@ class CloudBLETableViewController: UITableViewController {
             self.activeDataItemArray[rowIndex] = false
         }
     }
-
+    
     func displayChartHistory(data: [BLEReceivedDataValue]) {
         prepareChartData(data_value: data)
         
         let indexPath = IndexPath(row: self.itemCount, section: 2)
         let cell = self.tableView.cellForRow(at: indexPath) as! CustomChartCell
-        cell.setChartData(value: self.bleChartDataArray, data_label: self.bleChartDataLabel)
+        
+        var validChartDataArray = [[String]]()
+        var validDataLabel = [String]()
+        
+        for i in 0...(self.itemCount - 1) {
+            if self.activeDataItemArray[i] {
+                validChartDataArray.append(self.bleChartDataArray[i])
+                validDataLabel.append(self.bleChartDataLabel[i])
+            }
+        }
+        
+        //cell.setChartData(value: self.bleChartDataArray, data_label: self.bleChartDataLabel)
+        if !validChartDataArray.isEmpty {
+            cell.setChartData(value: validChartDataArray, data_label: validDataLabel)
+        } else {
+            cell.setChartDataNil()
+        }
     }
 
     func prepareChartData(data_value: [BLEReceivedDataValue]) {
@@ -217,11 +224,6 @@ class CloudBLETableViewController: UITableViewController {
             if indexPath.row == self.itemCount {
                 
                 let cell = tableView.dequeueReusableCell(withIdentifier: "CustomChartCell", for: indexPath) as! CustomChartCell
-                
-                //cell.chtChart.leftAxis.axisMaximum = cell.yValues.max()! + 1
-                //cell.chtChart.leftAxis.axisMinimum = cell.yValues.min()! - 1
-                
-                //cell.chtChart.xAxis.valueFormatter = IndexAxisValueFormatter(values: cell.xValues)
                 
                 self.chartHeight = cell.chtChart.frame.size.height
                 return cell
@@ -427,6 +429,8 @@ extension CloudBLETableViewController: UIPickerViewDataSource, UIPickerViewDeleg
                 print("Selected category: \(self.category), device: \(self.device)")
                 self.selectedProfile = self.requestSelectedProfile(category: self.category, profile_name: self.device)
                 self.activeDataItemArray.removeAll()
+                self.bleChartDataArray.removeAll()
+                self.bleChartDataLabel.removeAll()
                 self.tableView.reloadData()
             }
             else {
@@ -435,6 +439,8 @@ extension CloudBLETableViewController: UIPickerViewDataSource, UIPickerViewDeleg
                 print("Selected category: \(self.category), device: \(self.device)")
                 self.selectedProfile = self.requestSelectedProfile(category: self.category, profile_name: self.device)
                 self.activeDataItemArray.removeAll()
+                self.bleChartDataArray.removeAll()
+                self.bleChartDataLabel.removeAll()
                 self.tableView.reloadData()
             }
         }
@@ -474,8 +480,6 @@ extension CloudBLETableViewController: CBCentralManagerDelegate, CBPeripheralDel
         }
         
         print("Bluetooth Enabled")
-        //centralManager.scanForPeripherals(withServices: nil, options: nil)
-        //centralManager.scanForPeripherals(withServices: [CBUUID(string: self.Service_UUID)], options: nil)
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
@@ -485,13 +489,6 @@ extension CloudBLETableViewController: CBCentralManagerDelegate, CBPeripheralDel
         }
         
         print("Bluetooth peripheral found: \(deviceName)")
-        
-        /*
-        guard deviceName.range(of: "BLE001") != nil || deviceName.range(of: "MacBook") != nil
-            else {
-                return
-        }
-        */
         
         central.stopScan()
         self.timer.invalidate()
@@ -548,8 +545,6 @@ extension CloudBLETableViewController: CBCentralManagerDelegate, CBPeripheralDel
         
         for characteristic in service.characteristics! {
             let uuidString = characteristic.uuid.uuidString
-            //charDictionary[uuidString] = characteristic
-            //print("Found specific characteristic uuid: \(uuidString)")
             if uuidString == self.Characteristic_UUID {
                 charDictionary[uuidString] = characteristic
                 connectPeripheral.setNotifyValue(true, for: charDictionary[self.Characteristic_UUID]!)
@@ -628,7 +623,6 @@ extension CloudBLETableViewController: CBCentralManagerDelegate, CBPeripheralDel
             }
         }
     }
-
 }
 
 class MyIndexFormatter: IndexAxisValueFormatter {
