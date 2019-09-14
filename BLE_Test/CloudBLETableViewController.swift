@@ -23,17 +23,23 @@ class CloudBLETableViewController: UITableViewController {
     }
 
     let secondsData = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"]
+    let DATA_MAX_COUNT = 30
+    
     var samplingRate: String = "1"
     var chartHeight = CGFloat()
     var categoryArray = [String]()
     var deviceArray = [[String]]()
     var category: String = ""
     var device: String = ""
-    var itemCount: Int = 0
+    var itemCount: Int = -1
+    var activeDataItemRow: Int = 0
+    var activeDataItemArray = [Bool]()
     var selectedProfile: ProfileObject?
     var timer = Timer()
     //var bleDataValueList: BLEReceivedDataList!
     var bleDataValueList = [BLEReceivedDataValue]()
+    var bleChartDataArray = [[String]]()
+    var bleChartDataLabel = [String]()
     
     // GATT
     //let C001_CHARACTERISTIC = "C001"
@@ -61,6 +67,20 @@ class CloudBLETableViewController: UITableViewController {
         let nibChart = UINib(nibName: "CustomChartCell", bundle: nil)
         self.tableView.register(nibChart, forCellReuseIdentifier: "CustomChartCell")
 
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.receiveTurnOnChartNotify(_:)),
+            name: NSNotification.Name(rawValue: "TurnOnChartHistory"),
+            object: nil
+        )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.receiveTurnOffChartNotify(_:)),
+            name: NSNotification.Name(rawValue: "TurnOffChartHistory"),
+            object: nil
+        )
+
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoard))
         self.view.addGestureRecognizer(tap)
         
@@ -78,8 +98,6 @@ class CloudBLETableViewController: UITableViewController {
     
     @IBAction func subscribeBLE(_ sender: UISwitch) {
         if self.selectedProfile != nil {
-            //connectPeripheral.setNotifyValue(sender.isOn, for: charDictionary[C001_CHARACTERISTIC]!)
-            //connectPeripheral.setNotifyValue(sender.isOn, for: charDictionary[self.Characteristic_UUID]!)
             if sender.isOn {
                 startScan()
             } else {
@@ -112,7 +130,7 @@ class CloudBLETableViewController: UITableViewController {
 
     }
 
-    /*We also need to stop scanning at some point so we'll also create a function that calls "stopScan"*/
+    // If the timer is time-out, then call this function to display alert message
     @objc func cancelScan() {
         self.centralManager?.stopScan()
         print("Scan Stopped")
@@ -125,6 +143,57 @@ class CloudBLETableViewController: UITableViewController {
         alertVC.addAction(action)
         self.present(alertVC, animated: true, completion: nil)
         self.switchBLE.isOn = false
+    }
+
+    @objc func receiveTurnOnChartNotify(_ notification: Notification) {
+        if let rowIndex = notification.object as? Int {
+            print("receiveTurnOnChartNotify receive turn on notification, turn-on row: \(rowIndex)")
+            //self.activeDataItemRow = rowIndex
+            self.activeDataItemArray[rowIndex] = true
+            
+            /*
+            for index in 0...self.itemCount - 1 {
+                let indexPath = IndexPath(row: index, section: 2)
+                let cell = self.tableView.cellForRow(at: indexPath) as! BLEDataItemTableViewCell
+                if index != rowIndex {
+                    cell.setOnOff(enabled: false)
+                }
+            }*/
+        }
+    }
+    
+    @objc func receiveTurnOffChartNotify(_ notification: Notification) {
+        if let rowIndex = notification.object as? Int {
+            print("receiveTurnOffChartNotify receive turn off notification, turn-off row: \(rowIndex)")
+            //self.activeDataItemRow = rowIndex
+            self.activeDataItemArray[rowIndex] = false
+        }
+    }
+
+    func displayChartHistory(data: [BLEReceivedDataValue]) {
+        prepareChartData(data_value: data)
+        
+        let indexPath = IndexPath(row: self.itemCount, section: 2)
+        let cell = self.tableView.cellForRow(at: indexPath) as! CustomChartCell
+        cell.setChartData(value: self.bleChartDataArray, data_label: self.bleChartDataLabel)
+    }
+
+    func prepareChartData(data_value: [BLEReceivedDataValue]) {
+        if self.bleChartDataArray.isEmpty {
+            for index in 0...self.itemCount - 1 {
+                self.bleChartDataLabel.append(data_value[index].DataName)
+                self.bleChartDataArray.append([data_value[index].DataValue])
+            }
+        } else {
+            for index in 0...self.itemCount - 1 {
+                if self.bleChartDataArray[index].count == self.DATA_MAX_COUNT {
+                    self.bleChartDataArray[index].remove(at: 0)
+                    self.bleChartDataArray[index].append(data_value[index].DataValue)
+                } else {
+                    self.bleChartDataArray[index].append(data_value[index].DataValue)
+                }
+            }
+        }
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -149,14 +218,10 @@ class CloudBLETableViewController: UITableViewController {
                 
                 let cell = tableView.dequeueReusableCell(withIdentifier: "CustomChartCell", for: indexPath) as! CustomChartCell
                 
-                cell.yValues = [76, 61, 89, 12, 20, 69, 60, 53, 45, 56, 11, 48, 48, 93, 46, 38, 72, 42, 37, 27, 24, 79, 19, 62, 78, 97, 67, 70, 36, 41, 43, 40, 80, 89, 56, 90, 99, 63, 13, 51, 74, 94, 50, 32, 64, 66, 68, 18, 54, 73, 14, 26, 29, 49, 56, 47, 39, 83, 84, 92, 34, 65, 52, 82, 57, 41, 33, 26, 96, 10, 31, 77, 91, 87, 57, 81, 59, 85, 47, 65, 44, 86, 21, 22, 23, 35, 55, 25, 59, 98, 71, 95, 88, 28, 43, 30, 58, 35, 78, 44, 48, 64]
-                cell.xValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99"]
+                //cell.chtChart.leftAxis.axisMaximum = cell.yValues.max()! + 1
+                //cell.chtChart.leftAxis.axisMinimum = cell.yValues.min()! - 1
                 
-                cell.chtChart.leftAxis.axisMaximum = cell.yValues.max()! + 1
-                cell.chtChart.leftAxis.axisMinimum = cell.yValues.min()! - 1
-                
-                cell.chtChart.xAxis.valueFormatter = IndexAxisValueFormatter(values: cell.xValues)
-                cell.setChart(dataPoints: cell.xValues, values: cell.yValues)
+                //cell.chtChart.xAxis.valueFormatter = IndexAxisValueFormatter(values: cell.xValues)
                 
                 self.chartHeight = cell.chtChart.frame.size.height
                 return cell
@@ -166,6 +231,8 @@ class CloudBLETableViewController: UITableViewController {
                 //Temp solution, currently onlu support one Characteristic Service UUID
                 //Multiple Characteristic Services will be supported in the future
                 cell.setData(item_name: (selectedProfile?.CharacteristicUUID![0].ItemList![indexPath.row].DataName)!, item_value: "")
+                cell.tag = indexPath.row
+                self.activeDataItemArray.append(false)
                 
                 return cell
             }
@@ -359,6 +426,7 @@ extension CloudBLETableViewController: UIPickerViewDataSource, UIPickerViewDeleg
                 self.device = self.deviceArray[row][selectedIndex]
                 print("Selected category: \(self.category), device: \(self.device)")
                 self.selectedProfile = self.requestSelectedProfile(category: self.category, profile_name: self.device)
+                self.activeDataItemArray.removeAll()
                 self.tableView.reloadData()
             }
             else {
@@ -366,6 +434,7 @@ extension CloudBLETableViewController: UIPickerViewDataSource, UIPickerViewDeleg
                 self.device = self.deviceArray[selectedIndex][row]
                 print("Selected category: \(self.category), device: \(self.device)")
                 self.selectedProfile = self.requestSelectedProfile(category: self.category, profile_name: self.device)
+                self.activeDataItemArray.removeAll()
                 self.tableView.reloadData()
             }
         }
@@ -555,6 +624,7 @@ extension CloudBLETableViewController: CBCentralManagerDelegate, CBPeripheralDel
                     let cell = self.tableView.cellForRow(at: indexPath) as! BLEDataItemTableViewCell
                     cell.setValue(item_value: self.bleDataValueList[index].DataValue)
                 }
+                self.displayChartHistory(data: self.bleDataValueList)
             }
         }
     }

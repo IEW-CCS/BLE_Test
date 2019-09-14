@@ -25,6 +25,20 @@ class BLEDataItemTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func enableHistoryChart(_ sender: UISwitch) {
+        if sender.isOn {
+            print("Turn on data history chart for row: \(self.tag)")
+            NotificationCenter.default.post(
+                name: NSNotification.Name("TurnOnChartHistory"),
+                object: Int(self.tag))
+        } else {
+            print("Turn off data history chart for row: \(self.tag)")
+            NotificationCenter.default.post(
+                name: NSNotification.Name("TurnOffChartHistory"),
+                object: Int(self.tag))
+        }
+    }
+    
     func setData(item_name: String, item_value: String) {
         txtDataItem.text = item_name
         txtDataValue.text = item_value
@@ -32,5 +46,9 @@ class BLEDataItemTableViewCell: UITableViewCell {
     
     func setValue(item_value: String) {
         txtDataValue.text = item_value
+    }
+    
+    func setOnOff(enabled: Bool) {
+        swhEnable.isOn = enabled
     }
 }
