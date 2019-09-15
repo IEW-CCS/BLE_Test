@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0552493F5CC0B2E4F6DB2D6A /* Pods_BLE_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 412977270E79F263279D7B12 /* Pods_BLE_Test.framework */; };
 		360496032316097100488667 /* FunctionCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360496022316097100488667 /* FunctionCollectionViewController.swift */; };
 		361A2A38232104CC004706AC /* AlarmNotificationHistory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A2A36232104CC004706AC /* AlarmNotificationHistory+CoreDataClass.swift */; };
 		361A2A39232104CC004706AC /* AlarmNotificationHistory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A2A37232104CC004706AC /* AlarmNotificationHistory+CoreDataProperties.swift */; };
@@ -21,7 +22,6 @@
 		3636AD7E231E3C5300057F6D /* Setup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3636AD7D231E3C5300057F6D /* Setup.plist */; };
 		3638506D232548A4000F4D35 /* Status_tmp2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3638506C232548A4000F4D35 /* Status_tmp2.png */; };
 		3638506F23254966000F4D35 /* Status_tmp.png in Resources */ = {isa = PBXBuildFile; fileRef = 3638506E23254966000F4D35 /* Status_tmp.png */; };
-		367321E8230980DB0060A08C /* BLEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367321E7230980DB0060A08C /* BLEViewController.swift */; };
 		3673A1C023137B5000B0F2EB /* ColoredLineChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3673A1BC23137B5000B0F2EB /* ColoredLineChartViewController.swift */; };
 		3673A1C123137B5000B0F2EB /* PieChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3673A1BD23137B5000B0F2EB /* PieChartViewController.swift */; };
 		3673A1C223137B5000B0F2EB /* SinusBarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3673A1BE23137B5000B0F2EB /* SinusBarChartViewController.swift */; };
@@ -76,6 +76,7 @@
 		36D36AAD2312CD72005C014E /* StatusDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D36AAC2312CD72005C014E /* StatusDetailTableViewCell.swift */; };
 		36D36AAF2312CEB2005C014E /* StatusDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D36AAE2312CEB2005C014E /* StatusDetailTableViewController.swift */; };
 		36D36AB12312D228005C014E /* SetupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D36AB02312D228005C014E /* SetupTableViewController.swift */; };
+		36DE6E81232E02DA007F2C45 /* MQTTStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DE6E80232E02DA007F2C45 /* MQTTStruct.swift */; };
 		36FD31E12329C85900611371 /* BLEDataItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FD31DF2329C85900611371 /* BLEDataItemTableViewCell.swift */; };
 		36FD31E22329C85900611371 /* BLEDataItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36FD31E02329C85900611371 /* BLEDataItemTableViewCell.xib */; };
 		36FD31EE2329E25000611371 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36FD31EB2329E22F00611371 /* Charts.framework */; };
@@ -135,7 +136,6 @@
 		3636AD7D231E3C5300057F6D /* Setup.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Setup.plist; sourceTree = "<group>"; };
 		3638506C232548A4000F4D35 /* Status_tmp2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Status_tmp2.png; sourceTree = "<group>"; };
 		3638506E23254966000F4D35 /* Status_tmp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Status_tmp.png; sourceTree = "<group>"; };
-		367321E7230980DB0060A08C /* BLEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEViewController.swift; sourceTree = "<group>"; };
 		3673A1BC23137B5000B0F2EB /* ColoredLineChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredLineChartViewController.swift; sourceTree = "<group>"; };
 		3673A1BD23137B5000B0F2EB /* PieChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartViewController.swift; sourceTree = "<group>"; };
 		3673A1BE23137B5000B0F2EB /* SinusBarChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinusBarChartViewController.swift; sourceTree = "<group>"; };
@@ -193,10 +193,14 @@
 		36D36AAC2312CD72005C014E /* StatusDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDetailTableViewCell.swift; sourceTree = "<group>"; };
 		36D36AAE2312CEB2005C014E /* StatusDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDetailTableViewController.swift; sourceTree = "<group>"; };
 		36D36AB02312D228005C014E /* SetupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupTableViewController.swift; sourceTree = "<group>"; };
+		36DE6E80232E02DA007F2C45 /* MQTTStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTStruct.swift; sourceTree = "<group>"; };
 		36F8CD6523080ADB00848AEE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		36FD31DF2329C85900611371 /* BLEDataItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEDataItemTableViewCell.swift; sourceTree = "<group>"; };
 		36FD31E02329C85900611371 /* BLEDataItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BLEDataItemTableViewCell.xib; sourceTree = "<group>"; };
 		36FD31E52329E22F00611371 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
+		412977270E79F263279D7B12 /* Pods_BLE_Test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BLE_Test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6003FD4CA343BE429DA6529 /* Pods-BLE_Test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLE_Test.debug.xcconfig"; path = "Target Support Files/Pods-BLE_Test/Pods-BLE_Test.debug.xcconfig"; sourceTree = "<group>"; };
+		EF34252AB92CD2CBC6E964D4 /* Pods-BLE_Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLE_Test.release.xcconfig"; path = "Target Support Files/Pods-BLE_Test/Pods-BLE_Test.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,12 +209,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				36FD31EE2329E25000611371 /* Charts.framework in Frameworks */,
+				0552493F5CC0B2E4F6DB2D6A /* Pods_BLE_Test.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		290572ECB0EFF912C62ECF38 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				412977270E79F263279D7B12 /* Pods_BLE_Test.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		309836D7329FE824D9F34EE6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D6003FD4CA343BE429DA6529 /* Pods-BLE_Test.debug.xcconfig */,
+				EF34252AB92CD2CBC6E964D4 /* Pods-BLE_Test.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		36284625231772C400573E05 /* GatewayClassDefinition */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +242,7 @@
 				3621969D2327787700FE3553 /* ProfileObject.swift */,
 				3621969F23277CD200FE3553 /* ProfileTransformer.swift */,
 				36CF204B232BD2B2003129FF /* BLEStruct.swift */,
+				36DE6E80232E02DA007F2C45 /* MQTTStruct.swift */,
 			);
 			path = GatewayClassDefinition;
 			sourceTree = "<group>";
@@ -269,6 +292,8 @@
 				36FD31E52329E22F00611371 /* Charts.xcodeproj */,
 				3684CAEA2303F96C0088C152 /* BLE_Test */,
 				3684CAE92303F96C0088C152 /* Products */,
+				309836D7329FE824D9F34EE6 /* Pods */,
+				290572ECB0EFF912C62ECF38 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -297,7 +322,6 @@
 				3684CAF22303F96D0088C152 /* Assets.xcassets */,
 				3684CAF42303F96D0088C152 /* LaunchScreen.storyboard */,
 				3684CAF72303F96D0088C152 /* Info.plist */,
-				367321E7230980DB0060A08C /* BLEViewController.swift */,
 				36C376692311171500F87404 /* CloudBLETableViewController.swift */,
 				36D36AAA2312947A005C014E /* StatusTableViewController.swift */,
 				36D36AAE2312CEB2005C014E /* StatusDetailTableViewController.swift */,
@@ -388,10 +412,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3684CAFA2303F96D0088C152 /* Build configuration list for PBXNativeTarget "BLE_Test" */;
 			buildPhases = (
+				E6613BCEA81D9B7EB8D50119 /* [CP] Check Pods Manifest.lock */,
 				3684CAE42303F96C0088C152 /* Sources */,
 				3684CAE52303F96C0088C152 /* Frameworks */,
 				3684CAE62303F96C0088C152 /* Resources */,
 				36C3767A231150AC00F87404 /* Embed Frameworks */,
+				A8DA84349A0D6F5FD7EA2B7E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -506,6 +532,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A8DA84349A0D6F5FD7EA2B7E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BLE_Test/Pods-BLE_Test-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BLE_Test/Pods-BLE_Test-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BLE_Test/Pods-BLE_Test-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E6613BCEA81D9B7EB8D50119 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BLE_Test-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3684CAE42303F96C0088C152 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -523,7 +591,6 @@
 				36CE5C11230ECE0600CBAE86 /* ItemCell.swift in Sources */,
 				36A3C837231FA9C2008431C7 /* CommonStruct.swift in Sources */,
 				3673A1DE231392C500B0F2EB /* LayoutDetailTableViewCell.swift in Sources */,
-				367321E8230980DB0060A08C /* BLEViewController.swift in Sources */,
 				361A2A38232104CC004706AC /* AlarmNotificationHistory+CoreDataClass.swift in Sources */,
 				36A3C830231F9032008431C7 /* AlarmDetailTableViewCell.swift in Sources */,
 				3673A1CF231389DE00B0F2EB /* LayoutTableViewController.swift in Sources */,
@@ -548,6 +615,7 @@
 				3673A1C323137B5000B0F2EB /* CombinedChartViewController.swift in Sources */,
 				3673A1DA23138E3E00B0F2EB /* DayAxisValueFormatter.swift in Sources */,
 				36CF204C232BD2B2003129FF /* BLEStruct.swift in Sources */,
+				36DE6E81232E02DA007F2C45 /* MQTTStruct.swift in Sources */,
 				36251158231F635B0055CD61 /* Utility.swift in Sources */,
 				3673A1D923138E3E00B0F2EB /* LargeValueFormatter.swift in Sources */,
 				3684CAEC2303F96C0088C152 /* AppDelegate.swift in Sources */,
@@ -622,6 +690,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -683,7 +752,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_NS_ASSERTIONS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -705,6 +774,7 @@
 		};
 		3684CAFB2303F96D0088C152 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6003FD4CA343BE429DA6529 /* Pods-BLE_Test.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -728,6 +798,7 @@
 		};
 		3684CAFC2303F96D0088C152 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF34252AB92CD2CBC6E964D4 /* Pods-BLE_Test.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

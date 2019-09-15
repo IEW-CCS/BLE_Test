@@ -10,14 +10,19 @@ import UIKit
 import Charts
 import CoreData
 import CoreBluetooth
+import MQTTClient
 
 class CloudBLETableViewController: UITableViewController {
     @IBOutlet weak var samplingRatePicker: UIPickerView!
     @IBOutlet weak var profilePicker: UIPickerView!
     @IBOutlet weak var switchBLE: UISwitch!
+    @IBOutlet weak var switchMQTT: UISwitch!
     
     private  let myAlert = UIAlertController(title: "Scanning...",message: "\n\n\n",preferredStyle: .alert)
 
+    private var transport = MQTTCFSocketTransport()
+    fileprivate var session = MQTTSession()
+    
     enum SendDataError: Error {
         case CharacteristicNotFound
     }
@@ -35,7 +40,8 @@ class CloudBLETableViewController: UITableViewController {
     var activeDataItemRow: Int = 0
     var activeDataItemArray = [Bool]()
     var selectedProfile: ProfileObject?
-    var timer = Timer()
+    var timer_ble = Timer()
+    var timer_mqtt = Timer()
     //var bleDataValueList: BLEReceivedDataList!
     var bleDataValueList = [BLEReceivedDataValue]()
     var bleChartDataArray = [[String]]()
@@ -115,22 +121,22 @@ class CloudBLETableViewController: UITableViewController {
 
     func startScan() {
         print("Now Scanning...")
-        self.timer.invalidate()
+        self.timer_ble.invalidate()
 
         centralManager.scanForPeripherals(withServices: [CBUUID(string: self.Service_UUID)], options: nil)
 
-        self.timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.cancelScan), userInfo: nil, repeats: false)
+        self.timer_ble = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.cancelScan), userInfo: nil, repeats: false)
         
         let scanningIndicator =  UIActivityIndicatorView(frame: myAlert.view.bounds)
         scanningIndicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         scanningIndicator.color = UIColor.blue
         scanningIndicator.startAnimating()
+        myAlert.title = "Scanning..."
         myAlert.view.addSubview(scanningIndicator)
         present(myAlert, animated : true, completion : nil)
-
     }
 
-    // If the timer is time-out, then call this function to display alert message
+    // If the BLE timer is time-out, then call this function to display alert message
     @objc func cancelScan() {
         self.centralManager?.stopScan()
         print("Scan Stopped")
@@ -202,7 +208,111 @@ class CloudBLETableViewController: UITableViewController {
             }
         }
     }
+    @IBAction func connectMQTT(_ sender: UISwitch) {
+        if sender.isOn {
+            establishMQTTConnection()
+        } else {
+            self.session?.disconnect()
+        }
+    }
+    
+    func establishMQTTConnection() {
+        let mqttIP = getMQTT_IP()
+        let mqttPort = getMQTT_Port()
+        
+        print("MQTT Broker IP: \(mqttIP)")
+        print("MQTT Broker Port: \(mqttPort)")
+        
+        self.session?.delegate = self as? MQTTSessionDelegate
+        self.transport.host = mqttIP
+        self.transport.port = mqttPort
+        session?.transport = transport
+        
+        let connectingIndicator =  UIActivityIndicatorView(frame: myAlert.view.bounds)
+        connectingIndicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        connectingIndicator.color = UIColor.blue
+        connectingIndicator.startAnimating()
+        myAlert.title = "Connecting..."
+        myAlert.view.addSubview(connectingIndicator)
+        present(myAlert, animated : true, completion : nil)
 
+        session?.connect() { error in
+            print("connection completed with status \(String(describing: error))")
+            if error != nil {
+                let alertVC = UIAlertController(title: "Connect to MQTT Broker Failed", message: error?.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let action = UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) -> Void in
+                    self.dismiss(animated: true, completion: nil)
+                })
+                alertVC.addAction(action)
+                self.present(alertVC, animated: true, completion: nil)
+
+            } else {
+                print("Connect to MQTT Broker successful")
+                //self.timer_mqtt.invalidate()
+                self.presentedViewController?.dismiss(animated: false, completion: nil)
+
+                //self.publishTestMessage()
+            }
+        }
+    }
+    
+    // If the MQTT timer is time-out, then call this function to display alert message
+    /*
+    @objc func cancelConnect() {
+        print("MQTT Connection time out")
+        
+        self.presentedViewController?.dismiss(animated: false, completion: nil)
+        let alertVC = UIAlertController(title: "Connection Time Out", message: "Cannot connect to MQTT Broker, please check the config", preferredStyle: UIAlertController.Style.alert)
+        let action = UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) -> Void in
+            self.dismiss(animated: true, completion: nil)
+        })
+        alertVC.addAction(action)
+        self.present(alertVC, animated: true, completion: nil)
+        self.switchMQTT.isOn = false
+    }*/
+
+    func publishMessage(data_list: [BLEReceivedDataValue]) {
+        //print("Publish a Test Message!!")
+        if self.switchMQTT.isOn {
+            guard self.session?.status == .connected else {
+                let alertVC = UIAlertController(title: "MQTT Broker is not connected", message: "Please re-connect to MQTT Server", preferredStyle: UIAlertController.Style.alert)
+                let action = UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) -> Void in
+                    self.dismiss(animated: true, completion: nil)
+                })
+                alertVC.addAction(action)
+                self.present(alertVC, animated: true, completion: nil)
+                
+                return
+            }
+            
+            do {
+                let topic = getMQTTPublishTopic(device_id: self.device)
+                var replyData = ReplyBLEData()
+                replyData.Device_ID = self.device
+                replyData.IP_Address = "10.0.0.1"
+                let dateFormat: DateFormatter = DateFormatter()
+                dateFormat.dateFormat = "yyyyMMddHHmmssSSS"
+                //tmpSectionData.append(dateFormat.string(from: alarm_data.alarm_datetime! as Date))
+                replyData.Time_Stamp = dateFormat.string(from: Date())
+                for index in 0...(data_list.count - 1) {
+                    var edcItem = EDC_Item()
+                    edcItem.DATA_NAME = data_list[index].DataName
+                    edcItem.DATA_VALUE = data_list[index].DataValue
+                    replyData.EDC_Data?.append(edcItem)
+                }
+                
+                let jsonEncoder = JSONEncoder()
+                let data = try jsonEncoder.encode(replyData)
+                //let json_string = String(data: data, encoding: .utf8)!
+                
+                self.session?.publishData(data, onTopic: topic, retain: false, qos: .exactlyOnce)
+
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
@@ -491,7 +601,7 @@ extension CloudBLETableViewController: CBCentralManagerDelegate, CBPeripheralDel
         print("Bluetooth peripheral found: \(deviceName)")
         
         central.stopScan()
-        self.timer.invalidate()
+        self.timer_ble.invalidate()
         
         self.presentedViewController?.dismiss(animated: false, completion: nil)
 
@@ -620,6 +730,7 @@ extension CloudBLETableViewController: CBCentralManagerDelegate, CBPeripheralDel
                     cell.setValue(item_value: self.bleDataValueList[index].DataValue)
                 }
                 self.displayChartHistory(data: self.bleDataValueList)
+                self.publishMessage(data_list: self.bleDataValueList)
             }
         }
     }
