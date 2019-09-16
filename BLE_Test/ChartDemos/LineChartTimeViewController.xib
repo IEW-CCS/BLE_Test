@@ -99,6 +99,7 @@
                     <date key="date" timeIntervalSinceReferenceDate="589445392.72822595">
                         <!--2019-09-06 06:49:52 +0000-->
                     </date>
+                    <locale key="locale" localeIdentifier="zh_TW"/>
                 </datePicker>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSR-dX-pAn">
                     <rect key="frame" x="307" y="6" width="54" height="38"/>

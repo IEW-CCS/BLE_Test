@@ -53,7 +53,7 @@ class LineChartTimeViewController: DemoBaseViewController {
         //------- Initial Date time ----
         
         let Displayformatter = DateFormatter()
-        Displayformatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        Displayformatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
         let Jsonformatter = DateFormatter()
         Jsonformatter.dateFormat = "yyyyMMddHHmmss"
@@ -131,7 +131,6 @@ class LineChartTimeViewController: DemoBaseViewController {
         self.updateChartData()
         
         chartView.animate(xAxisDuration: 1)
-        
     }
     
     override func updateChartData() {
@@ -158,7 +157,7 @@ class LineChartTimeViewController: DemoBaseViewController {
         let to = now + (Double(count) / 2) * hourSeconds
         
         let dateFormat:DateFormatter = DateFormatter()
-        dateFormat.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
+        dateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
         
         let values = stride(from: from, to: to, by: hourSeconds).map { (x) -> ChartDataEntry in
@@ -202,7 +201,7 @@ class LineChartTimeViewController: DemoBaseViewController {
     @IBAction func DateTime_PV_Done_Click(_ sender: Any) {
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
         if _Sel_Start_Button == true
         {
