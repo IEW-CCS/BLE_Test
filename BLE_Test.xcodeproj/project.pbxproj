@@ -77,6 +77,12 @@
 		36D36AAF2312CEB2005C014E /* StatusDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D36AAE2312CEB2005C014E /* StatusDetailTableViewController.swift */; };
 		36D36AB12312D228005C014E /* SetupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D36AB02312D228005C014E /* SetupTableViewController.swift */; };
 		36DE6E81232E02DA007F2C45 /* MQTTStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DE6E80232E02DA007F2C45 /* MQTTStruct.swift */; };
+		36DE6E84232E6832007F2C45 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DE6E83232E6832007F2C45 /* MapViewController.swift */; };
+		36DE6E8B232E7C98007F2C45 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36DE6E8A232E7C98007F2C45 /* MapKit.framework */; };
+		36DE6E9A232E858C007F2C45 /* temperature2.png in Resources */ = {isa = PBXBuildFile; fileRef = 36DE6E98232E858C007F2C45 /* temperature2.png */; };
+		36DE6E9B232E858C007F2C45 /* vibration2.png in Resources */ = {isa = PBXBuildFile; fileRef = 36DE6E99232E858C007F2C45 /* vibration2.png */; };
+		36DE6EA1232FC533007F2C45 /* SimpleTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DE6EA0232FC533007F2C45 /* SimpleTableCell.swift */; };
+		36DE6EA3232FC55D007F2C45 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DE6EA2232FC55D007F2C45 /* BottomSheetViewController.swift */; };
 		36FD31E12329C85900611371 /* BLEDataItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FD31DF2329C85900611371 /* BLEDataItemTableViewCell.swift */; };
 		36FD31E22329C85900611371 /* BLEDataItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36FD31E02329C85900611371 /* BLEDataItemTableViewCell.xib */; };
 		36FD31EE2329E25000611371 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36FD31EB2329E22F00611371 /* Charts.framework */; };
@@ -194,6 +200,12 @@
 		36D36AAE2312CEB2005C014E /* StatusDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusDetailTableViewController.swift; sourceTree = "<group>"; };
 		36D36AB02312D228005C014E /* SetupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupTableViewController.swift; sourceTree = "<group>"; };
 		36DE6E80232E02DA007F2C45 /* MQTTStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTStruct.swift; sourceTree = "<group>"; };
+		36DE6E83232E6832007F2C45 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		36DE6E8A232E7C98007F2C45 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		36DE6E98232E858C007F2C45 /* temperature2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temperature2.png; sourceTree = "<group>"; };
+		36DE6E99232E858C007F2C45 /* vibration2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vibration2.png; sourceTree = "<group>"; };
+		36DE6EA0232FC533007F2C45 /* SimpleTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTableCell.swift; sourceTree = "<group>"; };
+		36DE6EA2232FC55D007F2C45 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		36F8CD6523080ADB00848AEE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		36FD31DF2329C85900611371 /* BLEDataItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEDataItemTableViewCell.swift; sourceTree = "<group>"; };
 		36FD31E02329C85900611371 /* BLEDataItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BLEDataItemTableViewCell.xib; sourceTree = "<group>"; };
@@ -209,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36FD31EE2329E25000611371 /* Charts.framework in Frameworks */,
+				36DE6E8B232E7C98007F2C45 /* MapKit.framework in Frameworks */,
 				0552493F5CC0B2E4F6DB2D6A /* Pods_BLE_Test.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,6 +232,7 @@
 		290572ECB0EFF912C62ECF38 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				36DE6E8A232E7C98007F2C45 /* MapKit.framework */,
 				412977270E79F263279D7B12 /* Pods_BLE_Test.framework */,
 			);
 			name = Frameworks;
@@ -329,6 +343,8 @@
 				368A2CAE23135066000CF326 /* QueryChartTableViewController.swift */,
 				3673A1CE231389DE00B0F2EB /* LayoutTableViewController.swift */,
 				36A3C832231F9161008431C7 /* AlarmTableViewController.swift */,
+				36DE6E83232E6832007F2C45 /* MapViewController.swift */,
+				36DE6EA2232FC55D007F2C45 /* BottomSheetViewController.swift */,
 			);
 			path = BLE_Test;
 			sourceTree = "<group>";
@@ -372,6 +388,7 @@
 				36A3C82F231F9032008431C7 /* AlarmDetailTableViewCell.xib */,
 				36FD31DF2329C85900611371 /* BLEDataItemTableViewCell.swift */,
 				36FD31E02329C85900611371 /* BLEDataItemTableViewCell.xib */,
+				36DE6EA0232FC533007F2C45 /* SimpleTableCell.swift */,
 			);
 			path = ItemCell;
 			sourceTree = "<group>";
@@ -379,6 +396,8 @@
 		36CE5C13230FAFD300CBAE86 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				36DE6E98232E858C007F2C45 /* temperature2.png */,
+				36DE6E99232E858C007F2C45 /* vibration2.png */,
 				3638506E23254966000F4D35 /* Status_tmp.png */,
 				3638506C232548A4000F4D35 /* Status_tmp2.png */,
 				3673A1EF23140A0900B0F2EB /* CloudBLE2.png */,
@@ -448,6 +467,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 0;
 							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
 						};
 					};
 				};
@@ -501,6 +523,7 @@
 				3673A1F123140A0900B0F2EB /* CloudBLE2.png in Resources */,
 				36CE5C1F230FB76100CBAE86 /* Setup2.png in Resources */,
 				3673A1CA2313800F00B0F2EB /* CombinedChartViewController.xib in Resources */,
+				36DE6E9B232E858C007F2C45 /* vibration2.png in Resources */,
 				3673A1CB2313800F00B0F2EB /* ColoredLineChartViewController.xib in Resources */,
 				36D36A9F231250C8005C014E /* CustomChartCell.xib in Resources */,
 				36D36AA423129291005C014E /* Down.png in Resources */,
@@ -521,6 +544,7 @@
 				3673A1CC2313800F00B0F2EB /* PieChartViewController.xib in Resources */,
 				3673A1F023140A0900B0F2EB /* Layout_Demo.png in Resources */,
 				36A3C831231F9032008431C7 /* AlarmDetailTableViewCell.xib in Resources */,
+				36DE6E9A232E858C007F2C45 /* temperature2.png in Resources */,
 				36D36AA723129291005C014E /* Idle.png in Resources */,
 				36CE5C21230FB76100CBAE86 /* Status2.png in Resources */,
 				3684CAF12303F96C0088C152 /* Main.storyboard in Resources */,
@@ -590,6 +614,7 @@
 				3673A1DC23138E3E00B0F2EB /* DateValueFormatter.swift in Sources */,
 				36CE5C11230ECE0600CBAE86 /* ItemCell.swift in Sources */,
 				36A3C837231FA9C2008431C7 /* CommonStruct.swift in Sources */,
+				36DE6E84232E6832007F2C45 /* MapViewController.swift in Sources */,
 				3673A1DE231392C500B0F2EB /* LayoutDetailTableViewCell.swift in Sources */,
 				361A2A38232104CC004706AC /* AlarmNotificationHistory+CoreDataClass.swift in Sources */,
 				36A3C830231F9032008431C7 /* AlarmDetailTableViewCell.swift in Sources */,
@@ -600,11 +625,13 @@
 				362846282317731C00573E05 /* WebQuery.swift in Sources */,
 				3673A1C123137B5000B0F2EB /* PieChartViewController.swift in Sources */,
 				3673A1C023137B5000B0F2EB /* ColoredLineChartViewController.swift in Sources */,
+				36DE6EA1232FC533007F2C45 /* SimpleTableCell.swift in Sources */,
 				36C9A400232084930033D80D /* CoreData.xcdatamodeld in Sources */,
 				36D36AB12312D228005C014E /* SetupTableViewController.swift in Sources */,
 				3621969E2327787700FE3553 /* ProfileObject.swift in Sources */,
 				36D36AA923129332005C014E /* StatusTableViewCell.swift in Sources */,
 				361A2A39232104CC004706AC /* AlarmNotificationHistory+CoreDataProperties.swift in Sources */,
+				36DE6EA3232FC55D007F2C45 /* BottomSheetViewController.swift in Sources */,
 				368A2CAF23135066000CF326 /* QueryChartTableViewController.swift in Sources */,
 				3673A1DB23138E3E00B0F2EB /* IntAxisValueFormatter.swift in Sources */,
 				36D36A9E231250C8005C014E /* CustomChartCell.swift in Sources */,

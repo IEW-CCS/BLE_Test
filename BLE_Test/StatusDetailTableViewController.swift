@@ -21,6 +21,16 @@ class StatusDetailTableViewController: UITableViewController {
         print("Received device id is: \(self.received_device_id!)")
         requestDeviceDetail(device_id: self.received_device_id!)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        //prepareBackgroundView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         if self.infoArray == nil {

@@ -9,6 +9,7 @@
 import UIKit
 import UserNotifications
 import CoreData
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     static var select_DeviceID : String?
     static var select_EDCItem : String?
+    let locationManager = CLLocationManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -31,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
+        locationManager.requestWhenInUseAuthorization()
         //center.setNotificationCategories(setCategories())
         //center.delegate = self
         //sendNotification()

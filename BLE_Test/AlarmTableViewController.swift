@@ -18,7 +18,7 @@ class AlarmTableViewController: UITableViewController {
     let headerDataList: [String] = ["Alarm Code", "Alarm Level", "Alarm App", "Message"]
 
     let app = UIApplication.shared.delegate as! AppDelegate
-    var viewContext: NSManagedObjectContext!
+    var vc: NSManagedObjectContext!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,7 @@ class AlarmTableViewController: UITableViewController {
         let cellViewNib: UINib = UINib(nibName: "AlarmDetailTableViewCell", bundle: nil)
         self.tableView.register(cellViewNib, forCellReuseIdentifier: "AlarmDetailTableViewCell")
         
-        viewContext = app.persistentContainer.viewContext
+        vc = app.persistentContainer.viewContext
 
         NotificationCenter.default.addObserver(
             self,
@@ -94,7 +94,7 @@ class AlarmTableViewController: UITableViewController {
         fetchSortRequest.sortDescriptors = [sort]
 
         do {
-            let alarm_list = try viewContext.fetch(fetchSortRequest)
+            let alarm_list = try vc.fetch(fetchSortRequest)
             for alarm_data in alarm_list {
                 let dateFormat: DateFormatter = DateFormatter()
                 dateFormat.dateFormat = "yyyy/MM/dd HH:mm:ss.SSS"
@@ -124,7 +124,7 @@ class AlarmTableViewController: UITableViewController {
     
     func insertAlarmData(alarm_info: AlarmNotification) {
         let identifier = UUID()
-        let alarm_data = NSEntityDescription.insertNewObject(forEntityName: "AlarmNotificationHistory", into: viewContext) as! AlarmNotificationHistory
+        let alarm_data = NSEntityDescription.insertNewObject(forEntityName: "AlarmNotificationHistory", into: vc) as! AlarmNotificationHistory
         alarm_data.gateway_id = alarm_info.GatewayID
         alarm_data.device_id = alarm_info.DeviceID
         alarm_data.alarm_code = alarm_info.AlarmCode
@@ -143,9 +143,9 @@ class AlarmTableViewController: UITableViewController {
 
     func deleteAllAlarmData() {
         do {
-            let alarm_list = try viewContext.fetch(AlarmNotificationHistory.fetchRequest())
+            let alarm_list = try vc.fetch(AlarmNotificationHistory.fetchRequest())
             for alarm_data in alarm_list as! [AlarmNotificationHistory] {
-                viewContext.delete(alarm_data)
+                vc.delete(alarm_data)
             }
         } catch {
             print(error)
@@ -159,7 +159,7 @@ class AlarmTableViewController: UITableViewController {
         if let fetchRequest = model.fetchRequestTemplate(forName: "Fetch_Badge_Number") {
             do {
                 //let alarm_list = try viewContext.fetch(AlarmNotificationHistory.fetchRequest())
-                let alarm_list = try viewContext.fetch(fetchRequest)
+                let alarm_list = try vc.fetch(fetchRequest)
                 print("Return badge number: \(alarm_list.count)")
                 return alarm_list.count
             } catch {
@@ -181,7 +181,7 @@ class AlarmTableViewController: UITableViewController {
         
         if let fetchRequest = model.fetchRequestFromTemplate(withName: "Fetch_By_UUID", substitutionVariables: ["ID": uuidString]) {
             do {
-                let alarm_list = try viewContext.fetch(fetchRequest)
+                let alarm_list = try vc.fetch(fetchRequest)
                 for alarm_data in alarm_list as! [AlarmNotificationHistory] {
                     print("Fetched gateway_id: \(alarm_data.gateway_id!)")
                     print("Fetched device_id: \(alarm_data.device_id!)")
@@ -248,7 +248,7 @@ class AlarmTableViewController: UITableViewController {
             
             if let fetchRequest = model.fetchRequestFromTemplate(withName: "Fetch_By_UUID", substitutionVariables: ["ID": uuidString]) {
                 do {
-                    let alarm_list = try viewContext.fetch(fetchRequest)
+                    let alarm_list = try vc.fetch(fetchRequest)
                     for alarm_data in alarm_list as! [AlarmNotificationHistory] {
                         alarm_data.is_archived = true
                         alarm_data.badge_number = 0

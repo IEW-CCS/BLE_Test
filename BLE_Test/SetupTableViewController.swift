@@ -70,6 +70,14 @@ class SetupTableViewController: UITableViewController{
                         self.saveProfilesData(data: profile_info)
                     }
                     //self.loadProfileData()
+                    DispatchQueue.main.async {
+                        let alertVC = UIAlertController(title: "Update Finished", message: "Download BLE profiles from server, check the detail profile information if necessary", preferredStyle: UIAlertController.Style.alert)
+                        let action = UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) -> Void in
+                            self.dismiss(animated: true, completion: nil)
+                        })
+                        alertVC.addAction(action)
+                        self.present(alertVC, animated: true, completion: nil)
+                    }
                 }
             } catch {
                 print(error.localizedDescription)

@@ -378,9 +378,9 @@ class CloudBLETableViewController: UITableViewController {
     
     func loadProfileData() {
         do {
-            let viewContext = app.persistentContainer.viewContext
+            let vc = app.persistentContainer.viewContext
             let fetchRequest = NSFetchRequest<BLEProfileTable>(entityName: "BLEProfileTable")
-            let profile_list = try viewContext.fetch(fetchRequest)
+            let profile_list = try vc.fetch(fetchRequest)
             print("Get data from transformable object!!")
             for profile_data in profile_list {
                 let tmp = profile_data.profileObject as! ProfileObject
@@ -407,10 +407,10 @@ class CloudBLETableViewController: UITableViewController {
     func requestSelectedProfile(category: String, profile_name: String) -> ProfileObject? {
         print("Enter requestSelectedProfile")
         
-        let viewContext = app.persistentContainer.viewContext
+        let vc = app.persistentContainer.viewContext
         do {
             let fetchRequest = NSFetchRequest<BLEProfileTable>(entityName: "BLEProfileTable")
-            let profile_list = try viewContext.fetch(fetchRequest)
+            let profile_list = try vc.fetch(fetchRequest)
             for profile_data in profile_list {
                 if profile_data.category == category && profile_data.name == profile_name {
                     print("Fetched category: \(profile_data.category!)")

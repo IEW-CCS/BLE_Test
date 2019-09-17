@@ -91,7 +91,8 @@ class FunctionCollectionViewController: UICollectionViewController {
             
         // Display Layout View Controller
         case 1:
-            let vc = storyboard?.instantiateViewController(withIdentifier: "Layout_VC")
+            //let vc = storyboard?.instantiateViewController(withIdentifier: "Layout_VC")
+            let vc = storyboard?.instantiateViewController(withIdentifier: "Map_VC")
             show(vc!, sender: self)
             return
             
