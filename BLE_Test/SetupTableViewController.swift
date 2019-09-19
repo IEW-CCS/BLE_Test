@@ -50,6 +50,13 @@ class SetupTableViewController: UITableViewController{
     }
     
     @IBAction func updateBLEProfiles(_ sender: Any) {
+       
+        let _Activityalert = Activityalert(title: "Loading")
+        present(_Activityalert, animated : true, completion : updateBLEProfile)
+    }
+    
+    func updateBLEProfile() {
+        
         let sessionHttp = URLSession(configuration: .default)
         let url = getUrlForRequest(uri: "CCS_BLE_Profile_List")
         
@@ -57,26 +64,39 @@ class SetupTableViewController: UITableViewController{
         
         let task = sessionHttp.dataTask(with: UrlRequest) {(data, response, error) in
             do {
-                //Temp function, needs to remove in the future
-                self.deleteProfileData()
-                let outputStr  = String(data: data!, encoding: String.Encoding.utf8) as String?
-                let jsonData = outputStr!.data(using: String.Encoding.utf8, allowLossyConversion: true)
-                let decoder = JSONDecoder()
-                self.profileList = try decoder.decode(WebResponseBLEProfileList.self, from: jsonData!)
-                if self.profileList.profile_list.count > 0 {
-                    print("updateBLEProfiles: receive data from Http Server")
-                    for profile_info in self.profileList.profile_list {
-                        print("Insert data for catetory: \(profile_info.BLECategory), name: \(profile_info.BLEName)")
-                        self.saveProfilesData(data: profile_info)
+                
+                if error != nil{
+                    self.presentedViewController?.dismiss(animated: false, completion: nil)
+                    let _httpalert = alert(message: error!.localizedDescription, title: "Http Error")
+                    self.present(_httpalert, animated : false, completion : nil)
+                }
+                else{
+                    
+                    guard let httpResponse = response as? HTTPURLResponse,
+                        (200...299).contains(httpResponse.statusCode) else {
+                            
+                            let errorResponse = response as? HTTPURLResponse
+                            let message: String = String(errorResponse!.statusCode) + " - " + HTTPURLResponse.localizedString(forStatusCode: errorResponse!.statusCode)
+                            self.presentedViewController?.dismiss(animated: false, completion: nil)
+                            let _httpalert = alert(message: message, title: "Http Error")
+                            self.present(_httpalert, animated : false, completion : nil)
+                            return
                     }
-                    //self.loadProfileData()
-                    DispatchQueue.main.async {
-                        let alertVC = UIAlertController(title: "Update Finished", message: "Download BLE profiles from server, check the detail profile information if necessary", preferredStyle: UIAlertController.Style.alert)
-                        let action = UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) -> Void in
-                            self.dismiss(animated: true, completion: nil)
-                        })
-                        alertVC.addAction(action)
-                        self.present(alertVC, animated: true, completion: nil)
+                    
+                    self.presentedViewController?.dismiss(animated: false, completion: nil)
+                    //Temp function, needs to remove in the future
+                    self.deleteProfileData()
+                    let outputStr  = String(data: data!, encoding: String.Encoding.utf8) as String?
+                    let jsonData = outputStr!.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                    let decoder = JSONDecoder()
+                    self.profileList = try decoder.decode(WebResponseBLEProfileList.self, from: jsonData!)
+                    if self.profileList.profile_list.count > 0 {
+                        print("updateBLEProfiles: receive data from Http Server")
+                        for profile_info in self.profileList.profile_list {
+                            print("Insert data for catetory: \(profile_info.BLECategory), name: \(profile_info.BLEName)")
+                            self.saveProfilesData(data: profile_info)
+                        }
+                        //self.loadProfileData()
                     }
                 }
             } catch {

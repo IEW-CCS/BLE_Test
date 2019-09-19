@@ -21,8 +21,6 @@ class QueryChartTableViewController: UITableViewController {
     
     var listDictionary: Dictionary<String, [String]> = [:]
     
-    private  let _myalert = UIAlertController(title: "Loading...",message: "\n\n\n",preferredStyle: .alert)
-    
     private var itemDefs = [ItemDef(title: "Time Line Chart",
                                     subtitle: "Simple demonstration of a time-chart.",
                                     class: LineChartTimeViewController.self),
@@ -41,7 +39,7 @@ class QueryChartTableViewController: UITableViewController {
     ]
     
     override func viewWillAppear(_ animated: Bool) {
-    
+     
     }
     
     override func viewDidLoad() {
@@ -59,12 +57,8 @@ class QueryChartTableViewController: UITableViewController {
         
        // requestGatewayList()
         
-        let _loadingIndicator =  UIActivityIndicatorView(frame: _myalert.view.bounds)
-        _loadingIndicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        _loadingIndicator.color = UIColor.blue
-        _loadingIndicator.startAnimating()
-        _myalert.view.addSubview(_loadingIndicator)
-        present(_myalert, animated : true, completion : requestGatewayList)
+        let _Activityalert = Activityalert(title: "Loading")
+        present(_Activityalert, animated : true, completion : requestGatewayList)
         
     }
     
@@ -149,13 +143,23 @@ class QueryChartTableViewController: UITableViewController {
             do {
                 if error != nil{
                     self.presentedViewController?.dismiss(animated: false, completion: nil)
-                    let _httpalert = UIAlertController(title: "Error",message: (error?.localizedDescription) ,preferredStyle: .alert)
-                    let _OKaction = UIAlertAction(title:"OK",style: .default ){(UIAlertAction) in self.dismiss(animated: false, completion:nil)}
-                    _httpalert.addAction(_OKaction)
+                    let _httpalert = alert(message: error!.localizedDescription, title: "Http Error")
                     self.present(_httpalert, animated : false, completion : nil)
+                }
+                
+                else{
+                    guard let httpResponse = response as? HTTPURLResponse,
+                        (200...299).contains(httpResponse.statusCode) else {
+                            
+                            let errorResponse = response as? HTTPURLResponse
+                            let message: String = String(errorResponse!.statusCode) + " - " + HTTPURLResponse.localizedString(forStatusCode: errorResponse!.statusCode)
+                            self.presentedViewController?.dismiss(animated: false, completion: nil)
+                            let _httpalert = alert(message: message, title: "Http Error")
+                            self.present(_httpalert, animated : false, completion : nil)
+                            return
+                    }
                     
-                }else{
-                    
+                    self.presentedViewController?.dismiss(animated: false, completion: nil)
                     let outputStr  = String(data: data!, encoding: String.Encoding.utf8) as String?
                     let jsonData = outputStr!.data(using: String.Encoding.utf8, allowLossyConversion: true)
                     let decoder = JSONDecoder()
@@ -184,7 +188,6 @@ class QueryChartTableViewController: UITableViewController {
             }
         }
         task.resume()
-        
         return
     }
     
@@ -232,12 +235,23 @@ class QueryChartTableViewController: UITableViewController {
                 
                 if error != nil{
                     self.presentedViewController?.dismiss(animated: false, completion: nil)
-                    let _httpalert = UIAlertController(title: "Error",message: (error?.localizedDescription) ,preferredStyle: .alert)
-                    let _OKaction = UIAlertAction(title:"OK",style: .default ){(UIAlertAction) in self.dismiss(animated: false, completion:nil)}
-                    _httpalert.addAction(_OKaction)
+                    let _httpalert = alert(message: error!.localizedDescription, title: "Http Error")
                     self.present(_httpalert, animated : false, completion : nil)
                     
                 }else{
+                    
+                    guard let httpResponse = response as? HTTPURLResponse,
+                        (200...299).contains(httpResponse.statusCode) else {
+                            
+                            let errorResponse = response as? HTTPURLResponse
+                            let message: String = String(errorResponse!.statusCode) + " - " + HTTPURLResponse.localizedString(forStatusCode: errorResponse!.statusCode)
+                            self.presentedViewController?.dismiss(animated: false, completion: nil)
+                            let _httpalert = alert(message: message, title: "Http Error")
+                            self.present(_httpalert, animated : false, completion : nil)
+                            return
+                    }
+                    
+                    self.presentedViewController?.dismiss(animated: false, completion: nil)
                     let outputStr  = String(data: data!, encoding: String.Encoding.utf8) as String?
                     let jsonData = outputStr!.data(using: String.Encoding.utf8, allowLossyConversion: true)
                     let decoder = JSONDecoder()

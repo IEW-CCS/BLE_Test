@@ -1,11 +1,12 @@
 import Foundation
+import UIKit
 
 func getUrlForRequest(uri: String) -> String {
     let path = NSHomeDirectory() + "/Documents/Setup.plist"
     let plist = NSMutableDictionary(contentsOfFile: path)
     let httpServer = plist!["HttpServer"] as! String
     let httpPort = plist!["HttpPort"] as! String
-    let url = "http://\(httpServer):\(httpPort)/\(uri)"
+    let url = "http://\(httpServer):\(httpPort)/RestfulService/\(uri)"
     
     return url
 }
@@ -31,3 +32,31 @@ func getMQTTPublishTopic(device_id: String) -> String {
     
     return topic
 }
+
+
+
+func alert(message: String, title: String )-> UIAlertController {
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+    alertController.addAction(OKAction)
+    //self.present(alertController, animated: true, completion: nil)
+    return alertController
+}
+
+func Activityalert( title: String )-> UIAlertController {
+    
+    let _Activityalert = UIAlertController(title: title, message: "\n\n\n",preferredStyle: .alert)
+    let _loadingIndicator =  UIActivityIndicatorView(frame: _Activityalert.view.bounds)
+    _loadingIndicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    _loadingIndicator.color = UIColor.blue
+    _loadingIndicator.startAnimating()
+    _Activityalert.view.addSubview(_loadingIndicator)
+    
+    return _Activityalert
+}
+
+
+
+
+
+

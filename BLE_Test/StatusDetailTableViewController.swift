@@ -65,16 +65,37 @@ class StatusDetailTableViewController: UITableViewController {
         print("requestDeviceDetail")
         let task = sessionHttp.dataTask(with: UrlRequest) {(data, response, error) in
             do {
-                let outputStr  = String(data: data!, encoding: String.Encoding.utf8) as String?
-                //print("Received device detail data: \(String(describing: outputStr))")
-                let jsonData = outputStr!.data(using: String.Encoding.utf8, allowLossyConversion: true)
-                let decoder = JSONDecoder()
-                self.device_detail = try decoder.decode(WebResponseDeviceDetail.self, from: jsonData!)
-                //print("json decoding seems OK!!")
-                if self.device_detail != nil {
-                    self.prepareDetailData(detail_data: self.device_detail!)
+                
+                if error != nil{
+                    self.presentedViewController?.dismiss(animated: false, completion: nil)
+                    let _httpalert = alert(message: error!.localizedDescription, title: "Http Error")
+                    self.present(_httpalert, animated : false, completion : nil)
                 }
-                DispatchQueue.main.async {self.tableView.reloadData()}
+                else{
+                   
+                    guard let httpResponse = response as? HTTPURLResponse,
+                        (200...299).contains(httpResponse.statusCode) else {
+                            
+                            let errorResponse = response as? HTTPURLResponse
+                            let message: String = String(errorResponse!.statusCode) + " - " + HTTPURLResponse.localizedString(forStatusCode: errorResponse!.statusCode)
+                            self.presentedViewController?.dismiss(animated: false, completion: nil)
+                            let _httpalert = alert(message: message, title: "Http Error")
+                            self.present(_httpalert, animated : false, completion : nil)
+                            return
+                    }
+                    
+                    self.presentedViewController?.dismiss(animated: false, completion: nil)
+                    let outputStr  = String(data: data!, encoding: String.Encoding.utf8) as String?
+                    //print("Received device detail data: \(String(describing: outputStr))")
+                    let jsonData = outputStr!.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                    let decoder = JSONDecoder()
+                    self.device_detail = try decoder.decode(WebResponseDeviceDetail.self, from: jsonData!)
+                    //print("json decoding seems OK!!")
+                    if self.device_detail != nil {
+                        self.prepareDetailData(detail_data: self.device_detail!)
+                    }
+                    DispatchQueue.main.async {self.tableView.reloadData()}
+              }
             } catch {
                 print(error.localizedDescription)
 

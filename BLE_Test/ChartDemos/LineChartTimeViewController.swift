@@ -25,8 +25,7 @@ class LineChartTimeViewController: DemoBaseViewController {
     private var _Query_DeviceID : String!
     private var _Query_ChartName : String!
     
-    //--------- Alert --------
-    private  let _myalert = UIAlertController(title: "Loading...",message: "\n\n\n",preferredStyle: .alert)
+
 
     private var ChartQuery: WebResponseChartInfoReply?
     
@@ -50,46 +49,22 @@ class LineChartTimeViewController: DemoBaseViewController {
         super.viewWillAppear(animated)
         
         
-        //------- Initial Date time ----
-        
-        let Displayformatter = DateFormatter()
-        Displayformatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        let Jsonformatter = DateFormatter()
-        Jsonformatter.dateFormat = "yyyyMMddHHmmss"
-        
-        
-        let currentDateTime = Date()
-        _Select_End_Time = Jsonformatter.string(from: currentDateTime)
-        Sel_End_Button.setTitle(Displayformatter.string(from: currentDateTime),for: UIControl.State.normal)
-        
-        let modifiedDate = Calendar.current.date(byAdding: .hour, value: -1, to: currentDateTime)!
-        _Select_Start_Time = Jsonformatter.string(from: modifiedDate)
-        Sel_Start_Button.setTitle(Displayformatter.string(from: modifiedDate),for: UIControl.State.normal)
-        
-        //---------Setup Device ID and Item ------
-        _Query_DeviceID = AppDelegate.select_DeviceID
-        _Query_ChartName = AppDelegate.select_EDCItem
+    }
+    
+    
+    func requestChartInfo() {
         
         let url = getUrlForRequest(uri: "CCS_Chart/Info")
         let postJSON = ["device_id": _Query_DeviceID,"chart_name":_Query_ChartName, "get_count":"100", "start_time": _Select_Start_Time, "end_time" : _Select_End_Time]
         requestWithJSONBody(urlString: url, parameters: postJSON as [String : Any], completion: { (data) in
             DispatchQueue.main.async {
+                self.presentedViewController?.dismiss(animated: false, completion: nil)
                 self.processData(data: data)
             }
         })
         
-        
-        let _loadingIndicator =  UIActivityIndicatorView(frame: _myalert.view.bounds)
-        _loadingIndicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        _loadingIndicator.color = UIColor.blue
-        _loadingIndicator.startAnimating()
-        
-        _myalert.view.addSubview(_loadingIndicator)
-        
-        
-        
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,8 +104,32 @@ class LineChartTimeViewController: DemoBaseViewController {
         chartView.rightAxis.enabled = false
         chartView.legend.form = .line
         self.updateChartData()
-        
         chartView.animate(xAxisDuration: 1)
+        
+        //------- Initial Date time ----
+        
+        let Displayformatter = DateFormatter()
+        Displayformatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        let Jsonformatter = DateFormatter()
+        Jsonformatter.dateFormat = "yyyyMMddHHmmss"
+        
+        
+        let currentDateTime = Date()
+        _Select_End_Time = Jsonformatter.string(from: currentDateTime)
+        Sel_End_Button.setTitle(Displayformatter.string(from: currentDateTime),for: UIControl.State.normal)
+        
+        let modifiedDate = Calendar.current.date(byAdding: .hour, value: -1, to: currentDateTime)!
+        _Select_Start_Time = Jsonformatter.string(from: modifiedDate)
+        Sel_Start_Button.setTitle(Displayformatter.string(from: modifiedDate),for: UIControl.State.normal)
+        
+        //---------Setup Device ID and Item ------
+        _Query_DeviceID = AppDelegate.select_DeviceID
+        _Query_ChartName = AppDelegate.select_EDCItem
+        
+        let _Activityalert = Activityalert(title: "Loading")
+        present(_Activityalert, animated : true, completion : requestChartInfo)
+        
     }
     
     override func updateChartData() {
@@ -138,52 +137,6 @@ class LineChartTimeViewController: DemoBaseViewController {
             chartView.data = nil
             return
         }
-        
-        let url = getUrlForRequest(uri: "CCS_Chart/Info")
-        let postJSON = ["device_id": _Query_DeviceID,"chart_name":_Query_ChartName, "get_count":"100", "start_time": _Select_Start_Time, "end_time" : _Select_End_Time]
-        requestWithJSONBody(urlString: url, parameters: postJSON as [String : Any], completion: { (data) in
-            DispatchQueue.main.async {
-                self.processData(data: data)
-            }
-        })
-       // self.setDataCount(100, range: 30)
-    }
-    
-    func setDataCount(_ count: Int, range: UInt32) {
-        let now = Date().timeIntervalSince1970
-        let hourSeconds: TimeInterval = 3600
-        
-        let from = now - (Double(count) / 2) * hourSeconds
-        let to = now + (Double(count) / 2) * hourSeconds
-        
-        let dateFormat:DateFormatter = DateFormatter()
-        dateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        
-        let values = stride(from: from, to: to, by: hourSeconds).map { (x) -> ChartDataEntry in
-            let y = arc4random_uniform(range) + 50
-            
-            //let date:Date = Date(timeIntervalSince1970: x)
-            //print("\(dateFormat.string(from: date))")
-            return ChartDataEntry(x: x, y: Double(y))
-        }
-        
-        let set1 = LineChartDataSet(entries: values, label: "DataSet 1")
-        set1.axisDependency = .left
-        set1.setColor(UIColor(red: 51/255, green: 181/255, blue: 229/255, alpha: 1))
-        set1.lineWidth = 1.5
-        set1.drawCirclesEnabled = false
-        set1.drawValuesEnabled = false
-        set1.fillAlpha = 0.26
-        set1.fillColor = UIColor(red: 51/255, green: 181/255, blue: 229/255, alpha: 1)
-        set1.highlightColor = UIColor(red: 244/255, green: 117/255, blue: 117/255, alpha: 1)
-        set1.drawCircleHoleEnabled = false
-        
-        let data = LineChartData(dataSet: set1)
-        data.setValueTextColor(.white)
-        data.setValueFont(.systemFont(ofSize: 9, weight: .light))
-        
-        chartView.data = data
         
     }
     
@@ -198,6 +151,10 @@ class LineChartTimeViewController: DemoBaseViewController {
         DisplayDatetimePickView(true)
     }
     
+    @IBAction func DateTime_PV_Cancel_Click(_ sender: Any) {
+        
+        DisplayDatetimePickView(false)
+    }
     @IBAction func DateTime_PV_Done_Click(_ sender: Any) {
         
         let formatter = DateFormatter()
@@ -235,46 +192,14 @@ class LineChartTimeViewController: DemoBaseViewController {
     
     @IBAction func Query_Btn_Click(_ sender: Any) {
         
-        super.present(_myalert, animated : true, completion :nil )
         _Select_Start_Time = convertDateFormatter(date: String( Sel_Start_Button.currentTitle ?? "0"))
         _Select_End_Time = convertDateFormatter(date: String( Sel_End_Button.currentTitle ?? "0"))
         
-        let url = getUrlForRequest(uri: "CCS_Chart/Info")
-        let postJSON = ["device_id": _Query_DeviceID,"chart_name":_Query_ChartName, "get_count":"100", "start_time": _Select_Start_Time, "end_time" : _Select_End_Time]
-        requestWithJSONBody(urlString: url, parameters: postJSON as [String : Any], completion: { (data) in
-            DispatchQueue.main.async {
-                self.processData(data: data)
-                self.presentedViewController?.dismiss(animated: false, completion: nil)
-            }
-        })
         
+        let _Activityalert = Activityalert(title: "Loading")
+        present(_Activityalert, animated : true, completion : requestChartInfo)
         
         //DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {}
-        
-        
-        /*
-        let alertController = UIAlertController(
-            title: "提示",
-            message: "Query Range Start" + "\(String( Sel_Start_Button.currentTitle ?? "0"))" + "End" + "\(String( Sel_End_Button.currentTitle ?? "0"))",
-            preferredStyle: .alert)
-        
-        // 建立[確認]按鈕
-        let okAction = UIAlertAction(
-            title: "確認",
-            style: .default,
-            handler: {
-                (action: UIAlertAction!) -> Void in
-                print("按下確認後，閉包裡的動作")
-        })
-        alertController.addAction(okAction)
-        
-        // 顯示提示框
-        self.present(
-            alertController,
-            animated: true,
-            completion: nil)
-       */
-        
         
     }
     
@@ -302,8 +227,24 @@ class LineChartTimeViewController: DemoBaseViewController {
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             if error != nil{
-                print(error as Any)
-            }else{
+                self.presentedViewController?.dismiss(animated: false, completion: nil)
+                let _httpalert = alert(message: error!.localizedDescription, title: "Http Error")
+                self.present(_httpalert, animated : false, completion : nil)
+            }
+            else{
+                
+                guard let httpResponse = response as? HTTPURLResponse,
+                    (200...299).contains(httpResponse.statusCode) else {
+                        
+                        let errorResponse = response as? HTTPURLResponse
+                        let message: String = String(errorResponse!.statusCode) + " - " + HTTPURLResponse.localizedString(forStatusCode: errorResponse!.statusCode)
+                        self.presentedViewController?.dismiss(animated: false, completion: nil)
+                        let _httpalert = alert(message: message, title: "Http Error")
+                        self.present(_httpalert, animated : false, completion : nil)
+                        return
+                }
+                
+                
                 guard let data = data else{return}
                 completion(data)
             }

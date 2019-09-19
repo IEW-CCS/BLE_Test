@@ -109,11 +109,21 @@
                         <action selector="DateTime_PV_Done_Click:" destination="-1" eventType="touchUpInside" id="kLP-RW-z0g"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LyQ-XM-zwv" userLabel="Cancel">
+                    <rect key="frame" x="14" y="6" width="64" height="38"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                    <state key="normal" title="Cancel"/>
+                    <connections>
+                        <action selector="DateTime_PV_Cancel_Click:" destination="-1" eventType="touchUpInside" id="k7B-3x-NWt"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.76830068751110359" green="0.92510739141079434" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="dx9-ya-h9h" firstAttribute="trailing" secondItem="Lgj-wl-k3g" secondAttribute="trailing" id="09k-eB-NRl"/>
                 <constraint firstItem="dx9-ya-h9h" firstAttribute="bottom" secondItem="Lgj-wl-k3g" secondAttribute="bottom" constant="-10" id="3vC-80-SHo"/>
+                <constraint firstItem="LyQ-XM-zwv" firstAttribute="top" secondItem="Lgj-wl-k3g" secondAttribute="top" constant="6" id="OcL-ZO-1wd"/>
+                <constraint firstItem="LyQ-XM-zwv" firstAttribute="leading" secondItem="Lgj-wl-k3g" secondAttribute="leading" constant="14" id="RcO-QX-ym2"/>
                 <constraint firstItem="cSR-dX-pAn" firstAttribute="trailing" secondItem="Lgj-wl-k3g" secondAttribute="trailing" constant="-14" id="Z3B-wM-Vt0"/>
                 <constraint firstItem="cSR-dX-pAn" firstAttribute="top" secondItem="Lgj-wl-k3g" secondAttribute="top" constant="6" id="cXm-Qq-RNG"/>
                 <constraint firstItem="dx9-ya-h9h" firstAttribute="top" secondItem="Lgj-wl-k3g" secondAttribute="top" constant="44" id="wEJ-LW-3js"/>
