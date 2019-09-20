@@ -541,13 +541,14 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JU0-bT-rtB">
-                                                    <rect key="frame" x="333" y="6" width="49" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JU0-bT-rtB">
+                                                    <rect key="frame" x="331" y="6.5" width="51" height="31"/>
                                                 </switch>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="JU0-bT-rtB" firstAttribute="centerY" secondItem="pO0-Gs-EHy" secondAttribute="centerY" id="OWh-2n-rbj"/>
                                                 <constraint firstItem="zYx-7J-M4N" firstAttribute="centerY" secondItem="pO0-Gs-EHy" secondAttribute="centerY" id="kUY-Ff-3q3"/>
+                                                <constraint firstAttribute="trailing" secondItem="JU0-bT-rtB" secondAttribute="trailing" constant="34" id="obL-gc-Uep"/>
                                                 <constraint firstItem="zYx-7J-M4N" firstAttribute="leading" secondItem="pO0-Gs-EHy" secondAttribute="leadingMargin" constant="20" id="uRR-Ds-SfB"/>
                                             </constraints>
                                         </tableViewCellContentView>
