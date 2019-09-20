@@ -6,6 +6,8 @@
 	<string>172.20.10.3</string>
 	<key>HttpPort</key>
 	<string>7788</string>
+	<key>HttpSimulation</key>
+	<false/>
 	<key>MQTTBrokerIP</key>
 	<string>172.20.10.9</string>
 	<key>MQTTBrokerPort</key>

@@ -24,6 +24,7 @@ class SetupTableViewController: UITableViewController{
     @IBOutlet weak var txtDBUserName: UITextField!
     @IBOutlet weak var txtDBPassword: UITextField!
     @IBOutlet weak var btnUpdate: UIButton!
+    @IBOutlet weak var switchSimulation: UISwitch!
     
     var profileList: WebResponseBLEProfileList!
     let app = UIApplication.shared.delegate as! AppDelegate
@@ -144,6 +145,7 @@ class SetupTableViewController: UITableViewController{
         if let plist = NSMutableDictionary(contentsOfFile: path) {
             if let httpServer = plist["HttpServer"] {txtHttpServer.text = httpServer as? String}
             if let httpPort = plist["HttpPort"] {txtHttpServerPort.text = httpPort as? String}
+            if let httpSimulation = plist["HttpSimulation"]{ switchSimulation.isOn = (httpSimulation as! Bool) }
 
             if let brokerIP = plist["MQTTBrokerIP"] {txtBrokerIP.text = brokerIP as? String}
             if let brokerPort = plist["MQTTBrokerPort"] {txtBrokerPort.text = brokerPort as? String}
@@ -154,6 +156,7 @@ class SetupTableViewController: UITableViewController{
             if let dbName = plist["DatabaseName"] {txtDBName.text = dbName as? String}
             if let dbUserName = plist["DBUserName"] {txtDBUserName.text = dbUserName as? String}
             if let dbPassword = plist["DBPassword"] {txtDBPassword.text = dbPassword as? String}
+            
         }
     }
     
@@ -162,6 +165,7 @@ class SetupTableViewController: UITableViewController{
         if let plist = NSMutableDictionary(contentsOfFile: path) {
             plist["HttpServer"] = txtHttpServer.text
             plist["HttpPort"] = txtHttpServerPort.text
+            plist["HttpSimulation"] = switchSimulation.isOn
             plist["MQTTBrokerIP"] = txtBrokerIP.text
             plist["MQTTBrokerPort"] = txtBrokerPort.text
             plist["DatabaseType"] = txtDBType.text
@@ -170,6 +174,7 @@ class SetupTableViewController: UITableViewController{
             plist["DatabaseName"] = txtDBName.text
             plist["DBUserName"] = txtDBUserName.text
             plist["DBPassword"] = txtDBPassword.text
+            
             if !plist.write(toFile: path, atomically: true) {
                 print("Save Seypy.plist failed")
             }
