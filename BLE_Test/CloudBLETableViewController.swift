@@ -249,7 +249,7 @@ class CloudBLETableViewController: UITableViewController {
             } else {
                 print("Connect to MQTT Broker successful")
                 //self.timer_mqtt.invalidate()
-                self.presentedViewController?.dismiss(animated: false, completion: nil)
+                DispatchQueue.main.async {self.presentedViewController?.dismiss(animated: false, completion: nil)}
 
                 //self.publishTestMessage()
             }

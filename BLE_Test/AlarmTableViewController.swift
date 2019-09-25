@@ -65,7 +65,7 @@ class AlarmTableViewController: UITableViewController {
             do {
                 
                 if error != nil{
-                    self.presentedViewController?.dismiss(animated: false, completion: nil)
+                    DispatchQueue.main.async {self.presentedViewController?.dismiss(animated: false, completion: nil)}
                     let _httpalert = alert(message: error!.localizedDescription, title: "Http Error")
                     self.present(_httpalert, animated : false, completion : nil)
                 }
@@ -76,13 +76,13 @@ class AlarmTableViewController: UITableViewController {
                             
                             let errorResponse = response as? HTTPURLResponse
                             let message: String = String(errorResponse!.statusCode) + " - " + HTTPURLResponse.localizedString(forStatusCode: errorResponse!.statusCode)
-                            self.presentedViewController?.dismiss(animated: false, completion: nil)
+                            DispatchQueue.main.async {self.presentedViewController?.dismiss(animated: false, completion: nil)}
                             let _httpalert = alert(message: message, title: "Http Error")
                             self.present(_httpalert, animated : false, completion : nil)
                             return
                     }
                     
-                    self.presentedViewController?.dismiss(animated: false, completion: nil)
+                    DispatchQueue.main.async {self.presentedViewController?.dismiss(animated: false, completion: nil)}
                     let outputStr  = String(data: data!, encoding: String.Encoding.utf8) as String?
                     //print("Received device detail data: \(String(describing: outputStr))")
                     let jsonData = outputStr!.data(using: String.Encoding.utf8, allowLossyConversion: true)
