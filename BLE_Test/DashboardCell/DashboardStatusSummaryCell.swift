@@ -10,14 +10,31 @@ import UIKit
 import Charts
 
 class DashboardStatusSummaryCell: UITableViewCell {
+    //Test Data
+    let categoryArray = ["1F", "2F", "3F", "4F", "5F", "6F", "7F", "8F", "9F"]
+    let pieDataArray = [[23.1, 18.5, 32.9],
+                        [124.2, 56.8, 90.9],
+                        [78.9, 54.3, 128.0],
+                        [32.8, 49.8, 113.2],
+                        [120.4, 345.2, 789.1],
+                        [233.4, 333.4, 433.4],
+                        [50.2, 111.3, 23.5],
+                        [18.9, 20.8, 33.3],
+                        [3.0, 4.0, 5.0]]
     
     @IBOutlet weak var pieChart: PieChartView!
+    @IBOutlet weak var categoryView: UICollectionView!
+    
+    private var previousSelectedIndex:Int = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = UIColor.clear
         self.contentView.layer.cornerRadius = CELL_CORNER_RADIUS
         self.contentView.layer.backgroundColor = UIColor.clear.cgColor
+        categoryView.register(BasicCollectionViewCell.self, forCellWithReuseIdentifier: "CategoryView")
+        categoryView.dataSource = self
+        categoryView.delegate = self
 
         configPieChart()
         setupChartData()
@@ -76,4 +93,27 @@ class DashboardStatusSummaryCell: UITableViewCell {
         
         pieChart.data = data
         pieChart.highlightValues(nil)    }
+}
+
+extension DashboardStatusSummaryCell: UICollectionViewDataSource, UICollectionViewDelegate {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryView", for: indexPath) as! BasicCollectionViewCell
+        cell.setText(text: self.categoryArray[indexPath.row])
+        
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.categoryArray.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("didSelectItemAt indexPath.row = \(indexPath.row)")
+        
+    }
 }

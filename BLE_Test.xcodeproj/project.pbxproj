@@ -22,6 +22,7 @@
 		3636AD7E231E3C5300057F6D /* Setup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3636AD7D231E3C5300057F6D /* Setup.plist */; };
 		3638506D232548A4000F4D35 /* Status_tmp2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3638506C232548A4000F4D35 /* Status_tmp2.png */; };
 		3638506F23254966000F4D35 /* Status_tmp.png in Resources */ = {isa = PBXBuildFile; fileRef = 3638506E23254966000F4D35 /* Status_tmp.png */; };
+		364F77E3233C5F0C000738B8 /* BasicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F77E2233C5F0C000738B8 /* BasicCollectionViewCell.swift */; };
 		3673A1C023137B5000B0F2EB /* ColoredLineChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3673A1BC23137B5000B0F2EB /* ColoredLineChartViewController.swift */; };
 		3673A1C123137B5000B0F2EB /* PieChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3673A1BD23137B5000B0F2EB /* PieChartViewController.swift */; };
 		3673A1C223137B5000B0F2EB /* SinusBarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3673A1BE23137B5000B0F2EB /* SinusBarChartViewController.swift */; };
@@ -112,15 +113,12 @@
 		F52D976C233C4B5F00FE1CE2 /* layout.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D9754233C4B5F00FE1CE2 /* layout.png */; };
 		F52D976D233C4B5F00FE1CE2 /* layout@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D9755233C4B5F00FE1CE2 /* layout@3x.png */; };
 		F52D9771233C4B7400FE1CE2 /* ShadowGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52D976E233C4B7400FE1CE2 /* ShadowGradientView.swift */; };
-		F52D9772233C4B7400FE1CE2 /* LDGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52D976F233C4B7400FE1CE2 /* LDGradientView.swift */; };
 		F52D9773233C4B7400FE1CE2 /* DashboardGlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52D9770233C4B7400FE1CE2 /* DashboardGlobalConstants.swift */; };
 		F52D977E233C4B8A00FE1CE2 /* DashboardMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52D9774233C4B8900FE1CE2 /* DashboardMessageCell.swift */; };
 		F52D977F233C4B8A00FE1CE2 /* DashboardBasicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F52D9775233C4B8900FE1CE2 /* DashboardBasicTableViewCell.xib */; };
 		F52D9780233C4B8A00FE1CE2 /* DashboardStatusSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52D9776233C4B8900FE1CE2 /* DashboardStatusSummaryCell.swift */; };
 		F52D9781233C4B8A00FE1CE2 /* DashboardDataItemChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52D9777233C4B8A00FE1CE2 /* DashboardDataItemChartCell.swift */; };
 		F52D9782233C4B8A00FE1CE2 /* DashboardStatusSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F52D9778233C4B8A00FE1CE2 /* DashboardStatusSummaryCell.xib */; };
-		F52D9783233C4B8A00FE1CE2 /* TestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52D9779233C4B8A00FE1CE2 /* TestCell.swift */; };
-		F52D9784233C4B8A00FE1CE2 /* TestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F52D977A233C4B8A00FE1CE2 /* TestCell.xib */; };
 		F52D9785233C4B8A00FE1CE2 /* DashboardMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F52D977B233C4B8A00FE1CE2 /* DashboardMessageCell.xib */; };
 		F52D9786233C4B8A00FE1CE2 /* DashboardBasicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52D977C233C4B8A00FE1CE2 /* DashboardBasicTableViewCell.swift */; };
 		F52D9787233C4B8A00FE1CE2 /* DashboardDataItemChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F52D977D233C4B8A00FE1CE2 /* DashboardDataItemChartCell.xib */; };
@@ -180,6 +178,7 @@
 		3636AD7D231E3C5300057F6D /* Setup.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Setup.plist; sourceTree = "<group>"; };
 		3638506C232548A4000F4D35 /* Status_tmp2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Status_tmp2.png; sourceTree = "<group>"; };
 		3638506E23254966000F4D35 /* Status_tmp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Status_tmp.png; sourceTree = "<group>"; };
+		364F77E2233C5F0C000738B8 /* BasicCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicCollectionViewCell.swift; sourceTree = "<group>"; };
 		3673A1BC23137B5000B0F2EB /* ColoredLineChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredLineChartViewController.swift; sourceTree = "<group>"; };
 		3673A1BD23137B5000B0F2EB /* PieChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartViewController.swift; sourceTree = "<group>"; };
 		3673A1BE23137B5000B0F2EB /* SinusBarChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinusBarChartViewController.swift; sourceTree = "<group>"; };
@@ -276,15 +275,12 @@
 		F52D9754233C4B5F00FE1CE2 /* layout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = layout.png; sourceTree = "<group>"; };
 		F52D9755233C4B5F00FE1CE2 /* layout@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "layout@3x.png"; sourceTree = "<group>"; };
 		F52D976E233C4B7400FE1CE2 /* ShadowGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowGradientView.swift; sourceTree = "<group>"; };
-		F52D976F233C4B7400FE1CE2 /* LDGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDGradientView.swift; sourceTree = "<group>"; };
 		F52D9770233C4B7400FE1CE2 /* DashboardGlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardGlobalConstants.swift; sourceTree = "<group>"; };
 		F52D9774233C4B8900FE1CE2 /* DashboardMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardMessageCell.swift; sourceTree = "<group>"; };
 		F52D9775233C4B8900FE1CE2 /* DashboardBasicTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardBasicTableViewCell.xib; sourceTree = "<group>"; };
 		F52D9776233C4B8900FE1CE2 /* DashboardStatusSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardStatusSummaryCell.swift; sourceTree = "<group>"; };
 		F52D9777233C4B8A00FE1CE2 /* DashboardDataItemChartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardDataItemChartCell.swift; sourceTree = "<group>"; };
 		F52D9778233C4B8A00FE1CE2 /* DashboardStatusSummaryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardStatusSummaryCell.xib; sourceTree = "<group>"; };
-		F52D9779233C4B8A00FE1CE2 /* TestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCell.swift; sourceTree = "<group>"; };
-		F52D977A233C4B8A00FE1CE2 /* TestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestCell.xib; sourceTree = "<group>"; };
 		F52D977B233C4B8A00FE1CE2 /* DashboardMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardMessageCell.xib; sourceTree = "<group>"; };
 		F52D977C233C4B8A00FE1CE2 /* DashboardBasicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardBasicTableViewCell.swift; sourceTree = "<group>"; };
 		F52D977D233C4B8A00FE1CE2 /* DashboardDataItemChartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardDataItemChartCell.xib; sourceTree = "<group>"; };
@@ -513,8 +509,6 @@
 				F52D977B233C4B8A00FE1CE2 /* DashboardMessageCell.xib */,
 				F52D9776233C4B8900FE1CE2 /* DashboardStatusSummaryCell.swift */,
 				F52D9778233C4B8A00FE1CE2 /* DashboardStatusSummaryCell.xib */,
-				F52D9779233C4B8A00FE1CE2 /* TestCell.swift */,
-				F52D977A233C4B8A00FE1CE2 /* TestCell.xib */,
 				F52D973D233C4AD600FE1CE2 /* icons */,
 				F52D973C233C4ACD00FE1CE2 /* DashboardCommon */,
 			);
@@ -524,8 +518,8 @@
 		F52D973C233C4ACD00FE1CE2 /* DashboardCommon */ = {
 			isa = PBXGroup;
 			children = (
+				364F77E2233C5F0C000738B8 /* BasicCollectionViewCell.swift */,
 				F52D9770233C4B7400FE1CE2 /* DashboardGlobalConstants.swift */,
-				F52D976F233C4B7400FE1CE2 /* LDGradientView.swift */,
 				F52D976E233C4B7400FE1CE2 /* ShadowGradientView.swift */,
 			);
 			path = DashboardCommon;
@@ -676,7 +670,6 @@
 				3673A1E52313C79C00B0F2EB /* Layout_Demo.svg in Resources */,
 				F52D9761233C4B5F00FE1CE2 /* alarm@3x.png in Resources */,
 				36A3C82D231F862E008431C7 /* AlarmSectionView.xib in Resources */,
-				F52D9784233C4B8A00FE1CE2 /* TestCell.xib in Resources */,
 				36CE5C1E230FB76100CBAE86 /* Chart2.png in Resources */,
 				3673A1D323138DCE00B0F2EB /* LineChartTimeViewController.xib in Resources */,
 				36CE5C20230FB76100CBAE86 /* Layout2.png in Resources */,
@@ -806,13 +799,11 @@
 				3673A1DB23138E3E00B0F2EB /* IntAxisValueFormatter.swift in Sources */,
 				F52D9773233C4B7400FE1CE2 /* DashboardGlobalConstants.swift in Sources */,
 				36D36A9E231250C8005C014E /* CustomChartCell.swift in Sources */,
-				F52D9772233C4B7400FE1CE2 /* LDGradientView.swift in Sources */,
 				362196A323287B4800FE3553 /* BLEProfileTable+CoreDataClass.swift in Sources */,
 				36FD31E12329C85900611371 /* BLEDataItemTableViewCell.swift in Sources */,
 				36A3C833231F9161008431C7 /* AlarmTableViewController.swift in Sources */,
 				F52D9781233C4B8A00FE1CE2 /* DashboardDataItemChartCell.swift in Sources */,
 				3673A1C223137B5000B0F2EB /* SinusBarChartViewController.swift in Sources */,
-				F52D9783233C4B8A00FE1CE2 /* TestCell.swift in Sources */,
 				3673A1C323137B5000B0F2EB /* CombinedChartViewController.swift in Sources */,
 				3673A1DA23138E3E00B0F2EB /* DayAxisValueFormatter.swift in Sources */,
 				36CF204C232BD2B2003129FF /* BLEStruct.swift in Sources */,
@@ -820,6 +811,7 @@
 				F52D9771233C4B7400FE1CE2 /* ShadowGradientView.swift in Sources */,
 				F52D978A233C4D2800FE1CE2 /* ViewController.swift in Sources */,
 				36251158231F635B0055CD61 /* Utility.swift in Sources */,
+				364F77E3233C5F0C000738B8 /* BasicCollectionViewCell.swift in Sources */,
 				3673A1D923138E3E00B0F2EB /* LargeValueFormatter.swift in Sources */,
 				3684CAEC2303F96C0088C152 /* AppDelegate.swift in Sources */,
 				360496032316097100488667 /* FunctionCollectionViewController.swift in Sources */,
