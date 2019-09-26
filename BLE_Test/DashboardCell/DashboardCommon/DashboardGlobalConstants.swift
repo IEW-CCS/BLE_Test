@@ -20,6 +20,7 @@ let SHADOW_INNERVIEW_INSET: CGFloat = CGFloat(5)
 let STATUS_RUN_COLOR = UIColor(red: 66/255, green: 165/255, blue: 245/255, alpha: 1.0)
 let STATUS_DOWN_COLOR = UIColor(red: 239/255, green: 83/255, blue: 80/255, alpha: 1.0)
 let STATUS_IDLE_COLOR = UIColor(red: 120/255, green: 144/255, blue: 156/255, alpha: 1.0)
+let SERVER_ON_LINE_STATUS = UIColor(red: 0/255, green: 230/255, blue: 118/255, alpha: 1.0)
 
 let GRADIENT_COLOR_RED_TOP = UIColor(red: 255/255, green: 205/255, blue: 210/255, alpha: 1.0)
 let GRADIENT_COLOR_RED_BOTTOM = UIColor(red: 239/255, green: 154/255, blue: 154/255, alpha: 1.0)

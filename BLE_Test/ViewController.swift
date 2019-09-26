@@ -76,9 +76,9 @@ class ViewController: UITableViewController {
                     print("the online request answer is: \(onlineStatus.status)")
                     if onlineStatus.status == "YES" {
                         self.isOnline = true
-                        self.onlineStatusButton.tintColor = UIColor(red: 0/255, green: 230/255, blue: 118/255, alpha: 1.0)
+                        DispatchQueue.main.async {self.onlineStatusButton.tintColor = SERVER_ON_LINE_STATUS
+                            self.tableView.reloadData()}
                     }
-                    DispatchQueue.main.async {self.tableView.reloadData()}
                 }
             } catch {
                 print("Online Request Error!")

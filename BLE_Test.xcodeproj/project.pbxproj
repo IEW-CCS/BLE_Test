@@ -525,8 +525,8 @@
 		F52D973C233C4ACD00FE1CE2 /* DashboardCommon */ = {
 			isa = PBXGroup;
 			children = (
-				364F77E2233C5F0C000738B8 /* BasicCollectionViewCell.swift */,
 				F52D9770233C4B7400FE1CE2 /* DashboardGlobalConstants.swift */,
+				364F77E2233C5F0C000738B8 /* BasicCollectionViewCell.swift */,
 				F52D976E233C4B7400FE1CE2 /* ShadowGradientView.swift */,
 			);
 			path = DashboardCommon;
@@ -996,7 +996,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 79SKVS6TTS;
+				DEVELOPMENT_TEAM = 34KF2N2J26;
 				INFOPLIST_FILE = BLE_Test/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1020,7 +1020,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 79SKVS6TTS;
+				DEVELOPMENT_TEAM = 34KF2N2J26;
 				INFOPLIST_FILE = BLE_Test/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
 				LD_RUNPATH_SEARCH_PATHS = (

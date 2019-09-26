@@ -12,7 +12,7 @@ import Charts
 class DashboardStatusSummaryCell: UITableViewCell {
     //Test Data
     let categoryArray = ["1F", "2F", "3F", "4F", "5F", "6F", "7F", "8F", "9F"]
-    let pieDataArray = [[23, 18, 4],
+    let pieDataArray = [[28, 12, 3],
                         [124, 56, 90],
                         [78, 54, 128],
                         [32, 49, 113],
