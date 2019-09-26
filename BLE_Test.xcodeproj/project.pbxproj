@@ -29,6 +29,8 @@
 		364F77EE233CCDC0000738B8 /* on-line-status.png in Resources */ = {isa = PBXBuildFile; fileRef = 364F77EB233CCDC0000738B8 /* on-line-status.png */; };
 		364F77EF233CCDC0000738B8 /* on-line-status@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 364F77EC233CCDC0000738B8 /* on-line-status@2x.png */; };
 		364F77F0233CCDC0000738B8 /* on-line-status@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 364F77ED233CCDC0000738B8 /* on-line-status@3x.png */; };
+		364F77F3233CDE56000738B8 /* DashboardServerNotAvailableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F77F1233CDE56000738B8 /* DashboardServerNotAvailableCell.swift */; };
+		364F77F4233CDE56000738B8 /* DashboardServerNotAvailableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 364F77F2233CDE56000738B8 /* DashboardServerNotAvailableCell.xib */; };
 		3673A1C023137B5000B0F2EB /* ColoredLineChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3673A1BC23137B5000B0F2EB /* ColoredLineChartViewController.swift */; };
 		3673A1C123137B5000B0F2EB /* PieChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3673A1BD23137B5000B0F2EB /* PieChartViewController.swift */; };
 		3673A1C223137B5000B0F2EB /* SinusBarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3673A1BE23137B5000B0F2EB /* SinusBarChartViewController.swift */; };
@@ -190,6 +192,8 @@
 		364F77EB233CCDC0000738B8 /* on-line-status.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "on-line-status.png"; sourceTree = "<group>"; };
 		364F77EC233CCDC0000738B8 /* on-line-status@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "on-line-status@2x.png"; sourceTree = "<group>"; };
 		364F77ED233CCDC0000738B8 /* on-line-status@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "on-line-status@3x.png"; sourceTree = "<group>"; };
+		364F77F1233CDE56000738B8 /* DashboardServerNotAvailableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardServerNotAvailableCell.swift; sourceTree = "<group>"; };
+		364F77F2233CDE56000738B8 /* DashboardServerNotAvailableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardServerNotAvailableCell.xib; sourceTree = "<group>"; };
 		3673A1BC23137B5000B0F2EB /* ColoredLineChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredLineChartViewController.swift; sourceTree = "<group>"; };
 		3673A1BD23137B5000B0F2EB /* PieChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartViewController.swift; sourceTree = "<group>"; };
 		3673A1BE23137B5000B0F2EB /* SinusBarChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinusBarChartViewController.swift; sourceTree = "<group>"; };
@@ -510,6 +514,8 @@
 				F52D977B233C4B8A00FE1CE2 /* DashboardMessageCell.xib */,
 				F52D9776233C4B8900FE1CE2 /* DashboardStatusSummaryCell.swift */,
 				F52D9778233C4B8A00FE1CE2 /* DashboardStatusSummaryCell.xib */,
+				364F77F1233CDE56000738B8 /* DashboardServerNotAvailableCell.swift */,
+				364F77F2233CDE56000738B8 /* DashboardServerNotAvailableCell.xib */,
 				F52D973D233C4AD600FE1CE2 /* icons */,
 				F52D973C233C4ACD00FE1CE2 /* DashboardCommon */,
 			);
@@ -716,6 +722,7 @@
 				364F77F0233CCDC0000738B8 /* on-line-status@3x.png in Resources */,
 				F52D9758233C4B5F00FE1CE2 /* home@3x.png in Resources */,
 				F52D976C233C4B5F00FE1CE2 /* layout.png in Resources */,
+				364F77F4233CDE56000738B8 /* DashboardServerNotAvailableCell.xib in Resources */,
 				F52D975B233C4B5F00FE1CE2 /* on-line@3x.png in Resources */,
 				3638506F23254966000F4D35 /* Status_tmp.png in Resources */,
 				364F77E8233C9C28000738B8 /* chart2.png in Resources */,
@@ -798,6 +805,7 @@
 				F52D9780233C4B8A00FE1CE2 /* DashboardStatusSummaryCell.swift in Sources */,
 				3673A1C123137B5000B0F2EB /* PieChartViewController.swift in Sources */,
 				3673A1C023137B5000B0F2EB /* ColoredLineChartViewController.swift in Sources */,
+				364F77F3233CDE56000738B8 /* DashboardServerNotAvailableCell.swift in Sources */,
 				36DE6EA1232FC533007F2C45 /* SimpleTableCell.swift in Sources */,
 				36C9A400232084930033D80D /* CoreData.xcdatamodeld in Sources */,
 				F52D9786233C4B8A00FE1CE2 /* DashboardBasicTableViewCell.swift in Sources */,

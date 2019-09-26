@@ -12,7 +12,7 @@ import Charts
 class DashboardStatusSummaryCell: UITableViewCell {
     //Test Data
     let categoryArray = ["1F", "2F", "3F", "4F", "5F", "6F", "7F", "8F", "9F"]
-    let pieDataArray = [[23, 18, 32],
+    let pieDataArray = [[23, 18, 4],
                         [124, 56, 90],
                         [78, 54, 128],
                         [32, 49, 113],
@@ -96,7 +96,7 @@ class DashboardStatusSummaryCell: UITableViewCell {
         //pFormatter.percentSymbol = " %"
         data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
         
-        data.setValueFont(.systemFont(ofSize: 18, weight: .light))
+        data.setValueFont(.systemFont(ofSize: 16, weight: .light))
         data.setValueTextColor(.black)
         
         pieChart.data = data
