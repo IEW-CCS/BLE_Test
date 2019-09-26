@@ -17,6 +17,10 @@ let DASHBOARD_CATEGORY_CELL_WIDTH = 48
 let CELL_CORNER_RADIUS: CGFloat = CGFloat(6)
 let SHADOW_INNERVIEW_INSET: CGFloat = CGFloat(5)
 
+let STATUS_RUN_COLOR = UIColor(red: 66/255, green: 165/255, blue: 245/255, alpha: 1.0)
+let STATUS_DOWN_COLOR = UIColor(red: 239/255, green: 83/255, blue: 80/255, alpha: 1.0)
+let STATUS_IDLE_COLOR = UIColor(red: 120/255, green: 144/255, blue: 156/255, alpha: 1.0)
+
 let GRADIENT_COLOR_RED_TOP = UIColor(red: 255/255, green: 205/255, blue: 210/255, alpha: 1.0)
 let GRADIENT_COLOR_RED_BOTTOM = UIColor(red: 239/255, green: 154/255, blue: 154/255, alpha: 1.0)
 

@@ -113,10 +113,6 @@ class StatusTableViewController: UITableViewController {
             } catch {
                 print("Cannot connect to server")
                 print(error.localizedDescription)
-                //let controller = UIAlertController(title: "Request Gateway List Error", message: error.localizedDescription, preferredStyle: .alert)
-                //let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                //controller.addAction(okAction)
-                
                 return
             }
         }

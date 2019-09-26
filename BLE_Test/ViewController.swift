@@ -9,8 +9,9 @@
 import UIKit
 
 class ViewController: UITableViewController {
-
-    //@IBOutlet weak var tblView: UITableView!
+    
+    @IBOutlet weak var onlineStatusButton: UIBarButtonItem!
+    private var isOnline: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +27,63 @@ class ViewController: UITableViewController {
         self.tableView.backgroundColor = UIColor.white
         self.tableView.layer.backgroundColor = UIColor.white.cgColor
         self.tableView.separatorStyle = .none
+        
+        self.onlineStatusButton.tintColor = .red
+        onlineRequest()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        onlineRequest()
+    }
+    
+    private func onlineRequest() {
+        let sessionHttp = URLSession(configuration: .default)
+        let url = getUrlForRequest(uri: "CCS_ARE_YOU_THERE")
+        let UrlRequest = URLRequest(url: URL(string: url)!)
+        
+        let task = sessionHttp.dataTask(with: UrlRequest) {(data, response, error) in
+            do {
+                if error != nil {
+                    //DispatchQueue.main.async { self.presentedViewController?.dismiss(animated: false, completion: nil)}
+                    let _httpalert = alert(message: error!.localizedDescription, title: "Http Error")
+                    self.present(_httpalert, animated : false, completion : nil)
+                } else {
+                    guard let httpResponse = response as? HTTPURLResponse,
+                        (200...299).contains(httpResponse.statusCode) else {
+                            let errorResponse = response as? HTTPURLResponse
+                            let message: String = String(errorResponse!.statusCode) + " - " + HTTPURLResponse.localizedString(forStatusCode: errorResponse!.statusCode)
+                            //DispatchQueue.main.async {self.presentedViewController?.dismiss(animated: false, completion: nil)}
+                            let _httpalert = alert(message: message, title: "Http Error")
+                            self.present(_httpalert, animated : false, completion : nil)
+                            return
+                    }
+                    //DispatchQueue.main.async {self.presentedViewController?.dismiss(animated: false, completion: nil)}
+                    let outputStr  = String(data: data!, encoding: String.Encoding.utf8) as String?
+                    let jsonData = outputStr!.data(using: String.Encoding.utf8, allowLossyConversion: true)
+                    let decoder = JSONDecoder()
+                    let onlineStatus:WebResponseOnLineStatus = try decoder.decode(WebResponseOnLineStatus.self, from: jsonData!)
+                    print("the online request answer is: \(onlineStatus.status)")
+                    if onlineStatus.status == "YES" {
+                        self.isOnline = true
+                        self.onlineStatusButton.tintColor = UIColor(red: 0/255, green: 230/255, blue: 118/255, alpha: 1.0)
+                    }
+                    DispatchQueue.main.async {self.tableView.reloadData()}
+                }
+            } catch {
+                print("Online Request Error!")
+                print(error.localizedDescription)
+                return
+            }
+        }
+        
+        task.resume()
+        
+        return
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
-        //return self.infoArray.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

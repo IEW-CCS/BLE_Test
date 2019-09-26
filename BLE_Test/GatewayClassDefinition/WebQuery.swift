@@ -8,6 +8,10 @@
 
 import Foundation
 
+struct WebResponseOnLineStatus: Codable {
+    let status: String
+}
+
 struct WebResponseGatewayList: Codable {
     let gateway_list: [WebResponseGateway]
 }
