@@ -88,7 +88,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3rV-dL-hnu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1089.8550724637682" y="134.5108695652174"/>
+            <point key="canvasLocation" x="1751" y="-784"/>
         </scene>
         <!--Alarm List-->
         <scene sceneID="19q-8L-abJ">
@@ -113,10 +113,11 @@
                             <outlet property="delegate" destination="fOE-Zg-lrD" id="8iy-4S-p1t"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Alarm" image="alarm.png" id="pZy-Yu-pdZ"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kk7-Zi-vXd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="393" y="817"/>
+            <point key="canvasLocation" x="-88" y="839"/>
         </scene>
         <!--Bluetooth Function-->
         <scene sceneID="DmH-uF-tkp">
@@ -452,6 +453,7 @@
                             </tableViewSection>
                         </sections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="BLE" image="ble.png" id="wPX-gw-yi6"/>
                     <connections>
                         <outlet property="profilePicker" destination="DWw-vd-TeS" id="oXa-ai-hCI"/>
                         <outlet property="samplingRatePicker" destination="FQx-Re-FFJ" id="GQF-xX-3pe"/>
@@ -461,7 +463,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o82-eZ-zgt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1089.8550724637682" y="816.29464285714278"/>
+            <point key="canvasLocation" x="683" y="167"/>
         </scene>
         <!--System Setup-->
         <scene sceneID="4Nf-tq-hGB">
@@ -867,7 +869,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qIG-28-JcM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1750.7246376811595" y="816.84782608695662"/>
+            <point key="canvasLocation" x="-852" y="838"/>
         </scene>
         <!--Layout Function-->
         <scene sceneID="uMQ-aP-1in">
@@ -919,7 +921,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aI2-6U-15N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2428" y="817"/>
+            <point key="canvasLocation" x="2407" y="-784"/>
         </scene>
         <!--Location View-->
         <scene sceneID="Qw3-Zs-htI">
@@ -951,7 +953,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K9E-4p-kmD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3118.840579710145" y="816.96428571428567"/>
+            <point key="canvasLocation" x="-1713" y="167"/>
         </scene>
         <!--Device Detail Information-->
         <scene sceneID="xi3-GU-5n2">
@@ -1004,7 +1006,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NDA-G0-SS0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2427.536231884058" y="135.32608695652175"/>
+            <point key="canvasLocation" x="684" y="-565"/>
         </scene>
         <!--Query Data-->
         <scene sceneID="UjL-Gy-65x">
@@ -1368,13 +1370,14 @@
                             <outlet property="delegate" destination="6Pr-81-KWC" id="LFn-Se-saj"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Chart" image="chart.png" id="SPH-my-aeQ"/>
                     <connections>
                         <outlet property="devicePicker" destination="BkZ-sk-FOJ" id="QqQ-gJ-zfJ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cn3-lv-UPU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3118.840579710145" y="136.95652173913044"/>
+            <point key="canvasLocation" x="-88" y="167"/>
         </scene>
         <!--Device Status-->
         <scene sceneID="BVD-Op-C4f">
@@ -1439,10 +1442,11 @@
                             <outlet property="delegate" destination="HQa-gO-XBu" id="tr3-EE-vz9"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Status" image="status.png" id="Okw-lU-MJJ"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fvS-CM-Nht" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1752.1739130434785" y="135.32608695652175"/>
+            <point key="canvasLocation" x="-88" y="-565"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Jlf-t9-s8A">
@@ -1459,12 +1463,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="v3j-5J-Gwe" kind="relationship" relationship="rootViewController" id="09t-xT-Qrv"/>
+                        <segue destination="YaN-3P-t7F" kind="relationship" relationship="rootViewController" id="vfi-YY-YDU"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0XP-hL-t4M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="393" y="135"/>
+            <point key="canvasLocation" x="-1713" y="-565"/>
         </scene>
         <!--Bottom Sheet View Controller-->
         <scene sceneID="YW3-rU-Tln">
@@ -1574,7 +1578,86 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NVJ-kF-QMc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3873.913043478261" y="1001.4508928571428"/>
+            <point key="canvasLocation" x="-1714" y="618"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="cW4-oQ-Lsg">
+            <objects>
+                <tabBarController modalPresentationStyle="pageSheet" id="YaN-3P-t7F" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Rml-8T-13j"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DzZ-Q1-gzx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="zaW-2Q-Rll" kind="relationship" relationship="viewControllers" id="aQp-Hk-n9y"/>
+                        <segue destination="HQa-gO-XBu" kind="relationship" relationship="viewControllers" id="Psg-3O-F0o"/>
+                        <segue destination="6Pr-81-KWC" kind="relationship" relationship="viewControllers" id="lVF-Yt-0sJ"/>
+                        <segue destination="fOE-Zg-lrD" kind="relationship" relationship="viewControllers" id="Msh-xP-Ykf"/>
+                        <segue destination="M26-ta-6Ef" kind="relationship" relationship="viewControllers" id="qn3-SJ-ADq"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ENe-L2-v2K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-852" y="-564"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="D8w-GG-iBz">
+            <objects>
+                <tableViewController title="Home" id="zaW-2Q-Rll" customClass="ViewController" customModule="TestCoreData" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="uaa-2Y-FSw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <toolbar key="tableHeaderView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="haM-pU-LSR">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <items>
+                                <barButtonItem title="On-Line" image="on-line.png" id="Ev2-bJ-SW6"/>
+                                <barButtonItem style="plain" systemItem="flexibleSpace" id="Uqf-aQ-Op0"/>
+                                <barButtonItem title="Setup" image="layout.png" id="vZF-Ea-aMu">
+                                    <connections>
+                                        <segue destination="8Uh-xO-mnJ" kind="show" id="Uzi-cX-A8v"/>
+                                    </connections>
+                                </barButtonItem>
+                                <barButtonItem title="Setup" image="setup.png" id="Rxi-0C-Aqe">
+                                    <connections>
+                                        <segue destination="XTP-ww-l4B" kind="show" id="Efg-3T-UOT"/>
+                                    </connections>
+                                </barButtonItem>
+                            </items>
+                        </toolbar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="CWD-40-fOq">
+                                <rect key="frame" x="0.0" y="72" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CWD-40-fOq" id="RyH-bJ-t1V">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="zaW-2Q-Rll" id="wVN-7l-RqE"/>
+                            <outlet property="delegate" destination="zaW-2Q-Rll" id="Sz8-gF-EpT"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Home" image="home.png" selectedImage="home.png" id="NFn-Eu-v5Q"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gzT-K4-Uhe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-852" y="167"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="alarm.png" width="4.6875" height="4.6875"/>
+        <image name="ble.png" width="25" height="25"/>
+        <image name="chart.png" width="4.3742403984069824" height="4.3742403984069824"/>
+        <image name="home.png" width="4.5569620132446289" height="4.5569620132446289"/>
+        <image name="layout.png" width="4.780876636505127" height="4.780876636505127"/>
+        <image name="on-line.png" width="4.6875" height="4.6875"/>
+        <image name="setup.png" width="4.2203984260559082" height="4.2203984260559082"/>
+        <image name="status.png" width="4.6875" height="4.6875"/>
+    </resources>
 </document>

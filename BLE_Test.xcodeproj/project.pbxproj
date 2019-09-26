@@ -87,6 +87,44 @@
 		36FD31E22329C85900611371 /* BLEDataItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36FD31E02329C85900611371 /* BLEDataItemTableViewCell.xib */; };
 		36FD31EE2329E25000611371 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36FD31EB2329E22F00611371 /* Charts.framework */; };
 		36FD31EF2329E25000611371 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 36FD31EB2329E22F00611371 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F52D9756233C4B5F00FE1CE2 /* chart.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D973E233C4B5C00FE1CE2 /* chart.png */; };
+		F52D9757233C4B5F00FE1CE2 /* ble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D973F233C4B5D00FE1CE2 /* ble@2x.png */; };
+		F52D9758233C4B5F00FE1CE2 /* home@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D9740233C4B5D00FE1CE2 /* home@3x.png */; };
+		F52D9759233C4B5F00FE1CE2 /* status.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D9741233C4B5D00FE1CE2 /* status.png */; };
+		F52D975A233C4B5F00FE1CE2 /* status@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D9742233C4B5D00FE1CE2 /* status@3x.png */; };
+		F52D975B233C4B5F00FE1CE2 /* on-line@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D9743233C4B5D00FE1CE2 /* on-line@3x.png */; };
+		F52D975C233C4B5F00FE1CE2 /* on-line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D9744233C4B5D00FE1CE2 /* on-line@2x.png */; };
+		F52D975D233C4B5F00FE1CE2 /* status@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D9745233C4B5D00FE1CE2 /* status@2x.png */; };
+		F52D975E233C4B5F00FE1CE2 /* alarm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D9746233C4B5D00FE1CE2 /* alarm@2x.png */; };
+		F52D975F233C4B5F00FE1CE2 /* setup.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D9747233C4B5E00FE1CE2 /* setup.png */; };
+		F52D9760233C4B5F00FE1CE2 /* layout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D9748233C4B5E00FE1CE2 /* layout@2x.png */; };
+		F52D9761233C4B5F00FE1CE2 /* alarm@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D9749233C4B5E00FE1CE2 /* alarm@3x.png */; };
+		F52D9762233C4B5F00FE1CE2 /* setup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D974A233C4B5E00FE1CE2 /* setup@2x.png */; };
+		F52D9763233C4B5F00FE1CE2 /* ble.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D974B233C4B5E00FE1CE2 /* ble.png */; };
+		F52D9764233C4B5F00FE1CE2 /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D974C233C4B5E00FE1CE2 /* home@2x.png */; };
+		F52D9765233C4B5F00FE1CE2 /* ble@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D974D233C4B5E00FE1CE2 /* ble@3x.png */; };
+		F52D9766233C4B5F00FE1CE2 /* on-line.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D974E233C4B5E00FE1CE2 /* on-line.png */; };
+		F52D9767233C4B5F00FE1CE2 /* setup@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D974F233C4B5E00FE1CE2 /* setup@3x.png */; };
+		F52D9768233C4B5F00FE1CE2 /* alarm.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D9750233C4B5F00FE1CE2 /* alarm.png */; };
+		F52D9769233C4B5F00FE1CE2 /* chart@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D9751233C4B5F00FE1CE2 /* chart@3x.png */; };
+		F52D976A233C4B5F00FE1CE2 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D9752233C4B5F00FE1CE2 /* home.png */; };
+		F52D976B233C4B5F00FE1CE2 /* chart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D9753233C4B5F00FE1CE2 /* chart@2x.png */; };
+		F52D976C233C4B5F00FE1CE2 /* layout.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D9754233C4B5F00FE1CE2 /* layout.png */; };
+		F52D976D233C4B5F00FE1CE2 /* layout@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F52D9755233C4B5F00FE1CE2 /* layout@3x.png */; };
+		F52D9771233C4B7400FE1CE2 /* ShadowGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52D976E233C4B7400FE1CE2 /* ShadowGradientView.swift */; };
+		F52D9772233C4B7400FE1CE2 /* LDGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52D976F233C4B7400FE1CE2 /* LDGradientView.swift */; };
+		F52D9773233C4B7400FE1CE2 /* DashboardGlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52D9770233C4B7400FE1CE2 /* DashboardGlobalConstants.swift */; };
+		F52D977E233C4B8A00FE1CE2 /* DashboardMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52D9774233C4B8900FE1CE2 /* DashboardMessageCell.swift */; };
+		F52D977F233C4B8A00FE1CE2 /* DashboardBasicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F52D9775233C4B8900FE1CE2 /* DashboardBasicTableViewCell.xib */; };
+		F52D9780233C4B8A00FE1CE2 /* DashboardStatusSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52D9776233C4B8900FE1CE2 /* DashboardStatusSummaryCell.swift */; };
+		F52D9781233C4B8A00FE1CE2 /* DashboardDataItemChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52D9777233C4B8A00FE1CE2 /* DashboardDataItemChartCell.swift */; };
+		F52D9782233C4B8A00FE1CE2 /* DashboardStatusSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F52D9778233C4B8A00FE1CE2 /* DashboardStatusSummaryCell.xib */; };
+		F52D9783233C4B8A00FE1CE2 /* TestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52D9779233C4B8A00FE1CE2 /* TestCell.swift */; };
+		F52D9784233C4B8A00FE1CE2 /* TestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F52D977A233C4B8A00FE1CE2 /* TestCell.xib */; };
+		F52D9785233C4B8A00FE1CE2 /* DashboardMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F52D977B233C4B8A00FE1CE2 /* DashboardMessageCell.xib */; };
+		F52D9786233C4B8A00FE1CE2 /* DashboardBasicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52D977C233C4B8A00FE1CE2 /* DashboardBasicTableViewCell.swift */; };
+		F52D9787233C4B8A00FE1CE2 /* DashboardDataItemChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F52D977D233C4B8A00FE1CE2 /* DashboardDataItemChartCell.xib */; };
+		F52D978A233C4D2800FE1CE2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52D9789233C4D2800FE1CE2 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -213,6 +251,44 @@
 		412977270E79F263279D7B12 /* Pods_BLE_Test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BLE_Test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6003FD4CA343BE429DA6529 /* Pods-BLE_Test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLE_Test.debug.xcconfig"; path = "Target Support Files/Pods-BLE_Test/Pods-BLE_Test.debug.xcconfig"; sourceTree = "<group>"; };
 		EF34252AB92CD2CBC6E964D4 /* Pods-BLE_Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLE_Test.release.xcconfig"; path = "Target Support Files/Pods-BLE_Test/Pods-BLE_Test.release.xcconfig"; sourceTree = "<group>"; };
+		F52D973E233C4B5C00FE1CE2 /* chart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chart.png; sourceTree = "<group>"; };
+		F52D973F233C4B5D00FE1CE2 /* ble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble@2x.png"; sourceTree = "<group>"; };
+		F52D9740233C4B5D00FE1CE2 /* home@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@3x.png"; sourceTree = "<group>"; };
+		F52D9741233C4B5D00FE1CE2 /* status.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = status.png; sourceTree = "<group>"; };
+		F52D9742233C4B5D00FE1CE2 /* status@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status@3x.png"; sourceTree = "<group>"; };
+		F52D9743233C4B5D00FE1CE2 /* on-line@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "on-line@3x.png"; sourceTree = "<group>"; };
+		F52D9744233C4B5D00FE1CE2 /* on-line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "on-line@2x.png"; sourceTree = "<group>"; };
+		F52D9745233C4B5D00FE1CE2 /* status@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status@2x.png"; sourceTree = "<group>"; };
+		F52D9746233C4B5D00FE1CE2 /* alarm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alarm@2x.png"; sourceTree = "<group>"; };
+		F52D9747233C4B5E00FE1CE2 /* setup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setup.png; sourceTree = "<group>"; };
+		F52D9748233C4B5E00FE1CE2 /* layout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "layout@2x.png"; sourceTree = "<group>"; };
+		F52D9749233C4B5E00FE1CE2 /* alarm@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alarm@3x.png"; sourceTree = "<group>"; };
+		F52D974A233C4B5E00FE1CE2 /* setup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setup@2x.png"; sourceTree = "<group>"; };
+		F52D974B233C4B5E00FE1CE2 /* ble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ble.png; sourceTree = "<group>"; };
+		F52D974C233C4B5E00FE1CE2 /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@2x.png"; sourceTree = "<group>"; };
+		F52D974D233C4B5E00FE1CE2 /* ble@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble@3x.png"; sourceTree = "<group>"; };
+		F52D974E233C4B5E00FE1CE2 /* on-line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "on-line.png"; sourceTree = "<group>"; };
+		F52D974F233C4B5E00FE1CE2 /* setup@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setup@3x.png"; sourceTree = "<group>"; };
+		F52D9750233C4B5F00FE1CE2 /* alarm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alarm.png; sourceTree = "<group>"; };
+		F52D9751233C4B5F00FE1CE2 /* chart@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart@3x.png"; sourceTree = "<group>"; };
+		F52D9752233C4B5F00FE1CE2 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		F52D9753233C4B5F00FE1CE2 /* chart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart@2x.png"; sourceTree = "<group>"; };
+		F52D9754233C4B5F00FE1CE2 /* layout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = layout.png; sourceTree = "<group>"; };
+		F52D9755233C4B5F00FE1CE2 /* layout@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "layout@3x.png"; sourceTree = "<group>"; };
+		F52D976E233C4B7400FE1CE2 /* ShadowGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowGradientView.swift; sourceTree = "<group>"; };
+		F52D976F233C4B7400FE1CE2 /* LDGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LDGradientView.swift; sourceTree = "<group>"; };
+		F52D9770233C4B7400FE1CE2 /* DashboardGlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardGlobalConstants.swift; sourceTree = "<group>"; };
+		F52D9774233C4B8900FE1CE2 /* DashboardMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardMessageCell.swift; sourceTree = "<group>"; };
+		F52D9775233C4B8900FE1CE2 /* DashboardBasicTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardBasicTableViewCell.xib; sourceTree = "<group>"; };
+		F52D9776233C4B8900FE1CE2 /* DashboardStatusSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardStatusSummaryCell.swift; sourceTree = "<group>"; };
+		F52D9777233C4B8A00FE1CE2 /* DashboardDataItemChartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardDataItemChartCell.swift; sourceTree = "<group>"; };
+		F52D9778233C4B8A00FE1CE2 /* DashboardStatusSummaryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardStatusSummaryCell.xib; sourceTree = "<group>"; };
+		F52D9779233C4B8A00FE1CE2 /* TestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCell.swift; sourceTree = "<group>"; };
+		F52D977A233C4B8A00FE1CE2 /* TestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestCell.xib; sourceTree = "<group>"; };
+		F52D977B233C4B8A00FE1CE2 /* DashboardMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardMessageCell.xib; sourceTree = "<group>"; };
+		F52D977C233C4B8A00FE1CE2 /* DashboardBasicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardBasicTableViewCell.swift; sourceTree = "<group>"; };
+		F52D977D233C4B8A00FE1CE2 /* DashboardDataItemChartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardDataItemChartCell.xib; sourceTree = "<group>"; };
+		F52D9789233C4D2800FE1CE2 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,7 +398,7 @@
 		3684CAEA2303F96C0088C152 /* BLE_Test */ = {
 			isa = PBXGroup;
 			children = (
-				3681C71D2320E62D003CA0A6 /* BadgeSwift.swift */,
+				F52D973A233C4A9C00FE1CE2 /* DashboardCell */,
 				36C9A3FD2320840C0033D80D /* Entity */,
 				3636AD7C231E3BB700057F6D /* Support */,
 				36284625231772C400573E05 /* GatewayClassDefinition */,
@@ -331,12 +407,14 @@
 				36C376962311753800F87404 /* CustomChartCell */,
 				36CE5C0E230ECDC500CBAE86 /* ItemCell */,
 				3684CAEB2303F96C0088C152 /* AppDelegate.swift */,
+				3681C71D2320E62D003CA0A6 /* BadgeSwift.swift */,
 				360496022316097100488667 /* FunctionCollectionViewController.swift */,
 				3684CAEF2303F96C0088C152 /* Main.storyboard */,
 				3684CAF22303F96D0088C152 /* Assets.xcassets */,
 				3684CAF42303F96D0088C152 /* LaunchScreen.storyboard */,
 				3684CAF72303F96D0088C152 /* Info.plist */,
 				36C376692311171500F87404 /* CloudBLETableViewController.swift */,
+				F52D9789233C4D2800FE1CE2 /* ViewController.swift */,
 				36D36AAA2312947A005C014E /* StatusTableViewController.swift */,
 				36D36AAE2312CEB2005C014E /* StatusDetailTableViewController.swift */,
 				36D36AB02312D228005C014E /* SetupTableViewController.swift */,
@@ -422,6 +500,66 @@
 				36FD31ED2329E22F00611371 /* ChartsTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F52D973A233C4A9C00FE1CE2 /* DashboardCell */ = {
+			isa = PBXGroup;
+			children = (
+				F52D977C233C4B8A00FE1CE2 /* DashboardBasicTableViewCell.swift */,
+				F52D9775233C4B8900FE1CE2 /* DashboardBasicTableViewCell.xib */,
+				F52D9777233C4B8A00FE1CE2 /* DashboardDataItemChartCell.swift */,
+				F52D977D233C4B8A00FE1CE2 /* DashboardDataItemChartCell.xib */,
+				F52D9774233C4B8900FE1CE2 /* DashboardMessageCell.swift */,
+				F52D977B233C4B8A00FE1CE2 /* DashboardMessageCell.xib */,
+				F52D9776233C4B8900FE1CE2 /* DashboardStatusSummaryCell.swift */,
+				F52D9778233C4B8A00FE1CE2 /* DashboardStatusSummaryCell.xib */,
+				F52D9779233C4B8A00FE1CE2 /* TestCell.swift */,
+				F52D977A233C4B8A00FE1CE2 /* TestCell.xib */,
+				F52D973D233C4AD600FE1CE2 /* icons */,
+				F52D973C233C4ACD00FE1CE2 /* DashboardCommon */,
+			);
+			path = DashboardCell;
+			sourceTree = "<group>";
+		};
+		F52D973C233C4ACD00FE1CE2 /* DashboardCommon */ = {
+			isa = PBXGroup;
+			children = (
+				F52D9770233C4B7400FE1CE2 /* DashboardGlobalConstants.swift */,
+				F52D976F233C4B7400FE1CE2 /* LDGradientView.swift */,
+				F52D976E233C4B7400FE1CE2 /* ShadowGradientView.swift */,
+			);
+			path = DashboardCommon;
+			sourceTree = "<group>";
+		};
+		F52D973D233C4AD600FE1CE2 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				F52D9750233C4B5F00FE1CE2 /* alarm.png */,
+				F52D9746233C4B5D00FE1CE2 /* alarm@2x.png */,
+				F52D9749233C4B5E00FE1CE2 /* alarm@3x.png */,
+				F52D974B233C4B5E00FE1CE2 /* ble.png */,
+				F52D973F233C4B5D00FE1CE2 /* ble@2x.png */,
+				F52D974D233C4B5E00FE1CE2 /* ble@3x.png */,
+				F52D973E233C4B5C00FE1CE2 /* chart.png */,
+				F52D9753233C4B5F00FE1CE2 /* chart@2x.png */,
+				F52D9751233C4B5F00FE1CE2 /* chart@3x.png */,
+				F52D9752233C4B5F00FE1CE2 /* home.png */,
+				F52D974C233C4B5E00FE1CE2 /* home@2x.png */,
+				F52D9740233C4B5D00FE1CE2 /* home@3x.png */,
+				F52D9754233C4B5F00FE1CE2 /* layout.png */,
+				F52D9748233C4B5E00FE1CE2 /* layout@2x.png */,
+				F52D9755233C4B5F00FE1CE2 /* layout@3x.png */,
+				F52D974E233C4B5E00FE1CE2 /* on-line.png */,
+				F52D9744233C4B5D00FE1CE2 /* on-line@2x.png */,
+				F52D9743233C4B5D00FE1CE2 /* on-line@3x.png */,
+				F52D9747233C4B5E00FE1CE2 /* setup.png */,
+				F52D974A233C4B5E00FE1CE2 /* setup@2x.png */,
+				F52D974F233C4B5E00FE1CE2 /* setup@3x.png */,
+				F52D9741233C4B5D00FE1CE2 /* status.png */,
+				F52D9745233C4B5D00FE1CE2 /* status@2x.png */,
+				F52D9742233C4B5D00FE1CE2 /* status@3x.png */,
+			);
+			path = icons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -520,37 +658,66 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F52D9766233C4B5F00FE1CE2 /* on-line.png in Resources */,
 				3673A1F123140A0900B0F2EB /* CloudBLE2.png in Resources */,
 				36CE5C1F230FB76100CBAE86 /* Setup2.png in Resources */,
+				F52D976B233C4B5F00FE1CE2 /* chart@2x.png in Resources */,
 				3673A1CA2313800F00B0F2EB /* CombinedChartViewController.xib in Resources */,
+				F52D977F233C4B8A00FE1CE2 /* DashboardBasicTableViewCell.xib in Resources */,
+				F52D9787233C4B8A00FE1CE2 /* DashboardDataItemChartCell.xib in Resources */,
+				F52D975F233C4B5F00FE1CE2 /* setup.png in Resources */,
 				36DE6E9B232E858C007F2C45 /* vibration2.png in Resources */,
 				3673A1CB2313800F00B0F2EB /* ColoredLineChartViewController.xib in Resources */,
 				36D36A9F231250C8005C014E /* CustomChartCell.xib in Resources */,
 				36D36AA423129291005C014E /* Down.png in Resources */,
+				F52D976D233C4B5F00FE1CE2 /* layout@3x.png in Resources */,
+				F52D9760233C4B5F00FE1CE2 /* layout@2x.png in Resources */,
+				F52D9764233C4B5F00FE1CE2 /* home@2x.png in Resources */,
 				3673A1E52313C79C00B0F2EB /* Layout_Demo.svg in Resources */,
+				F52D9761233C4B5F00FE1CE2 /* alarm@3x.png in Resources */,
 				36A3C82D231F862E008431C7 /* AlarmSectionView.xib in Resources */,
+				F52D9784233C4B8A00FE1CE2 /* TestCell.xib in Resources */,
 				36CE5C1E230FB76100CBAE86 /* Chart2.png in Resources */,
 				3673A1D323138DCE00B0F2EB /* LineChartTimeViewController.xib in Resources */,
 				36CE5C20230FB76100CBAE86 /* Layout2.png in Resources */,
+				F52D975D233C4B5F00FE1CE2 /* status@2x.png in Resources */,
 				36D36AA623129291005C014E /* Run.png in Resources */,
+				F52D975C233C4B5F00FE1CE2 /* on-line@2x.png in Resources */,
 				3673A1CD2313800F00B0F2EB /* SinusBarChartViewController.xib in Resources */,
+				F52D9756233C4B5F00FE1CE2 /* chart.png in Resources */,
+				F52D9757233C4B5F00FE1CE2 /* ble@2x.png in Resources */,
+				F52D9785233C4B8A00FE1CE2 /* DashboardMessageCell.xib in Resources */,
 				3638506D232548A4000F4D35 /* Status_tmp2.png in Resources */,
 				3673A1E22313991E00B0F2EB /* LayoutSVGTableViewCell.xib in Resources */,
 				36FD31E22329C85900611371 /* BLEDataItemTableViewCell.xib in Resources */,
 				3684CAF62303F96D0088C152 /* LaunchScreen.storyboard in Resources */,
+				F52D9765233C4B5F00FE1CE2 /* ble@3x.png in Resources */,
 				3684CAF32303F96D0088C152 /* Assets.xcassets in Resources */,
+				F52D9762233C4B5F00FE1CE2 /* setup@2x.png in Resources */,
+				F52D9763233C4B5F00FE1CE2 /* ble.png in Resources */,
 				36D36AA523129291005C014E /* Ready.png in Resources */,
 				36CE5C17230FB02E00CBAE86 /* Alarm2.png in Resources */,
 				3673A1CC2313800F00B0F2EB /* PieChartViewController.xib in Resources */,
 				3673A1F023140A0900B0F2EB /* Layout_Demo.png in Resources */,
 				36A3C831231F9032008431C7 /* AlarmDetailTableViewCell.xib in Resources */,
+				F52D976A233C4B5F00FE1CE2 /* home.png in Resources */,
 				36DE6E9A232E858C007F2C45 /* temperature2.png in Resources */,
+				F52D9767233C4B5F00FE1CE2 /* setup@3x.png in Resources */,
+				F52D975A233C4B5F00FE1CE2 /* status@3x.png in Resources */,
+				F52D9768233C4B5F00FE1CE2 /* alarm.png in Resources */,
 				36D36AA723129291005C014E /* Idle.png in Resources */,
 				36CE5C21230FB76100CBAE86 /* Status2.png in Resources */,
+				F52D9782233C4B8A00FE1CE2 /* DashboardStatusSummaryCell.xib in Resources */,
+				F52D9759233C4B5F00FE1CE2 /* status.png in Resources */,
 				3684CAF12303F96C0088C152 /* Main.storyboard in Resources */,
+				F52D9758233C4B5F00FE1CE2 /* home@3x.png in Resources */,
+				F52D976C233C4B5F00FE1CE2 /* layout.png in Resources */,
+				F52D975B233C4B5F00FE1CE2 /* on-line@3x.png in Resources */,
 				3638506F23254966000F4D35 /* Status_tmp.png in Resources */,
 				3636AD7E231E3C5300057F6D /* Setup.plist in Resources */,
+				F52D975E233C4B5F00FE1CE2 /* alarm@2x.png in Resources */,
 				3636AD79231CFF7000057F6D /* ChartItemTableViewCell.xib in Resources */,
+				F52D9769233C4B5F00FE1CE2 /* chart@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,26 +790,35 @@
 				3681C71E2320E62D003CA0A6 /* BadgeSwift.swift in Sources */,
 				36A3C82A231F860B008431C7 /* AlarmSectionView.swift in Sources */,
 				362846282317731C00573E05 /* WebQuery.swift in Sources */,
+				F52D9780233C4B8A00FE1CE2 /* DashboardStatusSummaryCell.swift in Sources */,
 				3673A1C123137B5000B0F2EB /* PieChartViewController.swift in Sources */,
 				3673A1C023137B5000B0F2EB /* ColoredLineChartViewController.swift in Sources */,
 				36DE6EA1232FC533007F2C45 /* SimpleTableCell.swift in Sources */,
 				36C9A400232084930033D80D /* CoreData.xcdatamodeld in Sources */,
+				F52D9786233C4B8A00FE1CE2 /* DashboardBasicTableViewCell.swift in Sources */,
 				36D36AB12312D228005C014E /* SetupTableViewController.swift in Sources */,
 				3621969E2327787700FE3553 /* ProfileObject.swift in Sources */,
 				36D36AA923129332005C014E /* StatusTableViewCell.swift in Sources */,
+				F52D977E233C4B8A00FE1CE2 /* DashboardMessageCell.swift in Sources */,
 				361A2A39232104CC004706AC /* AlarmNotificationHistory+CoreDataProperties.swift in Sources */,
 				36DE6EA3232FC55D007F2C45 /* BottomSheetViewController.swift in Sources */,
 				368A2CAF23135066000CF326 /* QueryChartTableViewController.swift in Sources */,
 				3673A1DB23138E3E00B0F2EB /* IntAxisValueFormatter.swift in Sources */,
+				F52D9773233C4B7400FE1CE2 /* DashboardGlobalConstants.swift in Sources */,
 				36D36A9E231250C8005C014E /* CustomChartCell.swift in Sources */,
+				F52D9772233C4B7400FE1CE2 /* LDGradientView.swift in Sources */,
 				362196A323287B4800FE3553 /* BLEProfileTable+CoreDataClass.swift in Sources */,
 				36FD31E12329C85900611371 /* BLEDataItemTableViewCell.swift in Sources */,
 				36A3C833231F9161008431C7 /* AlarmTableViewController.swift in Sources */,
+				F52D9781233C4B8A00FE1CE2 /* DashboardDataItemChartCell.swift in Sources */,
 				3673A1C223137B5000B0F2EB /* SinusBarChartViewController.swift in Sources */,
+				F52D9783233C4B8A00FE1CE2 /* TestCell.swift in Sources */,
 				3673A1C323137B5000B0F2EB /* CombinedChartViewController.swift in Sources */,
 				3673A1DA23138E3E00B0F2EB /* DayAxisValueFormatter.swift in Sources */,
 				36CF204C232BD2B2003129FF /* BLEStruct.swift in Sources */,
 				36DE6E81232E02DA007F2C45 /* MQTTStruct.swift in Sources */,
+				F52D9771233C4B7400FE1CE2 /* ShadowGradientView.swift in Sources */,
+				F52D978A233C4D2800FE1CE2 /* ViewController.swift in Sources */,
 				36251158231F635B0055CD61 /* Utility.swift in Sources */,
 				3673A1D923138E3E00B0F2EB /* LargeValueFormatter.swift in Sources */,
 				3684CAEC2303F96C0088C152 /* AppDelegate.swift in Sources */,
