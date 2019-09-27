@@ -54,7 +54,8 @@ class ViewController: UITableViewController {
                     self.isOnline = false
                     DispatchQueue.main.async {
                         self.onlineStatusButton.tintColor = .red
-                        self.tableView.reloadData()}
+                        self.tableView.reloadData()
+                    }
                 } else {
                     guard let httpResponse = response as? HTTPURLResponse,
                         (200...299).contains(httpResponse.statusCode) else {
@@ -64,8 +65,10 @@ class ViewController: UITableViewController {
                             let _httpalert = alert(message: message, title: "Http Error")
                             DispatchQueue.main.async {self.present(_httpalert, animated : false, completion : nil)}
                             self.isOnline = false
-                            DispatchQueue.main.async {self.onlineStatusButton.tintColor = .red
-                                self.tableView.reloadData()}
+                            DispatchQueue.main.async {
+                                self.onlineStatusButton.tintColor = .red
+                                self.tableView.reloadData()
+                            }
                             return
                     }
                     //DispatchQueue.main.async {self.presentedViewController?.dismiss(animated: false, completion: nil)}
@@ -76,16 +79,20 @@ class ViewController: UITableViewController {
                     print("the online request answer is: \(onlineStatus.status)")
                     if onlineStatus.status == "YES" {
                         self.isOnline = true
-                        DispatchQueue.main.async {self.onlineStatusButton.tintColor = SERVER_ON_LINE_STATUS
-                            self.tableView.reloadData()}
+                        DispatchQueue.main.async {
+                            self.onlineStatusButton.tintColor = SERVER_ON_LINE_STATUS
+                            self.tableView.reloadData()
+                        }
                     }
                 }
             } catch {
                 print("Online Request Error!")
                 print(error.localizedDescription)
                 self.isOnline = false
-                DispatchQueue.main.async {self.onlineStatusButton.tintColor = .red
-                    self.tableView.reloadData()}
+                DispatchQueue.main.async {
+                    self.onlineStatusButton.tintColor = .red
+                    self.tableView.reloadData()
+                }
                 return
             }
         }
@@ -93,6 +100,10 @@ class ViewController: UITableViewController {
         task.resume()
         
         return
+    }
+    
+    @IBAction func pressOnlineRequest(_ sender: Any) {
+        onlineRequest()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -1367,10 +1367,10 @@
             </objects>
             <point key="canvasLocation" x="-88" y="167"/>
         </scene>
-        <!--Device Status-->
+        <!--Device Status List-->
         <scene sceneID="BVD-Op-C4f">
             <objects>
-                <tableViewController storyboardIdentifier="Status_VC" title="Device Status" id="HQa-gO-XBu" customClass="StatusTableViewController" customModule="BLE_Test" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Status_VC" title="Device Status List" id="HQa-gO-XBu" customClass="StatusTableViewController" customModule="BLE_Test" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="StatusTableViewCell" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="psD-FI-y7P">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1436,10 +1436,10 @@
             </objects>
             <point key="canvasLocation" x="-88" y="-565"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--CCS Dashboard-->
         <scene sceneID="Jlf-t9-s8A">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AKI-T1-Etq" sceneMemberID="viewController">
+                <navigationController title="CCS Dashboard" automaticallyAdjustsScrollViewInsets="NO" id="AKI-T1-Etq" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vIM-y4-58v">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1568,11 +1568,11 @@
             </objects>
             <point key="canvasLocation" x="-1714" y="618"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--CCS Dashboard-->
         <scene sceneID="cW4-oQ-Lsg">
             <objects>
-                <tabBarController modalPresentationStyle="pageSheet" id="YaN-3P-t7F" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="Rml-8T-13j"/>
+                <tabBarController title="CCS Dashboard" modalPresentationStyle="pageSheet" id="YaN-3P-t7F" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="CCS IoT Dashboard" id="Rml-8T-13j"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DzZ-Q1-gzx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1590,10 +1590,10 @@
             </objects>
             <point key="canvasLocation" x="-852" y="-564"/>
         </scene>
-        <!--Home-->
+        <!--CCS Dashboard-->
         <scene sceneID="D8w-GG-iBz">
             <objects>
-                <tableViewController title="Home" id="zaW-2Q-Rll" customClass="ViewController" customModule="BLE_Test" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="CCS Dashboard" id="zaW-2Q-Rll" customClass="ViewController" customModule="BLE_Test" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="uaa-2Y-FSw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1602,7 +1602,11 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                             <items>
-                                <barButtonItem title="On-Line" image="on-line-status.png" id="Ev2-bJ-SW6"/>
+                                <barButtonItem title="On-Line" image="on-line-status.png" id="Ev2-bJ-SW6">
+                                    <connections>
+                                        <action selector="pressOnlineRequest:" destination="zaW-2Q-Rll" id="VM2-Qi-fBw"/>
+                                    </connections>
+                                </barButtonItem>
                                 <barButtonItem style="plain" systemItem="flexibleSpace" id="Uqf-aQ-Op0"/>
                                 <barButtonItem title="Setup" image="layout.png" id="vZF-Ea-aMu">
                                     <connections>
