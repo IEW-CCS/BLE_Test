@@ -61,6 +61,9 @@ class CloudBLETableViewController: UITableViewController {
 
     let app = UIApplication.shared.delegate as! AppDelegate
 
+    override func viewWillAppear(_ animated: Bool) {
+         self.tabBarController?.title = self.title
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 

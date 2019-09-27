@@ -12,6 +12,9 @@ class LayoutTableViewController: UITableViewController {
     let itemArray = ["GatewayID", "DeviceID", "Type", "Virtual", "PLC IP", "PLC Port", "Status", "IOT Status", "HB Status", "Location", "EDC Time", "HB Time", "Alarm Code", "Alarm App", "Message", "Alarm Time"]
     let infoArray = ["gateway001", "device001", "PLC", "N", "192.168.1.1", "6001", "Run", "Run", "Run", "4F-1", "2019/08/25 10:00:00", "2019/08/25 10:00:02", "0001", "WORKER", "OK", "2019/08/25 10:00:03"]
     
+    override func viewWillAppear(_ animated: Bool) {
+         self.tabBarController?.title = self.title
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 

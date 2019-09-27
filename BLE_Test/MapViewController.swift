@@ -19,6 +19,9 @@ class MapViewController: UIViewController, BottomSheetDelegate {
     var selectedDevice: String = ""
     var annotationArray = [String]()
 
+    override func viewWillAppear(_ animated: Bool) {
+         self.tabBarController?.title = self.title
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self

@@ -1,6 +1,8 @@
 import Foundation
 import UIKit
 
+let HTTP_REQUEST_TIMEOUT = 3.0
+
 func getUrlForRequest(uri: String) -> String {
     let path = NSHomeDirectory() + "/Documents/Setup.plist"
     let plist = NSMutableDictionary(contentsOfFile: path)

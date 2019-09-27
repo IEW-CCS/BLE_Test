@@ -39,7 +39,7 @@ class QueryChartTableViewController: UITableViewController {
     ]
     
     override func viewWillAppear(_ animated: Bool) {
-     
+       self.tabBarController?.title = self.title
     }
     
     override func viewDidLoad() {

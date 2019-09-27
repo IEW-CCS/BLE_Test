@@ -12,7 +12,7 @@ class StatusTableViewController: UITableViewController {
     private var gatewayList: WebResponseGatewayList?
 
     override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear")
+        self.tabBarController?.title = self.title
         //requestGatewayList()
         //self.tableView.reloadData()
     }

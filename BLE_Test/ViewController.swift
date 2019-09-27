@@ -12,7 +12,7 @@ class ViewController: UITableViewController {
     
     @IBOutlet weak var onlineStatusButton: UIBarButtonItem!
     private var isOnline: Bool = false
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib(nibName: "DashboardMessageCell", bundle: nil)
@@ -37,12 +37,17 @@ class ViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-         self.tabBarController?.title = self.title
+        self.tabBarController?.title = self.title
+        
         onlineRequest()
     }
     
     private func onlineRequest() {
-        let sessionHttp = URLSession(configuration: .default)
+        let sessionConf = URLSessionConfiguration.default
+        sessionConf.timeoutIntervalForRequest = HTTP_REQUEST_TIMEOUT
+        sessionConf.timeoutIntervalForResource = HTTP_REQUEST_TIMEOUT
+        let sessionHttp = URLSession(configuration: sessionConf)
+ 
         let url = getUrlForRequest(uri: "CCS_ARE_YOU_THERE")
         let UrlRequest = URLRequest(url: URL(string: url)!)
         

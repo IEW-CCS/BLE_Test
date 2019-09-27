@@ -20,6 +20,9 @@ class AlarmTableViewController: UITableViewController {
     let app = UIApplication.shared.delegate as! AppDelegate
     var vc: NSManagedObjectContext!
     
+    override func viewWillAppear(_ animated: Bool) {
+         self.tabBarController?.title = self.title
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
