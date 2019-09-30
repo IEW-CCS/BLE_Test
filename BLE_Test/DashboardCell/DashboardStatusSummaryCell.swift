@@ -185,7 +185,7 @@ extension DashboardStatusSummaryCell: ChartViewDelegate {
     func chartValueNothingSelected(_ chartView: ChartViewBase) {
         print("None of the slice selected")
         self.selectedSliceIndex = -1
-        
+
         animateStatusText(index: self.selectedSliceIndex)
     }
 }

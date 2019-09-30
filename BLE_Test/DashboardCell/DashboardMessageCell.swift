@@ -13,7 +13,7 @@ class DashboardMessageCell: UITableViewCell {
     let messageArray = ["Error condition 1",
                         "Warning: check something1 please",
                         "Information for 1st condition",
-                        "Warning: check something2 please",
+                        "Warning: check something2 more information",
                         "Warning: check something3 please",
                         "Information for 2nd condition",
                         "Error condition 2",
@@ -30,6 +30,7 @@ class DashboardMessageCell: UITableViewCell {
         self.messageTableView.register(nib, forCellReuseIdentifier: "DashboardBasicTableViewCell")
         messageTableView.delegate = self
         messageTableView.dataSource = self
+        messageTableView.layer.cornerRadius = CELL_CORNER_RADIUS
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

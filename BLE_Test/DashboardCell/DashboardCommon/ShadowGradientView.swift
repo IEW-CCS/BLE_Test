@@ -18,7 +18,7 @@ import Foundation
             updateGradient()
         }
     }
-
+    
     @IBInspectable var shadowColor: UIColor = .clear {
         didSet {
             updateShadow()
@@ -146,6 +146,7 @@ import Foundation
         return lbl
     }
     
+
     func animate(duration: TimeInterval, newTopColor: UIColor, newBottomColor: UIColor) {
         let fromColors = self.gradientLayer?.colors
         let toColors: [AnyObject] = [ newTopColor.cgColor, newBottomColor.cgColor]
