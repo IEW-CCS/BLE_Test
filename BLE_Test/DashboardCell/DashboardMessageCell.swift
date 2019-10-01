@@ -20,6 +20,7 @@ class DashboardMessageCell: UITableViewCell {
                         "Error condition 3"]
     
     @IBOutlet weak var messageTableView: UITableView!
+    @IBOutlet weak var ShadowGradientView: ShadowGradientView!
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = UIColor.clear
@@ -36,6 +37,12 @@ class DashboardMessageCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
+    public func AdjustAutoLayout()
+    {
+        ShadowGradientView.AdjustAutoLayout()
+    }
+    
 }
 
 extension DashboardMessageCell: UITableViewDelegate, UITableViewDataSource{

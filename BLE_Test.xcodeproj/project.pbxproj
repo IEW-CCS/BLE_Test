@@ -507,9 +507,9 @@
 			isa = PBXGroup;
 			children = (
 				F52D977C233C4B8A00FE1CE2 /* DashboardBasicTableViewCell.swift */,
-				F52D9775233C4B8900FE1CE2 /* DashboardBasicTableViewCell.xib */,
 				F52D9777233C4B8A00FE1CE2 /* DashboardDataItemChartCell.swift */,
 				F52D977D233C4B8A00FE1CE2 /* DashboardDataItemChartCell.xib */,
+				F52D9775233C4B8900FE1CE2 /* DashboardBasicTableViewCell.xib */,
 				F52D9774233C4B8900FE1CE2 /* DashboardMessageCell.swift */,
 				F52D977B233C4B8A00FE1CE2 /* DashboardMessageCell.xib */,
 				F52D9776233C4B8900FE1CE2 /* DashboardStatusSummaryCell.swift */,

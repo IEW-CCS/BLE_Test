@@ -18,9 +18,11 @@ class ViewController: UITableViewController {
         let nib = UINib(nibName: "DashboardMessageCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "DashboardMessageCell")
 
+        print("DashboardStatusSummaryCell")
         let nib2 = UINib(nibName: "DashboardStatusSummaryCell", bundle: nil)
         self.tableView.register(nib2, forCellReuseIdentifier: "DashboardStatusSummaryCell")
 
+        print("DashboardDataItemChartCell")
         let nib3 = UINib(nibName: "DashboardDataItemChartCell", bundle: nil)
         self.tableView.register(nib3, forCellReuseIdentifier: "DashboardDataItemChartCell")
 
@@ -113,38 +115,51 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.isOnline {
-            return 3
-        } else {
-            return 1
-        }
+       if self.isOnline
+       {
+        return 3
+       }
+        else
+       {
+        return 1
+        
+       }
+        
+       
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if self.isOnline {
+        if self.isOnline
+        {
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "DashboardStatusSummaryCell", for: indexPath) as! DashboardStatusSummaryCell
-                
+                cell.AdjustAutoLayout()
                 return cell
             }
             
             if indexPath.row == 1 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "DashboardDataItemChartCell", for: indexPath) as! DashboardDataItemChartCell
-                
+                cell.AdjustAutoLayout()
                 return cell
             }
             
             if indexPath.row == 2 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "DashboardMessageCell", for: indexPath) as! DashboardMessageCell
                 
+                cell.AdjustAutoLayout()
                 return cell
             }
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DashboardServerNotAvailableCell", for: indexPath) as! DashboardServerNotAvailableCell
-            
-            return cell
         }
-
+        else
+        {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DashboardServerNotAvailableCell", for : indexPath) as! DashboardServerNotAvailableCell
+            
+            cell.AdjustAutoLayout()
+            return cell
+            
+            
+        }
+       
         return super.tableView(tableView, cellForRowAt: indexPath)
     }
     

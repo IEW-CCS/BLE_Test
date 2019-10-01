@@ -11,6 +11,9 @@ import Charts
 
 class DashboardDataItemChartCell: UITableViewCell {
     @IBOutlet weak var chartView: CombinedChartView!
+    
+    @IBOutlet weak var ShadowGradientView: ShadowGradientView!
+    
     let lineDataArray = [20, 30, 40, 50, 60, 70, 45, 33, 66, 78, 83, 90, 95, 66, 70, 30, 40, 35, 25,15, 10, 5, 30, 35, 45, 60, 45, 45, 50, 30]
     
     let barDataArray1 = [90, 85, 80, 75, 65, 50, 40, 45, 47, 58, 50, 30, 20, 10, 5, 30, 40, 60, 70,75, 80, 85, 90, 95, 93, 92, 70, 78, 84, 60]
@@ -25,12 +28,18 @@ class DashboardDataItemChartCell: UITableViewCell {
 
         configCombinedChart()
         setupChartData()
+       
     }
-
+    
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
+    }
+    
+    public func AdjustAutoLayout()
+    {
+       ShadowGradientView.AdjustAutoLayout()
     }
     
     func configCombinedChart() {

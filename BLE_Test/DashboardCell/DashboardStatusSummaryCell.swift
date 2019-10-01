@@ -26,6 +26,8 @@ class DashboardStatusSummaryCell: UITableViewCell {
     @IBOutlet weak var pieChart: PieChartView!
     @IBOutlet weak var categoryView: UICollectionView!
     
+    @IBOutlet weak var FrontShadow: ShadowGradientView!
+    @IBOutlet weak var BackShadow: ShadowGradientView!
     @IBOutlet weak var txtRun: UILabel!
     @IBOutlet weak var txtDown: UILabel!
     @IBOutlet weak var txtIdle: UILabel!
@@ -55,9 +57,35 @@ class DashboardStatusSummaryCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
+    
+    
+    public func AdjustAutoLayout()
+    {
+        BackShadow.AdjustAutoLayout()
+        FrontShadow.AdjustAutoLayout()
+       
+        
+        txtRun.translatesAutoresizingMaskIntoConstraints = false
+        txtRun.rightAnchor.constraint(equalTo: FrontShadow.rightAnchor, constant: -15).isActive = true
+        txtRun.topAnchor.constraint(equalTo: pieChart.topAnchor, constant: 50).isActive = true
+        txtRun.textAlignment = .left
+        
+        txtDown.translatesAutoresizingMaskIntoConstraints = false
+        txtDown.rightAnchor.constraint(equalTo: FrontShadow.rightAnchor, constant: -15).isActive = true
+        txtDown.topAnchor.constraint(equalTo: txtRun.topAnchor, constant: 50).isActive = true
+        txtDown.textAlignment = .left
+        
+        txtIdle.translatesAutoresizingMaskIntoConstraints = false
+        txtIdle.rightAnchor.constraint(equalTo: FrontShadow.rightAnchor, constant: -15).isActive = true
+        txtIdle.topAnchor.constraint(equalTo: txtRun.topAnchor, constant: 100).isActive = true
+        txtIdle.textAlignment = .left
+        
+ 
+    }
+    
+    
     
     func configPieChart() {
         let l = self.pieChart.legend
@@ -163,6 +191,8 @@ extension DashboardStatusSummaryCell: UICollectionViewDataSource, UICollectionVi
         cellSelected.selected()
         self.currentSelectedIndex = indexPath.row
         setupChartData(cate_index: indexPath.row)
+        
+         AdjustAutoLayout()      
         
         if indexPath.row != self.previousSelectedIndex {
             let prevIndexPath = IndexPath(row: self.previousSelectedIndex, section: indexPath.section)

@@ -10,6 +10,7 @@ import UIKit
 
 class DashboardServerNotAvailableCell: UITableViewCell {
 
+    @IBOutlet weak var ShadowGradientView: ShadowGradientView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,6 +20,11 @@ class DashboardServerNotAvailableCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    public func AdjustAutoLayout()
+    {
+        ShadowGradientView.AdjustAutoLayout()
     }
     
 }

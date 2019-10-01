@@ -9,6 +9,8 @@ import UIKit
 import Foundation
 
 @IBDesignable class ShadowGradientView: UIView {
+    
+    private var didSetupConstraints = false
     private var gradientLayer: CAGradientLayer!
     private var label: UILabel!
     
@@ -70,15 +72,37 @@ import Foundation
         installShadow()
         installGradient()
         installLabel()
+       
     }
+    
+
+    
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         installShadow()
         installGradient()
         installLabel()
+       
+        
     }
     
+    public func AdjustAutoLayout()
+    {
+       
+      
+        installShadow()
+    
+        let ori = self.gradientLayer.frame
+        self.gradientLayer.frame = ori.AdjustCAGradientLayer(width: self.layer.frame.width-10)
+        self.label.textAlignment = .center
+        updateShadow()
+        
+    }
+    
+
+    
+
     private func installShadow() {
         self.backgroundColor = UIColor.clear
         self.layer.cornerRadius = cornerRadius
@@ -159,5 +183,21 @@ import Foundation
         animation.fillMode = .forwards
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         self.gradientLayer?.add(animation, forKey:"animateGradient")
+    }
+}
+
+extension CGRect {
+    func AdjustCAGradientLayer( width : CGFloat) -> CGRect {
+        let x = self.origin.x
+        let y = self.origin.y
+        let w = self.width
+        let h = self.height
+        
+        let newW = width
+        let newH = h
+        let newX = x
+        let newY = y
+        
+        return CGRect(x: newX, y: newY, width: newW, height: newH)
     }
 }
