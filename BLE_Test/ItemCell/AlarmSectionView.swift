@@ -18,6 +18,7 @@ class AlarmSectionView: UITableViewHeaderFooterView {
     @IBOutlet weak var txtDeviceID: UILabel!
     @IBOutlet weak var txtBadge: BadgeSwift!
     @IBOutlet weak var btnRemove: BadgeSwift!
+    @IBOutlet weak var backView: ShadowGradientView!
     
     weak var delegate: SectionViewDelegate?
     var buttonTag: Int = 0
@@ -43,6 +44,7 @@ class AlarmSectionView: UITableViewHeaderFooterView {
         
         btnRemove.isEnabled = false
         btnRemove.isHidden = true
+        AdjustAutoLayout()
     }
 
     func setData(date_time: String, gateway_id: String, device_id: String, alarm_level: String, badge_number: String) {
@@ -70,15 +72,21 @@ class AlarmSectionView: UITableViewHeaderFooterView {
         }
     }
     
+    public func AdjustAutoLayout()
+    {
+        self.backView.AdjustAutoLayout()
+    }
+    
     @objc func handleRemoveTap(_ sender: UITapGestureRecognizer) {
+        AdjustAutoLayout()
         print("Remove button is tapped")
-        
         NotificationCenter.default.post(
             name: NSNotification.Name("RemoveSection"),
             object: Int(self.tag))
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        AdjustAutoLayout()
         print("Section \(self.tag) is tapped")
         if self.isLongPressed == true {
             self.isLongPressed = false
@@ -95,6 +103,7 @@ class AlarmSectionView: UITableViewHeaderFooterView {
     }
     
     @objc func handleLongPress(_ sender: UILongPressGestureRecognizer) {
+        AdjustAutoLayout()
         if sender.state == .began {
             print("Section \(self.tag) is long pressed")
             self.isDisplayRemoveButton = true
@@ -112,23 +121,14 @@ class AlarmSectionView: UITableViewHeaderFooterView {
 
 extension AlarmSectionView: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        AdjustAutoLayout()
         return true
     }
 }
 
 public extension UIView {
     func shake(count : Float = 5, for duration : TimeInterval = 1, withTranslation translation : Float = 5) {
-        //let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
-        /*
-        let animation = CAKeyframeAnimation(keyPath: "transform.rotation.z")
-        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
-        animation.repeatCount = count
-        animation.duration = duration/TimeInterval(animation.repeatCount)
-        animation.autoreverses = true
-        animation.values = [translation, -translation]
-        layer.add(animation, forKey: "shake")
-        */
-        
+       
         let shake = CABasicAnimation(keyPath: "transform.rotation.z")
         shake.fromValue = -0.03
         shake.toValue = 0.03

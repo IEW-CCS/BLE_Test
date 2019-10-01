@@ -9,7 +9,6 @@ import UIKit
 import Foundation
 
 @IBDesignable class ShadowGradientView: UIView {
-    
     private var didSetupConstraints = false
     private var gradientLayer: CAGradientLayer!
     private var label: UILabel!
@@ -21,6 +20,18 @@ import Foundation
         }
     }
     
+    @IBInspectable var gradientBorderColor: UIColor = .clear {
+        didSet {
+            updateGradient()
+        }
+    }
+
+    @IBInspectable var gradientBorderWidth: Int = 1 {
+        didSet {
+            updateGradient()
+        }
+    }
+
     @IBInspectable var shadowColor: UIColor = .clear {
         didSet {
             updateShadow()
@@ -72,36 +83,28 @@ import Foundation
         installShadow()
         installGradient()
         installLabel()
-       
     }
-    
-
-    
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         installShadow()
         installGradient()
         installLabel()
-       
-        
     }
     
     public func AdjustAutoLayout()
     {
-       
-      
         installShadow()
     
         let ori = self.gradientLayer.frame
         self.gradientLayer.frame = ori.AdjustCAGradientLayer(width: self.layer.frame.width-10)
+        self.label.frame = self.gradientLayer.frame
         self.label.textAlignment = .center
-        updateShadow()
+        self.label.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        self.label.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         
+        updateShadow()
     }
-    
-
-    
 
     private func installShadow() {
         self.backgroundColor = UIColor.clear
@@ -133,13 +136,15 @@ import Foundation
         self.label = createLabel()
         self.label.layer.zPosition = 9
         self.addSubview(self.label)
+        self.label.textAlignment = .center
         self.label.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         self.label.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        self.label.textAlignment = .center
     }
     
     private func updateGradient() {
         self.gradientLayer.colors = GRADIENT_COLOR_SET[gradientColor]
+        self.gradientLayer.borderWidth = CGFloat(gradientBorderWidth)
+        self.gradientLayer.borderColor = gradientBorderColor.cgColor
     }
     
     private func updateShadow() {
@@ -190,7 +195,7 @@ extension CGRect {
     func AdjustCAGradientLayer( width : CGFloat) -> CGRect {
         let x = self.origin.x
         let y = self.origin.y
-        let w = self.width
+        //let w = self.width
         let h = self.height
         
         let newW = width

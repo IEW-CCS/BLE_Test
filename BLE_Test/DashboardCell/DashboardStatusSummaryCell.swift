@@ -65,7 +65,6 @@ class DashboardStatusSummaryCell: UITableViewCell {
     {
         BackShadow.AdjustAutoLayout()
         FrontShadow.AdjustAutoLayout()
-       
         
         txtRun.translatesAutoresizingMaskIntoConstraints = false
         txtRun.rightAnchor.constraint(equalTo: FrontShadow.rightAnchor, constant: -15).isActive = true
@@ -81,8 +80,6 @@ class DashboardStatusSummaryCell: UITableViewCell {
         txtIdle.rightAnchor.constraint(equalTo: FrontShadow.rightAnchor, constant: -15).isActive = true
         txtIdle.topAnchor.constraint(equalTo: txtRun.topAnchor, constant: 100).isActive = true
         txtIdle.textAlignment = .left
-        
- 
     }
     
     

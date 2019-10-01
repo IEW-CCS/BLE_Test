@@ -53,6 +53,7 @@ class AlarmTableViewController: UITableViewController {
         let _Activityalert = Activityalert(title: "Loading")
         present(_Activityalert, animated : true, completion : queryAlarmData)
         
+        self.tableView.reloadData()
         UIApplication.shared.applicationIconBadgeNumber = getBadgeNumber()
     }
     
@@ -251,18 +252,19 @@ class AlarmTableViewController: UITableViewController {
         
         let sectionView: AlarmSectionView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "AlarmSectionView") as! AlarmSectionView
         
+        sectionView.AdjustAutoLayout()
         sectionView.isExpand = self.isExpendDataList[section]
         sectionView.buttonTag = section
         sectionView.delegate = self as SectionViewDelegate
         
         sectionView.setData(date_time: self.sectionDataList[section][0], gateway_id: self.sectionDataList[section][1], device_id: self.sectionDataList[section][2], alarm_level: self.sectionDataList[section][3], badge_number: self.sectionDataList[section][4])
         sectionView.tag = section
-        
+
         return sectionView
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 80
+        return 90
     }
     
     @objc func receiveRemoveSectionNotify(_ notification: Notification) {
@@ -329,6 +331,7 @@ extension AlarmTableViewController: SectionViewDelegate {
     func sectionView(_ sectionView: AlarmSectionView, _ didPressTag: Int, _ isExpand: Bool) {
         
         self.isExpendDataList[didPressTag] = !isExpand
+        sectionView.AdjustAutoLayout()
         self.tableView.reloadSections(IndexSet(integer: didPressTag), with: .automatic)
         if self.isExpendDataList[didPressTag] {
             updateBadgeNumber(section: didPressTag)

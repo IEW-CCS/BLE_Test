@@ -61,6 +61,9 @@ let GRADIENT_COLOR_GREY_BOTTOM = UIColor(red: 224/255, green: 224/255, blue: 224
 let GRADIENT_COLOR_BLUEGREY_TOP = UIColor(red: 207/255, green: 216/255, blue: 220/255, alpha: 1.0)
 let GRADIENT_COLOR_BLUEGREY_BOTTOM = UIColor(red: 176/255, green: 190/255, blue: 197/255, alpha: 1.0)
 
+let GRADIENT_COLOR_YELLOW_TOP = UIColor(red: 255/255, green: 249/255, blue: 196/255, alpha: 1.0)
+let GRADIENT_COLOR_YELLOW_BOTTOM = UIColor(red: 255/255, green: 245/255, blue: 157/255, alpha: 1.0)
+
 let GRADIENT_COLOR_PURE_WHITE:Int = 0
 let GRADIENT_COLOR_PURE_LIGHTGRAY:Int = 1
 let GRADIENT_COLOR_PURE_DARKGRAY:Int = 2
@@ -77,6 +80,7 @@ let GRADIENT_COLOR_ORANGE:Int = 12
 let GRADIENT_COLOR_LIGHTGREEN: Int = 13
 let GRADIENT_COLOR_GREY:Int = 14
 let GRADIENT_COLOR_BLUEGREY:Int = 15
+let GRADIENT_COLOR_YELLOW:Int = 16
 
 let GRADIENT_COLOR_SET = [[UIColor.white.cgColor, UIColor.white.cgColor],
                           [UIColor.lightGray.cgColor, UIColor.lightGray.cgColor],
@@ -93,5 +97,6 @@ let GRADIENT_COLOR_SET = [[UIColor.white.cgColor, UIColor.white.cgColor],
                           [GRADIENT_COLOR_ORANGE_TOP.cgColor, GRADIENT_COLOR_ORANGE_BOTTOM.cgColor],
                           [GRADIENT_COLOR_LIGHTGREEN_TOP.cgColor, GRADIENT_COLOR_LIGHTGREEN_BOTTOM.cgColor],
                           [GRADIENT_COLOR_GREY_TOP.cgColor, GRADIENT_COLOR_GREY_BOTTOM.cgColor],
-                          [GRADIENT_COLOR_BLUEGREY_TOP.cgColor, GRADIENT_COLOR_BLUEGREY_BOTTOM.cgColor]]
+                          [GRADIENT_COLOR_BLUEGREY_TOP.cgColor, GRADIENT_COLOR_BLUEGREY_BOTTOM.cgColor],
+                          [GRADIENT_COLOR_YELLOW_TOP.cgColor, GRADIENT_COLOR_YELLOW_BOTTOM.cgColor]]
 
