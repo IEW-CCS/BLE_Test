@@ -86,7 +86,7 @@ class AlarmSectionView: UITableViewHeaderFooterView {
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
-        AdjustAutoLayout()
+        //AdjustAutoLayout()
         print("Section \(self.tag) is tapped")
         if self.isLongPressed == true {
             self.isLongPressed = false
@@ -121,7 +121,7 @@ class AlarmSectionView: UITableViewHeaderFooterView {
 
 extension AlarmSectionView: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        AdjustAutoLayout()
+        //AdjustAutoLayout()
         return true
     }
 }

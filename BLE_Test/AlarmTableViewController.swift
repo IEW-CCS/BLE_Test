@@ -21,8 +21,10 @@ class AlarmTableViewController: UITableViewController {
     var vc: NSManagedObjectContext!
     
     override func viewWillAppear(_ animated: Bool) {
-         self.tabBarController?.title = self.title
+        self.tabBarController?.title = self.title
+        self.tableView.reloadData()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -251,14 +253,14 @@ class AlarmTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let sectionView: AlarmSectionView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "AlarmSectionView") as! AlarmSectionView
-        
-        sectionView.AdjustAutoLayout()
+                
         sectionView.isExpand = self.isExpendDataList[section]
         sectionView.buttonTag = section
         sectionView.delegate = self as SectionViewDelegate
         
         sectionView.setData(date_time: self.sectionDataList[section][0], gateway_id: self.sectionDataList[section][1], device_id: self.sectionDataList[section][2], alarm_level: self.sectionDataList[section][3], badge_number: self.sectionDataList[section][4])
         sectionView.tag = section
+        sectionView.AdjustAutoLayout()
 
         return sectionView
     }

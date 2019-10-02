@@ -145,8 +145,8 @@ class ViewController: UITableViewController {
             
             if indexPath.row == 2 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "DashboardMessageCell", for: indexPath) as! DashboardMessageCell
-                
                 cell.AdjustAutoLayout()
+                
                 return cell
             }
         }
