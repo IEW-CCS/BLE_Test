@@ -10,6 +10,7 @@ import UIKit
 
 class QueryChartTableViewController: UITableViewController {
     @IBOutlet weak var devicePicker: UIPickerView!
+    private var isFirstLoad: Bool = true
     
     //let gatewayArray = ["gateway001", "gateway002", "gateway003", "gateway004", "gateway005"]
     //let deviceArray = ["device001", "device002", "device003"]
@@ -39,7 +40,13 @@ class QueryChartTableViewController: UITableViewController {
     ]
     
     override func viewWillAppear(_ animated: Bool) {
-       self.tabBarController?.title = self.title
+        self.tabBarController?.title = self.title
+        if self.isFirstLoad {
+            self.isFirstLoad = false
+            return
+        }
+        
+        requestGatewayList()
     }
     
     override func viewDidLoad() {
@@ -132,7 +139,16 @@ class QueryChartTableViewController: UITableViewController {
     }
     
     func requestGatewayList() {
-        let sessionHttp = URLSession(configuration: .default)
+        self.gatewayArray.removeAll()
+        self.deviceArray.removeAll()
+        self.itemArray.removeAll()
+        self.listDictionary.removeAll()
+
+        let sessionConf = URLSessionConfiguration.default
+        sessionConf.timeoutIntervalForRequest = HTTP_REQUEST_TIMEOUT
+        sessionConf.timeoutIntervalForResource = HTTP_REQUEST_TIMEOUT
+        let sessionHttp = URLSession(configuration: sessionConf)
+        //let sessionHttp = URLSession(configuration: .default)
         let url = getUrlForRequest(uri: "CCS_Gateway_List")
         let UrlRequest = URLRequest(url: URL(string: url)!)
         var gatewayList: WebResponseGatewayList?
@@ -145,6 +161,9 @@ class QueryChartTableViewController: UITableViewController {
                     DispatchQueue.main.async {self.presentedViewController?.dismiss(animated: false, completion: nil)}
                     let _httpalert = alert(message: error!.localizedDescription, title: "Http Error")
                     self.present(_httpalert, animated : false, completion : nil)
+                    DispatchQueue.main.async {
+                        self.devicePicker.reloadAllComponents()
+                        self.tableView.reloadData()}
                 }
                 
                 else{
@@ -156,6 +175,9 @@ class QueryChartTableViewController: UITableViewController {
                             DispatchQueue.main.async {self.presentedViewController?.dismiss(animated: false, completion: nil)}
                             let _httpalert = alert(message: message, title: "Http Error")
                             self.present(_httpalert, animated : false, completion : nil)
+                            DispatchQueue.main.async {
+                                self.devicePicker.reloadAllComponents()
+                                self.tableView.reloadData()}
                             return
                     }
                     
@@ -223,7 +245,11 @@ class QueryChartTableViewController: UITableViewController {
     }
     
     func requestDeviceItem(device_id: String) {
-        let sessionHttp = URLSession(configuration: .default)
+        let sessionConf = URLSessionConfiguration.default
+        sessionConf.timeoutIntervalForRequest = HTTP_REQUEST_TIMEOUT
+        sessionConf.timeoutIntervalForResource = HTTP_REQUEST_TIMEOUT
+        let sessionHttp = URLSession(configuration: sessionConf)
+        //let sessionHttp = URLSession(configuration: .default)
         let url = getUrlForRequest(uri: "CCS_Chart_Item_List") + "/\(device_id)"
         let UrlRequest = URLRequest(url: URL(string: url)!)
         var deviceItem: WebResponseDeviceItem?
@@ -237,8 +263,10 @@ class QueryChartTableViewController: UITableViewController {
                     DispatchQueue.main.async {self.presentedViewController?.dismiss(animated: false, completion: nil)}
                     let _httpalert = alert(message: error!.localizedDescription, title: "Http Error")
                     self.present(_httpalert, animated : false, completion : nil)
-                    
-                }else{
+                    DispatchQueue.main.async {
+                        self.devicePicker.reloadAllComponents()
+                        self.tableView.reloadData()}
+                } else {
                     
                     guard let httpResponse = response as? HTTPURLResponse,
                         (200...299).contains(httpResponse.statusCode) else {
@@ -248,6 +276,9 @@ class QueryChartTableViewController: UITableViewController {
                             DispatchQueue.main.async {self.presentedViewController?.dismiss(animated: false, completion: nil)}
                             let _httpalert = alert(message: message, title: "Http Error")
                             self.present(_httpalert, animated : false, completion : nil)
+                            DispatchQueue.main.async {
+                                self.devicePicker.reloadAllComponents()
+                                self.tableView.reloadData()}
                             return
                     }
                     
@@ -263,6 +294,7 @@ class QueryChartTableViewController: UITableViewController {
                         self.itemArray = deviceItem!.item_list
                         DispatchQueue.main.async {
                             self.presentedViewController?.dismiss(animated: false, completion: nil)
+                            self.devicePicker.reloadAllComponents()
                             self.tableView.reloadData()
                             
                         }

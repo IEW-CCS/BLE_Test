@@ -121,7 +121,7 @@ extension MapViewController: MKMapViewDelegate {
         }
         
         if (annotation.title)! == "device001" || (annotation.title)! == "device005" {
-            let imageView = UIImageView(image: UIImage(named: "temperature2.png"))
+            let imageView = UIImageView(image: UIImage(named: "temperature222.png"))
             annView?.leftCalloutAccessoryView = imageView
             let label = UILabel()
             label.numberOfLines = 2
@@ -143,7 +143,8 @@ extension MapViewController: MKMapViewDelegate {
         }
         
         if (annotation.title)! == "device003" || (annotation.title)! == "device007" {
-            let imageView = UIImageView(image: UIImage(named: "vibration2.png"))
+            let imageView = UIImageView(image: UIImage(named: "vibration222.png"))
+            imageView.tintColor = UIColor(red: 0/255, green: 150/255, blue: 255/255, alpha: 1.0)
             annView?.leftCalloutAccessoryView = imageView
             let label = UILabel()
             label.numberOfLines = 2

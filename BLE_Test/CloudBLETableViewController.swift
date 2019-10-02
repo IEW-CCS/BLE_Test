@@ -339,6 +339,8 @@ class CloudBLETableViewController: UITableViewController {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "CustomChartCell", for: indexPath) as! CustomChartCell
                 
                 self.chartHeight = cell.chtChart.frame.size.height
+                cell.AdjustAutoLayout()
+                
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "BLEDataItemTableViewCell", for: indexPath) as! BLEDataItemTableViewCell
@@ -439,34 +441,6 @@ class CloudBLETableViewController: UITableViewController {
             print(error.localizedDescription)
             return nil
         }
-
-        /*
-        let model = app.persistentContainer.managedObjectModel
-        var requestArgs: [String: Any] = [String : Any]()
-        requestArgs["CAT"] = category
-        requestArgs["NAME"] = profile_name
-
-        //if let fetchRequest = model.fetchRequestFromTemplate(withName: "Fetch_Specific_Profile", substitutionVariables: ["CAT": category, "NAME": profile_name]) {
-        if let fetchRequest = model.fetchRequestFromTemplate(withName: "Fetch_Specific_Profile", substitutionVariables: requestArgs) {
-            do {
-                let profile_list = try viewContext.fetch(fetchRequest)
-                for profile_data in profile_list as! [BLEProfileTable] {
-                    print("Fetched category: \(profile_data.category!)")
-                    print("Fetched name: \(profile_data.name!)")
-                    let profileDetail = profile_data.profileObject as! ProfileObject
-                    for charService in profileDetail.CharacteristicUUID! {
-                        print("Characteristic UUIS: \(charService.UUID)")
-                        for charItem in charService.ItemList! {
-                            print("Data Name: \(charItem.DataName), Data Type: \(charItem.DataType)")
-                        }
-                    }
-                    app.saveContext()
-                }
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-        */
     }
 }
 
@@ -489,11 +463,20 @@ extension CloudBLETableViewController: UIPickerViewDataSource, UIPickerViewDeleg
         }
         
         if pickerView == profilePicker {
-            if component == 0 {
-                return self.categoryArray.count
+            if !self.category.isEmpty {
+                if component == 0 {
+                    return self.categoryArray.count
+                } else {
+                    let selectedIndex = self.profilePicker.selectedRow(inComponent: 0)
+                    return self.deviceArray[selectedIndex].count
+                }
             } else {
-                let selectedIndex = self.profilePicker.selectedRow(inComponent: 0)
-                return self.deviceArray[selectedIndex].count
+                let alertVC = UIAlertController(title: "No BLE Profiles Found", message: "Please go-to Setup function to download BLE profiles", preferredStyle: UIAlertController.Style.alert)
+                let action = UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) -> Void in
+                    self.dismiss(animated: true, completion: nil)
+                })
+                alertVC.addAction(action)
+                self.present(alertVC, animated: true, completion: nil)
             }
         }
         

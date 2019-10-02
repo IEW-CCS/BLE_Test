@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UITableViewController {
     
     @IBOutlet weak var onlineStatusButton: UIBarButtonItem!
-    private var isOnline: Bool = false
+    //private var isOnline: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +59,8 @@ class ViewController: UITableViewController {
                     //DispatchQueue.main.async { self.presentedViewController?.dismiss(animated: false, completion: nil)}
                     let _httpalert = alert(message: error!.localizedDescription, title: "Http Error")
                     DispatchQueue.main.async {self.present(_httpalert, animated : false, completion : nil)}
-                    self.isOnline = false
+                    //self.isOnline = false
+                    HTTP_SERVER_ONLINE_STATUS = false
                     DispatchQueue.main.async {
                         self.onlineStatusButton.tintColor = .red
                         self.tableView.reloadData()
@@ -72,21 +73,22 @@ class ViewController: UITableViewController {
                             //DispatchQueue.main.async {self.presentedViewController?.dismiss(animated: false, completion: nil)}
                             let _httpalert = alert(message: message, title: "Http Error")
                             DispatchQueue.main.async {self.present(_httpalert, animated : false, completion : nil)}
-                            self.isOnline = false
+                            //self.isOnline = false
+                            HTTP_SERVER_ONLINE_STATUS = false
                             DispatchQueue.main.async {
                                 self.onlineStatusButton.tintColor = .red
                                 self.tableView.reloadData()
                             }
                             return
                     }
-                    //DispatchQueue.main.async {self.presentedViewController?.dismiss(animated: false, completion: nil)}
                     let outputStr  = String(data: data!, encoding: String.Encoding.utf8) as String?
                     let jsonData = outputStr!.data(using: String.Encoding.utf8, allowLossyConversion: true)
                     let decoder = JSONDecoder()
                     let onlineStatus:WebResponseOnLineStatus = try decoder.decode(WebResponseOnLineStatus.self, from: jsonData!)
                     print("the online request answer is: \(onlineStatus.status)")
                     if onlineStatus.status == "YES" {
-                        self.isOnline = true
+                        //self.isOnline = true
+                        HTTP_SERVER_ONLINE_STATUS = true
                         DispatchQueue.main.async {
                             self.onlineStatusButton.tintColor = SERVER_ON_LINE_STATUS
                             self.tableView.reloadData()
@@ -96,7 +98,8 @@ class ViewController: UITableViewController {
             } catch {
                 print("Online Request Error!")
                 print(error.localizedDescription)
-                self.isOnline = false
+                //self.isOnline = false
+                HTTP_SERVER_ONLINE_STATUS = false
                 DispatchQueue.main.async {
                     self.onlineStatusButton.tintColor = .red
                     self.tableView.reloadData()
@@ -115,22 +118,17 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       if self.isOnline
-       {
-        return 3
+        //if self.isOnline
+        if HTTP_SERVER_ONLINE_STATUS {
+            return 3
+        } else {
+            return 1
        }
-        else
-       {
-        return 1
-        
-       }
-        
-       
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if self.isOnline
-        {
+        //if self.isOnline
+        if HTTP_SERVER_ONLINE_STATUS {
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "DashboardStatusSummaryCell", for: indexPath) as! DashboardStatusSummaryCell
                 cell.AdjustAutoLayout()
@@ -156,15 +154,14 @@ class ViewController: UITableViewController {
             
             cell.AdjustAutoLayout()
             return cell
-            
-            
         }
        
         return super.tableView(tableView, cellForRowAt: indexPath)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if self.isOnline {
+        //if self.isOnline {
+        if HTTP_SERVER_ONLINE_STATUS {
             if indexPath.row == 2 {
                 return CGFloat(DASHBOARD_MESSAGE_CELL_HEIGHT)
             }

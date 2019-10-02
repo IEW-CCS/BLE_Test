@@ -199,7 +199,11 @@ class BottomSheetViewController: UIViewController{
     }
 
     func requestDeviceDetail(device_id: String) {
-        let sessionHttp = URLSession(configuration: .default)
+        let sessionConf = URLSessionConfiguration.default
+        sessionConf.timeoutIntervalForRequest = HTTP_REQUEST_TIMEOUT
+        sessionConf.timeoutIntervalForResource = HTTP_REQUEST_TIMEOUT
+        let sessionHttp = URLSession(configuration: sessionConf)
+        //let sessionHttp = URLSession(configuration: .default)
         let url = getUrlForRequest(uri: "CCS_Device_Detail") + "/\(device_id)"
         
         let UrlRequest = URLRequest(url: URL(string: url)!)
@@ -236,7 +240,6 @@ class BottomSheetViewController: UIViewController{
 extension BottomSheetViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberofSections section: Int) -> Int {
         if self.infoArray.isEmpty {
-            print("numberOfRowsInSection returns: 0")
             return 0
         }
         
@@ -244,15 +247,15 @@ extension BottomSheetViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return 100
+       if self.infoArray.isEmpty {
+            print("numberOfRowsInSection returns: 0")
+            return 0
+        }
+        
         return headerArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        /*
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SimpleTableCell", for: indexPath) as! SimpleTableCell
-        let model = SimpleTableCellViewModel(image: nil, title: "Title \(indexPath.row)", subtitle: "Subtitle \(indexPath.row)")
-        cell.configure(model: model)*/
         let cell = tableView.dequeueReusableCell(withIdentifier: "SimpleTableCell", for: indexPath) as! SimpleTableCell
         
         if !self.infoArray.isEmpty {

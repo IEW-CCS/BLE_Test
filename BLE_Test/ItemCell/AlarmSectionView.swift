@@ -44,7 +44,6 @@ class AlarmSectionView: UITableViewHeaderFooterView {
         
         btnRemove.isEnabled = false
         btnRemove.isHidden = true
-        AdjustAutoLayout()
     }
 
     func setData(date_time: String, gateway_id: String, device_id: String, alarm_level: String, badge_number: String) {
@@ -78,7 +77,6 @@ class AlarmSectionView: UITableViewHeaderFooterView {
     }
     
     @objc func handleRemoveTap(_ sender: UITapGestureRecognizer) {
-        AdjustAutoLayout()
         print("Remove button is tapped")
         NotificationCenter.default.post(
             name: NSNotification.Name("RemoveSection"),
@@ -86,7 +84,6 @@ class AlarmSectionView: UITableViewHeaderFooterView {
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
-        //AdjustAutoLayout()
         print("Section \(self.tag) is tapped")
         if self.isLongPressed == true {
             self.isLongPressed = false
@@ -103,7 +100,6 @@ class AlarmSectionView: UITableViewHeaderFooterView {
     }
     
     @objc func handleLongPress(_ sender: UILongPressGestureRecognizer) {
-        AdjustAutoLayout()
         if sender.state == .began {
             print("Section \(self.tag) is long pressed")
             self.isDisplayRemoveButton = true
@@ -121,7 +117,6 @@ class AlarmSectionView: UITableViewHeaderFooterView {
 
 extension AlarmSectionView: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        //AdjustAutoLayout()
         return true
     }
 }

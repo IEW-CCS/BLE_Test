@@ -13,7 +13,7 @@ struct WebResponseOnLineStatus: Codable {
 }
 
 struct WebResponseGatewayList: Codable {
-    let gateway_list: [WebResponseGateway]
+    var gateway_list: [WebResponseGateway]
 }
 
 struct WebResponseGateway: Codable {

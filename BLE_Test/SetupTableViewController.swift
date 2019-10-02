@@ -57,8 +57,11 @@ class SetupTableViewController: UITableViewController{
     }
     
     func updateBLEProfile() {
-        
-        let sessionHttp = URLSession(configuration: .default)
+        let sessionConf = URLSessionConfiguration.default
+        sessionConf.timeoutIntervalForRequest = HTTP_REQUEST_TIMEOUT
+        sessionConf.timeoutIntervalForResource = HTTP_REQUEST_TIMEOUT
+        let sessionHttp = URLSession(configuration: sessionConf)
+        //let sessionHttp = URLSession(configuration: .default)
         let url = getUrlForRequest(uri: "CCS_BLE_Profile_List")
         
         let UrlRequest = URLRequest(url: URL(string: url)!)

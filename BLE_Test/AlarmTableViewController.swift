@@ -19,9 +19,18 @@ class AlarmTableViewController: UITableViewController {
 
     let app = UIApplication.shared.delegate as! AppDelegate
     var vc: NSManagedObjectContext!
+    private var isFirstLoad: Bool = true
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.title = self.title
+        if self.isFirstLoad {
+            self.isFirstLoad = false
+            return
+        }
+        
+        print("AlarmTableViewController not first load!!")
+        deleteAllAlarmData() //Temp function, needs to remove in the future
+        queryAlarmData()
         self.tableView.reloadData()
     }
     
@@ -56,11 +65,32 @@ class AlarmTableViewController: UITableViewController {
         present(_Activityalert, animated : true, completion : queryAlarmData)
         
         self.tableView.reloadData()
-        UIApplication.shared.applicationIconBadgeNumber = getBadgeNumber()
+        let number = getBadgeNumber()
+        UIApplication.shared.applicationIconBadgeNumber = number
+        setTabBarBadgeNumber(badge: number)
+        refreshSectionView()
+    }
+    private func refreshSectionView() {
+        if !self.sectionDataList.isEmpty {
+            for index in 0...self.sectionDataList.count - 1 {
+                let sectionView = tableView.headerView(forSection: index) as! AlarmSectionView
+                sectionView.AdjustAutoLayout()
+            }
+        }
     }
     
     func queryAlarmData() {
-        let sessionHttp = URLSession(configuration: .default)
+        self.sectionDataList.removeAll()
+        self.cellDataList.removeAll()
+        self.isExpendDataList.removeAll()
+        self.uuidDataList.removeAll()
+        //self.alarmList.alarm_list.removeAll()
+
+        let sessionConf = URLSessionConfiguration.default
+        sessionConf.timeoutIntervalForRequest = HTTP_REQUEST_TIMEOUT
+        sessionConf.timeoutIntervalForResource = HTTP_REQUEST_TIMEOUT
+        let sessionHttp = URLSession(configuration: sessionConf)
+        //let sessionHttp = URLSession(configuration: .default)
         let url = getUrlForRequest(uri: "CCS_Alarm_List")
         
         let UrlRequest = URLRequest(url: URL(string: url)!)
@@ -74,9 +104,9 @@ class AlarmTableViewController: UITableViewController {
                     DispatchQueue.main.async {self.presentedViewController?.dismiss(animated: false, completion: nil)}
                     let _httpalert = alert(message: error!.localizedDescription, title: "Http Error")
                     self.present(_httpalert, animated : false, completion : nil)
+                    DispatchQueue.main.async {self.tableView.reloadData()}
                 }
                 else{
-                    
                     guard let httpResponse = response as? HTTPURLResponse,
                         (200...299).contains(httpResponse.statusCode) else {
                             
@@ -85,6 +115,7 @@ class AlarmTableViewController: UITableViewController {
                             DispatchQueue.main.async {self.presentedViewController?.dismiss(animated: false, completion: nil)}
                             let _httpalert = alert(message: message, title: "Http Error")
                             self.present(_httpalert, animated : false, completion : nil)
+                            DispatchQueue.main.async {self.tableView.reloadData()}
                             return
                     }
                     
@@ -102,7 +133,9 @@ class AlarmTableViewController: UITableViewController {
                     }
                     self.queryAlarmFromCoreData()
                     DispatchQueue.main.async {
-                        UIApplication.shared.applicationIconBadgeNumber = self.getBadgeNumber()
+                        let number = self.getBadgeNumber()
+                        UIApplication.shared.applicationIconBadgeNumber = number
+                        self.setTabBarBadgeNumber(badge: number)
                         self.tableView.reloadData()
                     }
                 }
@@ -223,22 +256,47 @@ class AlarmTableViewController: UITableViewController {
             }
         }
         self.tableView.reloadSections(IndexSet(integer: section), with: .automatic)
-        UIApplication.shared.applicationIconBadgeNumber = getBadgeNumber()
+        let number = getBadgeNumber()
+        UIApplication.shared.applicationIconBadgeNumber = number
+        setTabBarBadgeNumber(badge: number)
+    }
+    
+    private func setTabBarBadgeNumber(badge: Int) {
+        if let tabItems = tabBarController?.tabBar.items {
+            let tabItem = tabItems[3] //Alarm tab bar item
+            if badge == 0 {
+                tabItem.badgeValue = nil
+            } else {
+                tabItem.badgeValue = String(badge)
+            }
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return self.isExpendDataList.count
+        if !self.sectionDataList.isEmpty {
+             return self.sectionDataList.count
+        }
+        
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.isExpendDataList[section] {
-            return self.cellDataList[section].count
-        } else {
-            return 0
+        if !self.sectionDataList.isEmpty {
+            if self.isExpendDataList[section] {
+                return self.cellDataList[section].count
+            } else {
+                return 0
+            }
         }
+        
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if self.sectionDataList.isEmpty {
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlarmDetailTableViewCell", for: indexPath) as! AlarmDetailTableViewCell
 
         cell.setData(item_name: self.headerDataList[indexPath.row], information: self.cellDataList[indexPath.section][indexPath.row])
@@ -251,7 +309,10 @@ class AlarmTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
+        if self.sectionDataList.isEmpty {
+            return super.tableView(tableView, viewForHeaderInSection: section)
+        }
+
         let sectionView: AlarmSectionView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "AlarmSectionView") as! AlarmSectionView
                 
         sectionView.isExpand = self.isExpendDataList[section]
@@ -260,7 +321,7 @@ class AlarmTableViewController: UITableViewController {
         
         sectionView.setData(date_time: self.sectionDataList[section][0], gateway_id: self.sectionDataList[section][1], device_id: self.sectionDataList[section][2], alarm_level: self.sectionDataList[section][3], badge_number: self.sectionDataList[section][4])
         sectionView.tag = section
-        sectionView.AdjustAutoLayout()
+        //sectionView.AdjustAutoLayout()
 
         return sectionView
     }
@@ -269,6 +330,18 @@ class AlarmTableViewController: UITableViewController {
         return 90
     }
     
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection: Int) {
+        if let header = view as? AlarmSectionView {
+            header.AdjustAutoLayout()
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection: Int) {
+        if let header = view as? AlarmSectionView {
+            header.AdjustAutoLayout()
+        }
+    }
+
     @objc func receiveRemoveSectionNotify(_ notification: Notification) {
         if let sectionIndex = notification.object as? Int {
             print("AlarmTableViewController Receive Section remove notification, section number is \(sectionIndex)")
@@ -294,7 +367,9 @@ class AlarmTableViewController: UITableViewController {
                     print(error)
                 }
             }
-            UIApplication.shared.applicationIconBadgeNumber = getBadgeNumber()
+            let number = getBadgeNumber()
+            UIApplication.shared.applicationIconBadgeNumber = number
+            setTabBarBadgeNumber(badge: number)
             self.tableView.reloadData()
         }
     }
@@ -303,7 +378,9 @@ class AlarmTableViewController: UITableViewController {
         if let aData = notification.object as? AlarmNotification {
             print("AlarmTableViewController Receive alarm notification")
             insertAlarmData(alarm_info: aData)
-            UIApplication.shared.applicationIconBadgeNumber = getBadgeNumber()
+            let number = getBadgeNumber()
+            UIApplication.shared.applicationIconBadgeNumber = number
+            setTabBarBadgeNumber(badge: number)
             self.tableView.reloadData()
 
             /*
@@ -333,7 +410,6 @@ extension AlarmTableViewController: SectionViewDelegate {
     func sectionView(_ sectionView: AlarmSectionView, _ didPressTag: Int, _ isExpand: Bool) {
         
         self.isExpendDataList[didPressTag] = !isExpand
-        sectionView.AdjustAutoLayout()
         self.tableView.reloadSections(IndexSet(integer: didPressTag), with: .automatic)
         if self.isExpendDataList[didPressTag] {
             updateBadgeNumber(section: didPressTag)

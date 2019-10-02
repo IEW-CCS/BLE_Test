@@ -12,6 +12,8 @@ import Charts
 class CustomChartCell: UITableViewCell {
     
     @IBOutlet weak var chtChart: LineChartView!
+    @IBOutlet weak var backView: ShadowGradientView!
+    
     //var dataSets: [LineChartDataSet] = []
     
     override func awakeFromNib() {
@@ -88,6 +90,11 @@ class CustomChartCell: UITableViewCell {
         
         data.setValueFont(.systemFont(ofSize: 7, weight: .light))
         chtChart.data = data
+    }
+    
+    public func AdjustAutoLayout()
+    {
+        self.backView.AdjustAutoLayout()
     }
 
     func setChartDataNil() {

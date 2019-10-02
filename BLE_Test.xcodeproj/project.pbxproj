@@ -22,6 +22,16 @@
 		3636AD7E231E3C5300057F6D /* Setup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3636AD7D231E3C5300057F6D /* Setup.plist */; };
 		3638506D232548A4000F4D35 /* Status_tmp2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3638506C232548A4000F4D35 /* Status_tmp2.png */; };
 		3638506F23254966000F4D35 /* Status_tmp.png in Resources */ = {isa = PBXBuildFile; fileRef = 3638506E23254966000F4D35 /* Status_tmp.png */; };
+		36465DEE2344863B004C89EB /* vibration222.png in Resources */ = {isa = PBXBuildFile; fileRef = 36465DEC2344863B004C89EB /* vibration222.png */; };
+		36465DF0234489EA004C89EB /* temperature222.png in Resources */ = {isa = PBXBuildFile; fileRef = 36465DEF234489EA004C89EB /* temperature222.png */; };
+		36465DF223449086004C89EB /* stats.png in Resources */ = {isa = PBXBuildFile; fileRef = 36465DF123449086004C89EB /* stats.png */; };
+		36465DF42344919F004C89EB /* controls.png in Resources */ = {isa = PBXBuildFile; fileRef = 36465DF32344919F004C89EB /* controls.png */; };
+		36465DF623449283004C89EB /* layers.png in Resources */ = {isa = PBXBuildFile; fileRef = 36465DF523449283004C89EB /* layers.png */; };
+		36465DF823449584004C89EB /* network.png in Resources */ = {isa = PBXBuildFile; fileRef = 36465DF723449584004C89EB /* network.png */; };
+		36465DFC234495E4004C89EB /* hourglass-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 36465DFB234495E4004C89EB /* hourglass-1.png */; };
+		36465E002344964C004C89EB /* notepad-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 36465DFF2344964C004C89EB /* notepad-1.png */; };
+		36465E04234498A4004C89EB /* cloud-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 36465E03234498A4004C89EB /* cloud-1.png */; };
+		36465E06234498C3004C89EB /* bluetooth-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 36465E05234498C3004C89EB /* bluetooth-1.png */; };
 		364F77E3233C5F0C000738B8 /* BasicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F77E2233C5F0C000738B8 /* BasicCollectionViewCell.swift */; };
 		364F77E8233C9C28000738B8 /* chart2.png in Resources */ = {isa = PBXBuildFile; fileRef = 364F77E5233C9C28000738B8 /* chart2.png */; };
 		364F77E9233C9C28000738B8 /* chart2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 364F77E6233C9C28000738B8 /* chart2@3x.png */; };
@@ -185,6 +195,16 @@
 		3636AD7D231E3C5300057F6D /* Setup.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Setup.plist; sourceTree = "<group>"; };
 		3638506C232548A4000F4D35 /* Status_tmp2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Status_tmp2.png; sourceTree = "<group>"; };
 		3638506E23254966000F4D35 /* Status_tmp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Status_tmp.png; sourceTree = "<group>"; };
+		36465DEC2344863B004C89EB /* vibration222.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vibration222.png; sourceTree = "<group>"; };
+		36465DEF234489EA004C89EB /* temperature222.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temperature222.png; sourceTree = "<group>"; };
+		36465DF123449086004C89EB /* stats.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stats.png; sourceTree = "<group>"; };
+		36465DF32344919F004C89EB /* controls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = controls.png; sourceTree = "<group>"; };
+		36465DF523449283004C89EB /* layers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = layers.png; sourceTree = "<group>"; };
+		36465DF723449584004C89EB /* network.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = network.png; sourceTree = "<group>"; };
+		36465DFB234495E4004C89EB /* hourglass-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hourglass-1.png"; sourceTree = "<group>"; };
+		36465DFF2344964C004C89EB /* notepad-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notepad-1.png"; sourceTree = "<group>"; };
+		36465E03234498A4004C89EB /* cloud-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloud-1.png"; sourceTree = "<group>"; };
+		36465E05234498C3004C89EB /* bluetooth-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bluetooth-1.png"; sourceTree = "<group>"; };
 		364F77E2233C5F0C000738B8 /* BasicCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicCollectionViewCell.swift; sourceTree = "<group>"; };
 		364F77E5233C9C28000738B8 /* chart2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chart2.png; sourceTree = "<group>"; };
 		364F77E6233C9C28000738B8 /* chart2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart2@3x.png"; sourceTree = "<group>"; };
@@ -475,7 +495,17 @@
 		36CE5C13230FAFD300CBAE86 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				36465DF123449086004C89EB /* stats.png */,
+				36465E05234498C3004C89EB /* bluetooth-1.png */,
+				36465E03234498A4004C89EB /* cloud-1.png */,
+				36465DFF2344964C004C89EB /* notepad-1.png */,
+				36465DFB234495E4004C89EB /* hourglass-1.png */,
+				36465DF32344919F004C89EB /* controls.png */,
+				36465DF723449584004C89EB /* network.png */,
+				36465DF523449283004C89EB /* layers.png */,
+				36465DEC2344863B004C89EB /* vibration222.png */,
 				36DE6E98232E858C007F2C45 /* temperature2.png */,
+				36465DEF234489EA004C89EB /* temperature222.png */,
 				36DE6E99232E858C007F2C45 /* vibration2.png */,
 				3638506E23254966000F4D35 /* Status_tmp.png */,
 				3638506C232548A4000F4D35 /* Status_tmp2.png */,
@@ -670,6 +700,9 @@
 				36CE5C1F230FB76100CBAE86 /* Setup2.png in Resources */,
 				F52D976B233C4B5F00FE1CE2 /* chart@2x.png in Resources */,
 				3673A1CA2313800F00B0F2EB /* CombinedChartViewController.xib in Resources */,
+				36465E002344964C004C89EB /* notepad-1.png in Resources */,
+				36465DF623449283004C89EB /* layers.png in Resources */,
+				36465DF42344919F004C89EB /* controls.png in Resources */,
 				F52D977F233C4B8A00FE1CE2 /* DashboardBasicTableViewCell.xib in Resources */,
 				F52D9787233C4B8A00FE1CE2 /* DashboardDataItemChartCell.xib in Resources */,
 				F52D975F233C4B5F00FE1CE2 /* setup.png in Resources */,
@@ -690,11 +723,13 @@
 				36D36AA623129291005C014E /* Run.png in Resources */,
 				F52D975C233C4B5F00FE1CE2 /* on-line@2x.png in Resources */,
 				3673A1CD2313800F00B0F2EB /* SinusBarChartViewController.xib in Resources */,
+				36465DEE2344863B004C89EB /* vibration222.png in Resources */,
 				F52D9756233C4B5F00FE1CE2 /* chart.png in Resources */,
 				F52D9757233C4B5F00FE1CE2 /* ble@2x.png in Resources */,
 				F52D9785233C4B8A00FE1CE2 /* DashboardMessageCell.xib in Resources */,
 				3638506D232548A4000F4D35 /* Status_tmp2.png in Resources */,
 				3673A1E22313991E00B0F2EB /* LayoutSVGTableViewCell.xib in Resources */,
+				36465DF223449086004C89EB /* stats.png in Resources */,
 				36FD31E22329C85900611371 /* BLEDataItemTableViewCell.xib in Resources */,
 				3684CAF62303F96D0088C152 /* LaunchScreen.storyboard in Resources */,
 				F52D9765233C4B5F00FE1CE2 /* ble@3x.png in Resources */,
@@ -707,6 +742,8 @@
 				3673A1CC2313800F00B0F2EB /* PieChartViewController.xib in Resources */,
 				3673A1F023140A0900B0F2EB /* Layout_Demo.png in Resources */,
 				36A3C831231F9032008431C7 /* AlarmDetailTableViewCell.xib in Resources */,
+				36465DFC234495E4004C89EB /* hourglass-1.png in Resources */,
+				36465E06234498C3004C89EB /* bluetooth-1.png in Resources */,
 				F52D976A233C4B5F00FE1CE2 /* home.png in Resources */,
 				36DE6E9A232E858C007F2C45 /* temperature2.png in Resources */,
 				F52D9767233C4B5F00FE1CE2 /* setup@3x.png in Resources */,
@@ -718,14 +755,17 @@
 				F52D9759233C4B5F00FE1CE2 /* status.png in Resources */,
 				364F77EE233CCDC0000738B8 /* on-line-status.png in Resources */,
 				364F77EA233C9C28000738B8 /* chart2@2x.png in Resources */,
+				36465DF0234489EA004C89EB /* temperature222.png in Resources */,
 				3684CAF12303F96C0088C152 /* Main.storyboard in Resources */,
 				364F77F0233CCDC0000738B8 /* on-line-status@3x.png in Resources */,
 				F52D9758233C4B5F00FE1CE2 /* home@3x.png in Resources */,
+				36465E04234498A4004C89EB /* cloud-1.png in Resources */,
 				F52D976C233C4B5F00FE1CE2 /* layout.png in Resources */,
 				364F77F4233CDE56000738B8 /* DashboardServerNotAvailableCell.xib in Resources */,
 				F52D975B233C4B5F00FE1CE2 /* on-line@3x.png in Resources */,
 				3638506F23254966000F4D35 /* Status_tmp.png in Resources */,
 				364F77E8233C9C28000738B8 /* chart2.png in Resources */,
+				36465DF823449584004C89EB /* network.png in Resources */,
 				3636AD7E231E3C5300057F6D /* Setup.plist in Resources */,
 				F52D975E233C4B5F00FE1CE2 /* alarm@2x.png in Resources */,
 				3636AD79231CFF7000057F6D /* ChartItemTableViewCell.xib in Resources */,
