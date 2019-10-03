@@ -18,7 +18,8 @@ class AlarmSectionView: UITableViewHeaderFooterView {
     @IBOutlet weak var txtDeviceID: UILabel!
     @IBOutlet weak var txtBadge: BadgeSwift!
     @IBOutlet weak var btnRemove: BadgeSwift!
-    @IBOutlet weak var backView: ShadowGradientView!
+
+    @IBOutlet weak var backView: UIView!
     
     weak var delegate: SectionViewDelegate?
     var buttonTag: Int = 0
@@ -44,6 +45,13 @@ class AlarmSectionView: UITableViewHeaderFooterView {
         
         btnRemove.isEnabled = false
         btnRemove.isHidden = true
+        
+        
+        
+        backView.layer.borderWidth = CGFloat(1.0)
+        backView.layer.borderColor = UIColor.lightGray.cgColor
+        backView.layer.cornerRadius = 6
+        
     }
 
     func setData(date_time: String, gateway_id: String, device_id: String, alarm_level: String, badge_number: String) {
@@ -70,12 +78,7 @@ class AlarmSectionView: UITableViewHeaderFooterView {
             return
         }
     }
-    
-    public func AdjustAutoLayout()
-    {
-        self.backView.AdjustAutoLayout()
-    }
-    
+        
     @objc func handleRemoveTap(_ sender: UITapGestureRecognizer) {
         print("Remove button is tapped")
         NotificationCenter.default.post(

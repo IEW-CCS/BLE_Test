@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,9 +13,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" id="tqv-1Q-Ack" customClass="ShadowGradientView" customModule="BLE_Test" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6AA-Ub-Oar">
+                    <rect key="frame" x="5" y="5" width="310" height="80"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alarm DateTime" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gMp-jP-q5a">
@@ -71,8 +70,8 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="X" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q8b-OB-V0H" customClass="BadgeSwift" customModule="BLE_Test" customModuleProvider="target">
-                    <rect key="frame" x="275" y="18" width="24.5" height="24.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q8b-OB-V0H" customClass="BadgeSwift" customModule="BLE_Test" customModuleProvider="target">
+                    <rect key="frame" x="275" y="18.5" width="24.5" height="24"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -89,6 +88,7 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="gMp-jP-q5a" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="26" id="5sd-Ie-vYn"/>
+                <constraint firstAttribute="bottom" secondItem="6AA-Ub-Oar" secondAttribute="bottom" constant="5" id="7Ts-aW-VnT"/>
                 <constraint firstAttribute="bottom" secondItem="qtd-fI-sKa" secondAttribute="bottom" constant="15" id="Bw9-d1-kHj"/>
                 <constraint firstItem="J1s-oz-78k" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="26" id="DOc-YW-hQg"/>
                 <constraint firstAttribute="trailing" secondItem="Q8b-OB-V0H" secondAttribute="trailing" constant="20.5" id="Evs-WD-6mh"/>
@@ -97,14 +97,17 @@
                 <constraint firstItem="gMp-jP-q5a" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="RHU-fA-hdB"/>
                 <constraint firstItem="qtd-fI-sKa" firstAttribute="top" secondItem="gMp-jP-q5a" secondAttribute="bottom" constant="12" id="Soi-ib-ZgP"/>
                 <constraint firstAttribute="trailing" secondItem="qtd-fI-sKa" secondAttribute="trailing" constant="14" id="U2m-Qa-khP"/>
+                <constraint firstItem="6AA-Ub-Oar" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="aae-iE-W6V"/>
                 <constraint firstItem="qtd-fI-sKa" firstAttribute="top" secondItem="Q8b-OB-V0H" secondAttribute="bottom" constant="10.5" id="hDw-XY-IXC"/>
+                <constraint firstItem="6AA-Ub-Oar" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="sKm-rS-tgf"/>
+                <constraint firstAttribute="trailing" secondItem="6AA-Ub-Oar" secondAttribute="trailing" constant="5" id="wbz-ve-JRC"/>
                 <constraint firstItem="gMp-jP-q5a" firstAttribute="leading" secondItem="J1s-oz-78k" secondAttribute="leading" id="y4A-Ds-Xhr"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="backView" destination="tqv-1Q-Ack" id="eV1-sE-yS4"/>
+                <outlet property="backView" destination="6AA-Ub-Oar" id="1LF-ap-x8h"/>
                 <outlet property="btnRemove" destination="Q8b-OB-V0H" id="zt0-p9-H3e"/>
                 <outlet property="txtAlarmDateTime" destination="gMp-jP-q5a" id="PaM-eR-SqE"/>
                 <outlet property="txtBadge" destination="qtd-fI-sKa" id="g1a-o5-BXt"/>

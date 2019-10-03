@@ -68,16 +68,9 @@ class AlarmTableViewController: UITableViewController {
         let number = getBadgeNumber()
         UIApplication.shared.applicationIconBadgeNumber = number
         setTabBarBadgeNumber(badge: number)
-        refreshSectionView()
+     
     }
-    private func refreshSectionView() {
-        if !self.sectionDataList.isEmpty {
-            for index in 0...self.sectionDataList.count - 1 {
-                let sectionView = tableView.headerView(forSection: index) as! AlarmSectionView
-                sectionView.AdjustAutoLayout()
-            }
-        }
-    }
+    
     
     func queryAlarmData() {
         self.sectionDataList.removeAll()
@@ -330,18 +323,6 @@ class AlarmTableViewController: UITableViewController {
         return 90
     }
     
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection: Int) {
-        if let header = view as? AlarmSectionView {
-            header.AdjustAutoLayout()
-        }
-    }
-
-    override func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection: Int) {
-        if let header = view as? AlarmSectionView {
-            header.AdjustAutoLayout()
-        }
-    }
-
     @objc func receiveRemoveSectionNotify(_ notification: Notification) {
         if let sectionIndex = notification.object as? Int {
             print("AlarmTableViewController Receive Section remove notification, section number is \(sectionIndex)")
