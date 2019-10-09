@@ -283,7 +283,7 @@ class LineChartTimeViewController: DemoBaseViewController {
             if self.ChartQuery != nil {
                 
                 let formatter = DateFormatter()
-                formatter.dateFormat = "yyyyMMddhhmmss"
+                formatter.dateFormat = "yyyyMMddHHmmss"
             
                 let values = self.ChartQuery?.data_list.map { (Json) -> ChartDataEntry in
                     let someDate = formatter.date(from: Json.X_asix )
