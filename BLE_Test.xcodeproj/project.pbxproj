@@ -1036,14 +1036,14 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 34KF2N2J26;
+				DEVELOPMENT_TEAM = 79SKVS6TTS;
 				INFOPLIST_FILE = BLE_Test/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "BLE2MQTT-Gateway.JStudio";
+				PRODUCT_BUNDLE_IDENTIFIER = "BLE2MQTT-Gateway.CStudio";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1067,7 +1067,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "BLE2MQTT-Gateway.JStudio";
+				PRODUCT_BUNDLE_IDENTIFIER = "BLE2MQTT-Gateway.CStudio";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

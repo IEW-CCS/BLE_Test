@@ -62,7 +62,16 @@ class CloudBLETableViewController: UITableViewController {
     let app = UIApplication.shared.delegate as! AppDelegate
 
     override func viewWillAppear(_ animated: Bool) {
-         self.tabBarController?.title = self.title
+        self.tabBarController?.title = self.title
+    
+        //20191004 Bug Fix of BLE screen still no data show bug, when not load BLE Profile before change to  BLE screen.
+        
+        loadProfileData()
+        selectedProfile = requestSelectedProfile(category: self.category, profile_name: self.device)
+              
+        self.tableView.reloadData()
+        self.profilePicker.reloadAllComponents()
+       
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,9 +105,8 @@ class CloudBLETableViewController: UITableViewController {
         let queue = DispatchQueue.global()
         centralManager = CBCentralManager(delegate: self, queue: queue)
 
-        loadProfileData()
-        selectedProfile = requestSelectedProfile(category: self.category, profile_name: self.device)
-        self.tableView.reloadData()
+
+        
     }
 
     @objc func dismissKeyBoard() {
@@ -383,6 +391,10 @@ class CloudBLETableViewController: UITableViewController {
     
     func loadProfileData() {
         do {
+            
+            //20191004 Bug Fix : LoadprofileDate func trigger by view will appear, it will be trigger multiple times, to be avoided duplicate data it need clear container first.
+            self.deviceArray.removeAll()
+            
             let vc = app.persistentContainer.viewContext
             let fetchRequest = NSFetchRequest<BLEProfileTable>(entityName: "BLEProfileTable")
             let profile_list = try vc.fetch(fetchRequest)
