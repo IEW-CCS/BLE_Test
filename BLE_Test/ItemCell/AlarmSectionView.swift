@@ -45,9 +45,7 @@ class AlarmSectionView: UITableViewHeaderFooterView {
         
         btnRemove.isEnabled = false
         btnRemove.isHidden = true
-        
-        
-        
+
         backView.layer.borderWidth = CGFloat(1.0)
         backView.layer.borderColor = UIColor.lightGray.cgColor
         backView.layer.cornerRadius = 6

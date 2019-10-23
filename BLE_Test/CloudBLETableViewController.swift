@@ -73,6 +73,7 @@ class CloudBLETableViewController: UITableViewController {
         self.profilePicker.reloadAllComponents()
        
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -105,8 +106,6 @@ class CloudBLETableViewController: UITableViewController {
         let queue = DispatchQueue.global()
         centralManager = CBCentralManager(delegate: self, queue: queue)
 
-
-        
     }
 
     @objc func dismissKeyBoard() {
@@ -434,7 +433,7 @@ class CloudBLETableViewController: UITableViewController {
                     print("Fetched name: \(profile_data.name!)")
                     let profileDetail = profile_data.profileObject as! ProfileObject
                     for charService in profileDetail.CharacteristicUUID! {
-                        print("Characteristic UUIS: \(charService.UUID)")
+                        print("Characteristic UUID: \(charService.UUID)")
                         for charItem in charService.ItemList! {
                             print("Data Name: \(charItem.DataName), Data Type: \(charItem.DataType)")
                         }
@@ -449,6 +448,7 @@ class CloudBLETableViewController: UITableViewController {
                 }
             }
             return nil
+
         } catch {
             print(error.localizedDescription)
             return nil

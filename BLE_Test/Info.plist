@@ -28,6 +28,8 @@
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Get GPS coordinate when in use</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Use BLE to retrieve data from peripheral</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
