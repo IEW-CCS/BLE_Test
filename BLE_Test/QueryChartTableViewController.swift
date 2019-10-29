@@ -250,7 +250,7 @@ class QueryChartTableViewController: UITableViewController {
         sessionConf.timeoutIntervalForResource = HTTP_REQUEST_TIMEOUT
         let sessionHttp = URLSession(configuration: sessionConf)
         //let sessionHttp = URLSession(configuration: .default)
-        let url = getUrlForRequest(uri: "CCS_Chart_Item_List") + "/\(device_id)"
+        let url = getUrlForRequest(uri: "CCS_Chart_Item_List" + "/\(device_id)") 
         let UrlRequest = URLRequest(url: URL(string: url)!)
         var deviceItem: WebResponseDeviceItem?
         

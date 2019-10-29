@@ -3,6 +3,21 @@ import UIKit
 
 let HTTP_REQUEST_TIMEOUT = 3.0
 
+
+func getHttpSimulationEnv() -> Bool {
+    let path = NSHomeDirectory() + "/Documents/Setup.plist"
+    let plist = NSMutableDictionary(contentsOfFile: path)
+   
+    if(plist!["HttpSimulation"] as! Bool == true)
+    {
+       return true
+    }
+    else
+    {
+       return false
+    }
+}
+
 func getUrlForRequest(uri: String) -> String {
     let path = NSHomeDirectory() + "/Documents/Setup.plist"
     let plist = NSMutableDictionary(contentsOfFile: path)
@@ -11,11 +26,19 @@ func getUrlForRequest(uri: String) -> String {
     var url : String
     if(plist!["HttpSimulation"] as! Bool == true)
     {
-         url = "http://\(httpServer):\(httpPort)/RestfulService/simulation/\(uri)"
+          // url = "http://\(httpServer):\(httpPort)/RestfulService/simulation/\(uri)
+         // let _firebasepath =  "ROOT/GoogleService-Info.plist"
+        
+        //let _firebasepath = Bundle.main.path(forResource: "GoogleService-Info" , ofType: "plist")!
+        //let _firebaseplist = NSMutableDictionary(contentsOfFile: _firebasepath)
+        //let _DATABASE_URL2 = _firebaseplist!["DATABASE_URL"] as! String
+        
+        let _DATABASE_URL = "https://fun2order-11a03.firebaseio.com"
+        url = _DATABASE_URL + "/BLE_SIMU/\(uri).json"
     }
     else
     {
-         url = "http://\(httpServer):\(httpPort)/RestfulService/\(uri)"
+           url = "http://\(httpServer):\(httpPort)/RestfulService/\(uri)"
     }
     
     

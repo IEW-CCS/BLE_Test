@@ -54,15 +54,25 @@ class LineChartTimeViewController: DemoBaseViewController {
     
     func requestChartInfo() {
         
-        let url = getUrlForRequest(uri: "CCS_Chart/Info")
-        let postJSON = ["device_id": _Query_DeviceID,"chart_name":_Query_ChartName, "get_count":"100", "start_time": _Select_Start_Time, "end_time" : _Select_End_Time]
-        requestWithJSONBody(urlString: url, parameters: postJSON as [String : Any], completion: { (data) in
+        if(getHttpSimulationEnv() == true)
+        {
             DispatchQueue.main.async {
                 self.presentedViewController?.dismiss(animated: false, completion: nil)
-                self.processData(data: data)
+                self.showDemoData(100, range: 50)
             }
-        })
-        
+        }
+            
+        else
+        {
+            let url = getUrlForRequest(uri: "CCS_Chart/Info")
+            let postJSON = ["device_id": _Query_DeviceID,"chart_name":_Query_ChartName, "get_count":"100", "start_time": _Select_Start_Time, "end_time" : _Select_End_Time]
+            requestWithJSONBody(urlString: url, parameters: postJSON as [String : Any], completion: { (data) in
+                DispatchQueue.main.async {
+                    self.presentedViewController?.dismiss(animated: false, completion: nil)
+                    self.processData(data: data)
+                }
+            })
+        }
     }
     
     
@@ -323,5 +333,32 @@ class LineChartTimeViewController: DemoBaseViewController {
         }
         
     }
+    
+    private func showDemoData(_ count: Int, range: UInt32){
+              
+           let values = (0..<count).map { (i) -> ChartDataEntry in
+               let val = Double(arc4random_uniform(range) + 3)
+               return ChartDataEntry(x: Double(i), y: val)
+           }
+           
+       
+           let set1 = LineChartDataSet(entries: values, label: "DataSet 1")
+           set1.axisDependency = .left
+           set1.setColor(UIColor(red: 51/255, green: 181/255, blue: 229/255, alpha: 1))
+           set1.lineWidth = 1.5
+           set1.drawCirclesEnabled = false
+           set1.drawValuesEnabled = false
+           set1.fillAlpha = 0.26
+           set1.fillColor = UIColor(red: 51/255, green: 181/255, blue: 229/255, alpha: 1)
+           set1.highlightColor = UIColor(red: 244/255, green: 117/255, blue: 117/255, alpha: 1)
+           set1.drawCircleHoleEnabled = false
+           
+           let data = LineChartData(dataSet: set1)
+           data.setValueTextColor(.white)
+           data.setValueFont(.systemFont(ofSize: 9, weight: .light))
+           
+           chartView.data = data
+                         
+          }
     
 }

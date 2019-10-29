@@ -140,6 +140,7 @@
 		F52D9786233C4B8A00FE1CE2 /* DashboardBasicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52D977C233C4B8A00FE1CE2 /* DashboardBasicTableViewCell.swift */; };
 		F52D9787233C4B8A00FE1CE2 /* DashboardDataItemChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F52D977D233C4B8A00FE1CE2 /* DashboardDataItemChartCell.xib */; };
 		F52D978A233C4D2800FE1CE2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52D9789233C4D2800FE1CE2 /* ViewController.swift */; };
+		F53FA31123680652007959AE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F53FA30F23680652007959AE /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -319,6 +320,7 @@
 		F52D977C233C4B8A00FE1CE2 /* DashboardBasicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardBasicTableViewCell.swift; sourceTree = "<group>"; };
 		F52D977D233C4B8A00FE1CE2 /* DashboardDataItemChartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardDataItemChartCell.xib; sourceTree = "<group>"; };
 		F52D9789233C4D2800FE1CE2 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F53FA30F23680652007959AE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -435,6 +437,7 @@
 				3684CAF22303F96D0088C152 /* Assets.xcassets */,
 				3684CAF42303F96D0088C152 /* LaunchScreen.storyboard */,
 				3684CAF72303F96D0088C152 /* Info.plist */,
+				F53FA30F23680652007959AE /* GoogleService-Info.plist */,
 				36C376692311171500F87404 /* CloudBLETableViewController.swift */,
 				36D36AAA2312947A005C014E /* StatusTableViewController.swift */,
 				36D36AAE2312CEB2005C014E /* StatusDetailTableViewController.swift */,
@@ -744,6 +747,7 @@
 				36A3C831231F9032008431C7 /* AlarmDetailTableViewCell.xib in Resources */,
 				36465DFC234495E4004C89EB /* hourglass-1.png in Resources */,
 				36465E06234498C3004C89EB /* bluetooth-1.png in Resources */,
+				F53FA31123680652007959AE /* GoogleService-Info.plist in Resources */,
 				F52D976A233C4B5F00FE1CE2 /* home.png in Resources */,
 				36DE6E9A232E858C007F2C45 /* temperature2.png in Resources */,
 				F52D9767233C4B5F00FE1CE2 /* setup@3x.png in Resources */,
@@ -1036,14 +1040,14 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 34KF2N2J26;
+				DEVELOPMENT_TEAM = 79SKVS6TTS;
 				INFOPLIST_FILE = BLE_Test/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "BLE2MQTT-Gateway.CStudio";
+				PRODUCT_BUNDLE_IDENTIFIER = "BLE2MQTT-Gateway.Studio";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1060,14 +1064,14 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 34KF2N2J26;
+				DEVELOPMENT_TEAM = 79SKVS6TTS;
 				INFOPLIST_FILE = BLE_Test/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "BLE2MQTT-Gateway.CStudio";
+				PRODUCT_BUNDLE_IDENTIFIER = "BLE2MQTT-Gateway.Studio";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
